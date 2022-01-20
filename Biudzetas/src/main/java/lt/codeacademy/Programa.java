@@ -1,6 +1,7 @@
 package lt.codeacademy;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -13,10 +14,31 @@ public class Programa {
         System.out.println("Interaktyvia programą - Biudzetas");
 
         Stream.generate(Programa::generatePajamuData).limit(10).forEach(System.out::println);
+        System.out.println();
+
+        Stream.generate(Programa::generateIslaiduIrasas).limit(10).forEach(System.out::println);
+    }
+
+    /**
+     * Generates random IslaiduIrasas object
+     *
+     * @return random IslaiduIrasas object
+     */
+    public static IslaiduIrasas generateIslaiduIrasas() {
+        Random r = new Random();
+        IslaiduKategorija[] kategorijas = IslaiduKategorija.values();
+        AtsiskaitymoBudas[] atsiskaitymoBudas = AtsiskaitymoBudas.values();
+
+        return new IslaiduIrasas(r.nextDouble() * 1000,
+                LocalDateTime.now().minusDays(r.nextInt(365)).minusMinutes(r.nextInt(60 * 24)),
+                kategorijas[r.nextInt(kategorijas.length)],
+                atsiskaitymoBudas[r.nextInt(atsiskaitymoBudas.length)],
+                generateComment());
     }
 
     /**
      * Generates random PajamuIrasas object
+     *
      * @return random PajamuIrasas object
      */
     public static PajamuIrasas generatePajamuData() {
@@ -24,7 +46,7 @@ public class Programa {
         PajamuKategorija[] kategorijas = PajamuKategorija.values();
 
         return new PajamuIrasas(r.nextDouble() * 1000,
-                LocalDate.now().minusDays(r.nextInt(100)),
+                LocalDate.now().minusDays(r.nextInt(365)),
                 kategorijas[r.nextInt(kategorijas.length)],
                 r.nextBoolean(),
                 generateComment());
@@ -32,6 +54,7 @@ public class Programa {
 
     /**
      * Generates random dummy text comment
+     *
      * @return random dummy text comment
      */
     public static String generateComment() {
