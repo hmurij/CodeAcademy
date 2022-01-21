@@ -2,8 +2,8 @@ package lt.codeacademy;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.Stream;
 
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
@@ -13,10 +13,21 @@ public class Programa {
     public static void main(String[] args) {
         System.out.println("Interaktyvia programą - Biudzetas");
 
-        Stream.generate(Programa::generatePajamuData).limit(10).forEach(System.out::println);
-        System.out.println();
+        Biudzetas biudzetas = new Biudzetas();
 
-        Stream.generate(Programa::generateIslaiduIrasas).limit(10).forEach(System.out::println);
+        for (int i = 0; i < 10; i++) {
+            biudzetas.pridetiPajamuIrasa(generatePajamuData());
+        }
+
+        Arrays.stream(biudzetas.gautiPajamuIrasus()).forEach(System.out::println);
+
+        System.out.println("---------------------------------");
+
+        for (int i = 0; i < 10; i++) {
+            biudzetas.pridetiIslaiduIrasa(generateIslaiduIrasas());
+        }
+
+        Arrays.stream(biudzetas.gautiIslaiduIrasa()).forEach(System.out::println);
     }
 
     /**
