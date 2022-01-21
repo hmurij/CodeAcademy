@@ -2,7 +2,9 @@ package lt.codeacademy;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
@@ -13,16 +15,65 @@ public class Programa {
         System.out.println("Interaktyvia programą - Biudzetas");
 
         Biudzetas biudzetas = new Biudzetas();
+        Scanner sc = new Scanner(System.in);
 
-        showMainMenu();
 
+        while(true) {
+            int choice;
+            showMainMenu();
+
+            try {
+                choice = sc.nextInt();
+
+                if(0 > choice || choice > 4){
+                    throw new InputMismatchException();
+                }
+
+
+            } catch (InputMismatchException e) {
+                System.out.println("Netinkamas parametras!\n");
+                sc.nextLine();
+                continue;
+            }
+
+            System.out.println("Jusu pasirinkimas: " + choice + "\n");
+            processInput(choice);
+
+            if(choice == 0){
+                System.out.println("Aciu uz demesi!");
+                break;
+            }
+        }
+
+
+    }
+
+    /**
+     * Processes user input
+     * @param choice int in range from 0 to 4
+     */
+    private static void processInput(int choice) {
+        switch (choice) {
+            case 1:
+                System.out.println("Show new debit record menu\n");
+                break;
+            case 2:
+                System.out.println("Show new income record menu\n");
+                break;
+            case 3:
+                System.out.println("Display all debit records\n");
+                break;
+            case 4:
+                System.out.println("Display all income records\n");
+
+        }
     }
 
     /**
      * Prints main menu to console
      */
-    public static void showMainMenu(){
-        System.out.println("Pasirinkit viena is varijantu: " +
+    public static void showMainMenu() {
+        System.out.print("Pasirinkit viena is varijantu: " +
                 "\n\t1 - Ivesti nauja islaidu irasa" +
                 "\n\t2 - Ivesti nauja pajamu irasa" +
                 "\n\t3 - Atspausdinti visus islaidu irasus" +
