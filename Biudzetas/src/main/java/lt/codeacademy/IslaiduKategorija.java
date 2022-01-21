@@ -1,7 +1,7 @@
 package lt.codeacademy;
 
 public enum IslaiduKategorija {
-    NEKILNOJIMAS_TURTAS("Nekilnojamojo turto įsigijimas"),
+    TURTAS("Nekilnojamojo turto įsigijimas"),
     STATYBA("Statyba, rekonstravimas, remontas ir kiti darbai"),
     REMONTAS("Paprastasis remontas"),
     TRANSPOTAS("Transportavimo islaidos"),
