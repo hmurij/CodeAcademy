@@ -30,7 +30,6 @@ public class Biudzetas {
 
             pajamuIrasai = new PajamuIrasas[pajamuIrasai.length * 2];
             System.arraycopy(temp, 0, pajamuIrasai, 0, temp.length / 2);
-            System.out.println("pajamuIrasai.length = " + pajamuIrasai.length);
         }
 
         if (pajamuIrasas != null) {
@@ -61,7 +60,6 @@ public class Biudzetas {
 
             islaiduIrasai = new IslaiduIrasas[islaiduIrasai.length * 2];
             System.arraycopy(temp, 0, islaiduIrasai, 0, temp.length / 2);
-            System.out.println("islaiduIrasai.length = " + islaiduIrasai.length);
         }
 
         if (islaiduIrasas != null) {

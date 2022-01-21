@@ -2,7 +2,6 @@ package lt.codeacademy;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -15,19 +14,21 @@ public class Programa {
 
         Biudzetas biudzetas = new Biudzetas();
 
-        for (int i = 0; i < 10; i++) {
-            biudzetas.pridetiPajamuIrasa(generatePajamuData());
-        }
+        showMainMenu();
 
-        Arrays.stream(biudzetas.gautiPajamuIrasus()).forEach(System.out::println);
+    }
 
-        System.out.println("---------------------------------");
-
-        for (int i = 0; i < 10; i++) {
-            biudzetas.pridetiIslaiduIrasa(generateIslaiduIrasas());
-        }
-
-        Arrays.stream(biudzetas.gautiIslaiduIrasa()).forEach(System.out::println);
+    /**
+     * Prints main menu to console
+     */
+    public static void showMainMenu(){
+        System.out.println("Pasirinkit viena is varijantu: " +
+                "\n\t1 - Ivesti nauja islaidu irasa" +
+                "\n\t2 - Ivesti nauja pajamu irasa" +
+                "\n\t3 - Atspausdinti visus islaidu irasus" +
+                "\n\t4 - Atspasdinit visus pajamu irasus" +
+                "\n\t0 - Iseiti" +
+                "\nIveskit jusu pasirinkima: ");
     }
 
     /**
