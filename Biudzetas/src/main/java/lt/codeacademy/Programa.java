@@ -25,7 +25,9 @@ public class Programa {
     }
 
     public static void main(String[] args) {
-        System.out.println("Interaktyvia programą - Biudzetas\n");
+        System.out.println("*************************************");
+        System.out.println("* Interaktyvia programą - Biudzetas *");
+        System.out.println("*************************************");
 
         Scanner sc = new Scanner(System.in);
 
@@ -76,9 +78,42 @@ public class Programa {
                 printIslaiduIrasus();
                 break;
             case 4:
-                System.out.println("Display all income records\n");
+                printPajamuIrasus();
 
         }
+    }
+
+    /**
+     * Prints all PajamuIrasas records to console
+     */
+    private static void printPajamuIrasus() {
+        PajamuIrasas[] pajamuIrasai = biudzetas.gautiPajamuIrasus();
+
+        String separator = "+" + "-".repeat(11) + "+" + "-".repeat(21) + "+" + "-".repeat(16)
+                + "+" + "-".repeat(21) + "+" + "-".repeat(31) + "+\n";
+
+        System.out.print(separator);
+        String format = "| %-10s| %-20s| %-15s| %-20s| %-30s|\n";
+        System.out.printf(format, "Suma", "Data", "Kategorija", "Pajamos banke", "Informacija");
+        System.out.print(separator);
+
+        format = "| %-10.2f| %-20s| %-15s| %-20s| %-30s|\n";
+        for (PajamuIrasas pajamuIrasas : pajamuIrasai) {
+            String comment = pajamuIrasas.getPapildomaInfo();
+            System.out.printf(format,
+                    pajamuIrasas.getSuma(),
+                    String.format("%1$tY-%1$tb-%1$td", pajamuIrasas.getData()),
+                    pajamuIrasas.getKategorija(),
+                    pajamuIrasas.isPozymisArIBanka() ? "Taip" : "Ne",
+                    comment.length() > 25 ? comment.substring(0, 25) + "..." : comment);
+
+        }
+        System.out.print(separator);
+        System.out.printf("Is viso: %5.2f\n", Arrays.stream(pajamuIrasai).filter(PajamuIrasas::isPozymisArIBanka)
+                .mapToDouble(PajamuIrasas::getSuma).sum());
+
+        System.out.println();
+
     }
 
     /**
@@ -91,7 +126,7 @@ public class Programa {
 
         System.out.print(separator);
         String format = "| %-10s| %-20s| %-15s| %-20s| %-30s|\n";
-        System.out.printf(format, "Suma", "Data / laikas", "Katerorija", "Atsiskaitymo Budas", "Informacija");
+        System.out.printf(format, "Suma", "Data / laikas", "Kategorija", "Atsiskaitymo Budas", "Informacija");
         System.out.print(separator);
 
         format = "| %-10.2f| %-20s| %-15s| %-20s| %-30s|\n";
