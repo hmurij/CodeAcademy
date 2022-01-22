@@ -1,8 +1,9 @@
 package lt.codeacademy;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class IslaiduIrasas {
+public class IslaiduIrasas implements Serializable {
     private double suma;
     private LocalDateTime dataSuLaiku;
     private IslaiduKategorija kategorija;

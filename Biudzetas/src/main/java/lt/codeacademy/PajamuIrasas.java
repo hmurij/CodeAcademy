@@ -1,8 +1,9 @@
 package lt.codeacademy;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PajamuIrasas {
+public class PajamuIrasas implements Serializable {
     private double suma;
     private LocalDate data;
     private PajamuKategorija kategorija;

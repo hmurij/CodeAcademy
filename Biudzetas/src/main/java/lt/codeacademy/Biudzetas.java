@@ -1,8 +1,9 @@
 package lt.codeacademy;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Biudzetas {
+public class Biudzetas implements Serializable {
     private PajamuIrasas[] pajamuIrasai;
     private int pajamuIrasaiSize;
 

@@ -1,5 +1,6 @@
 package lt.codeacademy;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,20 +17,24 @@ import java.util.Scanner;
 public class Programa {
 
     private static Biudzetas biudzetas;
-    private static Scanner sc;
+    private static final Scanner sc;
 
     static {
-        biudzetas = new Biudzetas();
+//        biudzetas = new Biudzetas();
 
-        for (int i = 0; i < 10; i++) {
-            biudzetas.pridetiIslaiduIrasa(generateIslaiduIrasas());
-            biudzetas.pridetiPajamuIrasa(generatePajamuData());
-        }
+        readBiudzetasFromFile();
+
+//        for (int i = 0; i < 10; i++) {
+//            biudzetas.pridetiIslaiduIrasa(generateIslaiduIrasas());
+//            biudzetas.pridetiPajamuIrasa(generatePajamuData());
+//        }
 
         sc = new Scanner(System.in);
     }
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws IOException {
         System.out.println("*************************************");
         System.out.println("* Interaktyvia programą - Biudzetas *");
         System.out.println("*************************************\n");
@@ -62,7 +67,11 @@ public class Programa {
         }
 
         sc.close();
+
+        saveBiudzetasToFile();
+
     }
+
 
     /**
      * Processes user input
@@ -216,13 +225,6 @@ public class Programa {
             return;
         }
 
-//        System.out.println("newSuma: " + newSuma);
-//        System.out.println("newData: " + newData);
-//        System.out.println("kategorija: " + kategorijas[kategorija - 1]);
-//        System.out.println("pajamosBanke: " + (pajamosBankeChoice == 1 ? "Taip" : "Ne"));
-//        System.out.println("info: " + info);
-//        System.out.println();
-
         biudzetas.pridetiPajamuIrasa(new PajamuIrasas(newSuma,
                 newData,
                 kategorijas[kategorija - 1],
@@ -353,5 +355,26 @@ public class Programa {
                 "Lorem ipsum."};
 
         return comments[new Random().nextInt(comments.length)];
+    }
+
+    /**
+     * Reads {@link Biudzetas} object from file Data/data.dat
+     */
+    private static void readBiudzetasFromFile() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data/data.dat"))) {
+            biudzetas = (Biudzetas) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writed {@link Biudzetas} object to file Data/data.dat
+     * @throws IOException in case of Data/data.dat file is missing.
+     */
+    private static void saveBiudzetasToFile() throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Data/data.dat"))) {
+            out.writeObject(biudzetas);
+        }
     }
 }
