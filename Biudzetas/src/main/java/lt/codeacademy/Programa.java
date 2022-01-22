@@ -2,6 +2,8 @@ package lt.codeacademy;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -14,6 +16,7 @@ import java.util.Scanner;
 public class Programa {
 
     private static Biudzetas biudzetas;
+    private static Scanner sc;
 
     static {
         biudzetas = new Biudzetas();
@@ -22,14 +25,14 @@ public class Programa {
             biudzetas.pridetiIslaiduIrasa(generateIslaiduIrasas());
             biudzetas.pridetiPajamuIrasa(generatePajamuData());
         }
+
+        sc = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
         System.out.println("*************************************");
         System.out.println("* Interaktyvia programą - Biudzetas *");
-        System.out.println("*************************************");
-
-        Scanner sc = new Scanner(System.in);
+        System.out.println("*************************************\n");
 
         while (true) {
             int choice;
@@ -45,12 +48,12 @@ public class Programa {
 
             } catch (InputMismatchException e) {
                 System.out.println("Netinkamas parametras!\n");
-                sc.nextLine();
                 continue;
             }
 
             System.out.println("Jusu pasirinkimas: " + choice + "\n");
             processInput(choice);
+
 
             if (choice == 0) {
                 System.out.println("Aciu uz demesi!");
@@ -69,10 +72,10 @@ public class Programa {
     private static void processInput(int choice) {
         switch (choice) {
             case 1:
-                System.out.println("Show new debit record menu\n");
+                newIslaiduIrasasMenu();
                 break;
             case 2:
-                System.out.println("Show new income record menu\n");
+                newPajamuIrasasMenu();
                 break;
             case 3:
                 printIslaiduIrasus();
@@ -81,6 +84,153 @@ public class Programa {
                 printPajamuIrasus();
 
         }
+    }
+
+    /**
+     * Prompts user to enter appropriate fields, creates new {@link IslaiduIrasas} object
+     * and adds new record to biudzetas.
+     */
+    private static void newIslaiduIrasasMenu() {
+        double newSuma;
+        LocalDateTime newDataLaikas;
+        IslaiduKategorija[] kategorijas = IslaiduKategorija.values();
+        int kategorija;
+        AtsiskaitymoBudas[] atsiskaitymoBudai = AtsiskaitymoBudas.values();
+        int atsiskaitymoBudas;
+        String info;
+
+        try {
+            System.out.print("Iveskit islaidu suma: ");
+            newSuma = sc.nextDouble();
+            if (newSuma < 0) {
+                throw new InputMismatchException();
+            }
+            sc.nextLine();
+
+            System.out.print("\nIveskit data ir laika formatu (YYYY-MM-DD HH:MM): ");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            newDataLaikas = LocalDateTime.parse(sc.nextLine(), formatter);
+
+            System.out.print("\nPasirinkit viena is islaidu kategoriju varijantu: ");
+            for (int i = 0; i < kategorijas.length; i++) {
+                System.out.print("\n\t" + (i + 1) + " - " + kategorijas[i].getKategorija());
+            }
+            System.out.print("\nIveskit jusu pasirinkima: ");
+            kategorija = sc.nextInt();
+            if (1 > kategorija || kategorija > kategorijas.length) {
+                throw new InputMismatchException();
+            }
+            sc.nextLine();
+
+            System.out.print("\nPasirinkit viena is atsiskaitymo budu:");
+            for (int i = 0; i < atsiskaitymoBudai.length; i++) {
+                System.out.print("\n\t" + (i + 1) + " - " + atsiskaitymoBudai[i].getAtsiskaitymoBudas());
+            }
+            System.out.print("\nIveskit jusu pasirinkima: ");
+            atsiskaitymoBudas = sc.nextInt();
+            if (1 > atsiskaitymoBudas || atsiskaitymoBudas > atsiskaitymoBudai.length) {
+                throw new InputMismatchException();
+            }
+            sc.nextLine();
+
+            System.out.print("\nIveskit papildoma informacija: ");
+            info = sc.nextLine();
+
+
+        } catch (InputMismatchException e) {
+            System.out.println("Netinkamas parametras!\n");
+            sc.nextLine();
+            return;
+        } catch (DateTimeParseException e) {
+            System.out.println("Netinkamas parametras!\n");
+            return;
+        }
+
+        biudzetas.pridetiIslaiduIrasa(new IslaiduIrasas(newSuma,
+                newDataLaikas,
+                kategorijas[kategorija - 1],
+                atsiskaitymoBudai[atsiskaitymoBudas - 1],
+                info));
+        System.out.println();
+    }
+
+    /**
+     * Prompts user to enter appropriate fields, creates new {@link PajamuIrasas} object
+     * and adds new record to biudzetas.
+     */
+    private static void newPajamuIrasasMenu() {
+
+        double newSuma;
+        LocalDate newData;
+        PajamuKategorija[] kategorijas = PajamuKategorija.values();
+        int kategorija;
+        int pajamosBankeChoice;
+        String info;
+
+
+        try {
+            System.out.print("Iveskit islaidu suma: ");
+            newSuma = sc.nextDouble();
+            if (newSuma < 0) {
+                throw new InputMismatchException();
+            }
+            sc.nextLine();
+
+            System.out.print("\nIveskit data formatu (YYYY-MM-DD): ");
+            newData = LocalDate.parse(sc.nextLine());
+
+            System.out.print("\nPasirinkit viena is pajamu kategoriju varijantu: " +
+                    "\n\t 1 - Atlyginimas" +
+                    "\n\t 2 - Ismokos" +
+                    "\n\t 3 - Socialinė parama" +
+                    "\n\t 4 - Honoraras" +
+                    "\n\t 5 - Nedarbinės pajamos" +
+                    "\n\t 6 - Renta" +
+                    "\nIveskit jusu pasirinkima: ");
+            kategorija = sc.nextInt();
+            if (1 > kategorija || kategorija > 6) {
+                throw new InputMismatchException();
+            }
+            sc.nextLine();
+
+            System.out.print("\nPajamos banke, pasirinkit viena is varijantu: " +
+                    "\n\t 1 - Taip" +
+                    "\n\t 2 - Ne" +
+                    "\nIveskit jusu pasirinkima: ");
+            pajamosBankeChoice = sc.nextInt();
+            if (1 > pajamosBankeChoice || pajamosBankeChoice > 2) {
+                throw new InputMismatchException();
+            }
+            sc.nextLine();
+
+            System.out.print("\nIveskit papildoma informacija: ");
+            info = sc.nextLine();
+
+
+        } catch (InputMismatchException e) {
+            System.out.println("Netinkamas parametras!\n");
+            sc.nextLine();
+            return;
+        } catch (DateTimeParseException e) {
+            System.out.println("Netinkamas parametras!\n");
+            return;
+        }
+
+//        System.out.println("newSuma: " + newSuma);
+//        System.out.println("newData: " + newData);
+//        System.out.println("kategorija: " + kategorijas[kategorija - 1]);
+//        System.out.println("pajamosBanke: " + (pajamosBankeChoice == 1 ? "Taip" : "Ne"));
+//        System.out.println("info: " + info);
+//        System.out.println();
+
+        biudzetas.pridetiPajamuIrasa(new PajamuIrasas(newSuma,
+                newData,
+                kategorijas[kategorija - 1],
+                (pajamosBankeChoice == 1),
+                info));
+
+        System.out.println();
+
     }
 
     /**
@@ -199,8 +349,8 @@ public class Programa {
      */
     public static String generateComment() {
         String[] comments = {"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." +
-                "Lorem ipsum dolor sit amet.", "Lorem ipsum dolor.", "Lorem ipsum dolor sit amet, consectetuer adipiscing",
-                "Lorem ipsum"};
+                "Lorem ipsum dolor sit amet.", "Lorem ipsum dolor.", "Lorem ipsum dolor sit amet, consectetuer adipiscing.",
+                "Lorem ipsum."};
 
         return comments[new Random().nextInt(comments.length)];
     }

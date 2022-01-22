@@ -9,7 +9,7 @@ public enum AtsiskaitymoBudas {
         this.tsiskaitymoBudas = tsiskaitymoBudas;
     }
 
-    public String getTsiskaitymoBudas() {
+    public String getAtsiskaitymoBudas() {
         return tsiskaitymoBudas;
     }
 }
