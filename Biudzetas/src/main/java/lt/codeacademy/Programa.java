@@ -20,8 +20,8 @@ public class Programa {
     private static final Scanner sc;
 
     static {
-//        biudzetas = new Biudzetas();
-
+        biudzetas = new Biudzetas();
+//
         readBiudzetasFromFile();
 
 //        for (int i = 0; i < 10; i++) {
