@@ -160,7 +160,8 @@ public class Programa {
                 kategorijas[kategorija - 1],
                 atsiskaitymoBudai[atsiskaitymoBudas - 1],
                 info));
-        System.out.println();
+
+        System.out.println("\nSekmingai sukurtas naujas islaidu irasas.\n");
     }
 
     /**
@@ -178,7 +179,7 @@ public class Programa {
 
 
         try {
-            System.out.print("Iveskit islaidu suma: ");
+            System.out.print("Iveskit pajamu suma: ");
             newSuma = sc.nextDouble();
             if (newSuma < 0) {
                 throw new InputMismatchException();
@@ -231,7 +232,7 @@ public class Programa {
                 (pajamosBankeChoice == 1),
                 info));
 
-        System.out.println();
+        System.out.println("\nSekmingai sukurtas naujas pajamu irasas.\n");
 
     }
 
