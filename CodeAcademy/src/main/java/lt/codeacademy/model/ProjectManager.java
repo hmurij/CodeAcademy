@@ -2,21 +2,22 @@ package lt.codeacademy.model;
 
 import lt.codeacademy.type.Duties;
 
-public class ProjectManager extends Employee{
+public class ProjectManager extends Employee {
 
-    public static int totalManagerLikes = 0;
-
-    private int like = 0;
+    private static int totalLikes = 0;
 
     public ProjectManager(String name, Duties duties) {
         super(name, duties);
     }
 
     @Override
-    public void takeLike() {
-        super.takeLike();
-        totalManagerLikes++;
-        like++;
+    public void takeLike(Employee employee) {
+        super.takeLike(employee);
+        totalLikes++;
+    }
+
+    public static int getTotalLikes(){
+        return totalLikes;
     }
 
     @Override
@@ -24,7 +25,22 @@ public class ProjectManager extends Employee{
         return "ProjectManager{" +
                 "name=" + super.getName() +
                 ", duties=" + super.getDuties() +
-                ", like=" + like +
+                ", like=" + super.getNumberOfLikes() +
                 '}';
+    }
+
+    @Override
+    public boolean freeParking() {
+        return true;
+    }
+
+    @Override
+    public boolean freeCarRent() {
+        return true;
+    }
+
+    @Override
+    public boolean freeLunch() {
+        return true;
     }
 }

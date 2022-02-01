@@ -1,4 +1,4 @@
-package lt.codeacademy.Service;
+package lt.codeacademy.Interface;
 
 import lt.codeacademy.model.Employee;
 

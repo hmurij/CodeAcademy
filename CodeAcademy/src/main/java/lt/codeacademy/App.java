@@ -28,8 +28,11 @@ public class App
         e4.like(e2);
         e4.like(e3);
         e3.like(e1);
+        e3.like(e3);
 
         displayStatistics(el);
+
+        displayLikedEmployee(e3);
     }
 
     private static void displayStatistics(List<Employee> el) {
@@ -37,10 +40,20 @@ public class App
             System.out.println(e.toString());
         }
 
-        System.out.println("Project Managers total likes: " + ProjectManager.totalManagerLikes);
-        System.out.println("Developers total likes: " + Developer.totalDeveloperLikes);
-        System.out.println("Total likes: " + Employee.totalEmployeeLikes);
+        System.out.println("Project Managers total likes: " + ProjectManager.getTotalLikes());
+        System.out.println("Developers total likes: " + Developer.getTotalLikes());
+        System.out.println("Total likes: " + Employee.getTotalLikes());
         System.out.println();
+    }
+
+    private static void displayLikedEmployee(Employee employee) {
+        System.out.println("-".repeat(40));
+        System.out.println(employee.getName() + " received likes from: ");
+        for (Employee e: employee.getLikedEmployees()) {
+            System.out.println("\t- " + e.getName());
+        }
+        System.out.println("-".repeat(40));
+
     }
 }
 
