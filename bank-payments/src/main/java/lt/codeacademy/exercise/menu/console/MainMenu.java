@@ -11,6 +11,7 @@ public class MainMenu implements ConsoleMenu {
                     "[2] -> Read formatted \"SepData\" payments \n" +
                     "[3] -> Read formatted \"ShvedData\" payments \n" +
                     "[4] -> Show all banks payments (as table) \n" +
+                    "[5] -> Show bank payments\n" +
                     "[0] -> Exit";
 
     @Override
