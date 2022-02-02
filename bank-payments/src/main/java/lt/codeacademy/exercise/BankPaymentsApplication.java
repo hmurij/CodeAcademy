@@ -91,16 +91,16 @@ public class BankPaymentsApplication {
      * @return filtered set of bank records
      */
     private Set<Record> filterByDate(String date) {
-        Set<Record> rs = Set.of();
+        Set<Record> recordsSet = Set.of();
 
         try{
-            LocalDate d = LocalDate.parse(date);
-            rs = records.stream().filter(r -> r.getDate().compareTo(d) == 0).collect(Collectors.toSet());
+            LocalDate localDate = LocalDate.parse(date);
+            recordsSet = records.stream().filter(r -> r.getDate().compareTo(localDate) == 0).collect(Collectors.toSet());
         } catch (DateTimeParseException e){
             print("Invalid date parameters");
         }
 
-        return rs;
+        return recordsSet;
     }
 
     /**
@@ -111,7 +111,7 @@ public class BankPaymentsApplication {
      */
     private Set<Record> filterByDateRange(String dateRange) {
 
-        Set<Record> rs = Set.of();
+        Set<Record> recordSet = Set.of();
 
         try {
             String[] dates = dateRange.split(" ");
@@ -121,7 +121,7 @@ public class BankPaymentsApplication {
             LocalDate start = LocalDate.parse(dates[0]);
             LocalDate end = LocalDate.parse(dates[1]);
 
-            rs = records.stream().filter(r -> r.getDate().compareTo(start) >= 0 && r.getDate().compareTo(end) <= 0)
+            recordSet = records.stream().filter(r -> r.getDate().compareTo(start) >= 0 && r.getDate().compareTo(end) <= 0)
                     .sorted(Comparator.comparing(Record::getDate)
                             .reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
 
@@ -129,7 +129,7 @@ public class BankPaymentsApplication {
             print("Invalid date parameters");
         }
 
-        return rs;
+        return recordSet;
     }
 
     /**
@@ -207,14 +207,14 @@ public class BankPaymentsApplication {
                 VERTICAL + "\n";
 
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(HEADER_BORDER);
-        sb.append(HEADER);
-        sb.append(MIDDLE_BORDER);
+        StringBuilder builder = new StringBuilder();
+        builder.append(HEADER_BORDER);
+        builder.append(HEADER);
+        builder.append(MIDDLE_BORDER);
 
         Record[] ra = records.toArray(Record[]::new);
         for (int i = 0; i < records.size(); i++) {
-            sb.append(VERTICAL)
+            builder.append(VERTICAL)
                     .append(String.format(" %-4d ", i + 1))
                     .append(VERTICAL)
                     .append(String.format(" %10s ", String.format("%1$tY-%1$tm-%1$td", ra[i].getDate())))
@@ -227,9 +227,9 @@ public class BankPaymentsApplication {
                     .append(VERTICAL)
                     .append("\n");
         }
-        sb.append(FOOTER_BORDER);
+        builder.append(FOOTER_BORDER);
 
-        return sb.toString();
+        return builder.toString();
     }
 
 
