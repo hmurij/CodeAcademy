@@ -13,6 +13,7 @@ public class MainMenu implements ConsoleMenu {
                     "[4] -> Show all banks payments (as table) \n" +
                     "[5] -> Show bank payments\n" +
                     "[6] -> Show bank payements by date range\n" +
+                    "[7] -> Show bank payements date\n" +
                     "[0] -> Exit";
 
     @Override

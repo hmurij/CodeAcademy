@@ -3,10 +3,7 @@ package lt.codeacademy.exercise;
 import lt.codeacademy.exercise.bank.data.LumiData;
 import lt.codeacademy.exercise.bank.data.SepData;
 import lt.codeacademy.exercise.bank.data.ShvedData;
-import lt.codeacademy.exercise.menu.console.BankReportMenu;
-import lt.codeacademy.exercise.menu.console.ConsoleMenu;
-import lt.codeacademy.exercise.menu.console.FilterByDateRangeMenu;
-import lt.codeacademy.exercise.menu.console.MainMenu;
+import lt.codeacademy.exercise.menu.console.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,12 +20,14 @@ public class BankPaymentsApplication {
     private final ConsoleMenu mainMenu;
     private final ConsoleMenu bankReportMenu;
     private final ConsoleMenu filterByDateRangeMenu;
+    private final ConsoleMenu filterByDateMenu;
     private final Set<Record> records;
 
     public BankPaymentsApplication() {
         this.mainMenu = new MainMenu();
         this.bankReportMenu = new BankReportMenu();
         this.filterByDateRangeMenu = new FilterByDateRangeMenu();
+        this.filterByDateMenu = new FilterByDateMenu();
 
         this.records = new LinkedHashSet<>();
     }
@@ -78,7 +77,30 @@ public class BankPaymentsApplication {
                 String dateRange = filterByDateRangeMenu.printAndRead();
                 print(generateBankReport(filterByDateRange(dateRange)));
                 break;
+            case "7":
+                String date = filterByDateMenu.printAndRead();
+                print(generateBankReport(filterByDate(date)));
+                break;
+
         }
+    }
+
+    /**
+     * Filters bank records by date
+     * @param date date as String object in format YYYY-MM-DD
+     * @return filtered set of bank records
+     */
+    private Set<Record> filterByDate(String date) {
+        Set<Record> rs = Set.of();
+
+        try{
+            LocalDate d = LocalDate.parse(date);
+            rs = records.stream().filter(r -> r.getDate().compareTo(d) == 0).collect(Collectors.toSet());
+        } catch (DateTimeParseException e){
+            print("Invalid date parameters");
+        }
+
+        return rs;
     }
 
     /**
@@ -99,10 +121,9 @@ public class BankPaymentsApplication {
             LocalDate start = LocalDate.parse(dates[0]);
             LocalDate end = LocalDate.parse(dates[1]);
 
-            var ls = records.stream().filter(r -> r.getDate().compareTo(start) >= 0 && r.getDate().compareTo(end) <= 0)
-                    .collect(Collectors.toList());
-            ls.sort(Comparator.comparing(Record::getDate).reversed());
-            rs = new LinkedHashSet<>(ls);
+            rs = records.stream().filter(r -> r.getDate().compareTo(start) >= 0 && r.getDate().compareTo(end) <= 0)
+                    .sorted(Comparator.comparing(Record::getDate)
+                            .reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
 
         } catch (DateTimeParseException | IllegalArgumentException e) {
             print("Invalid date parameters");
