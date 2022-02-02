@@ -12,6 +12,7 @@ public class MainMenu implements ConsoleMenu {
                     "[3] -> Read formatted \"ShvedData\" payments \n" +
                     "[4] -> Show all banks payments (as table) \n" +
                     "[5] -> Show bank payments\n" +
+                    "[6] -> Show bank payements by date range\n" +
                     "[0] -> Exit";
 
     @Override

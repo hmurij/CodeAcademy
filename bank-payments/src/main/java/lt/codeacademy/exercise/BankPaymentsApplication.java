@@ -10,7 +10,9 @@ import lt.codeacademy.exercise.menu.console.MainMenu;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
+import java.time.format.DateTimeParseException;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,7 +30,7 @@ public class BankPaymentsApplication {
         this.bankReportMenu = new BankReportMenu();
         this.filterByDateRangeMenu = new FilterByDateRangeMenu();
 
-        this.records = new HashSet<>();
+        this.records = new LinkedHashSet<>();
     }
 
     public void run() {
@@ -71,9 +73,42 @@ public class BankPaymentsApplication {
                 print(generateBankReport(records.stream()
                         .filter(r -> r.getBankName().equals(bankName))
                         .collect(Collectors.toSet())));
-                print("Showing bank payments (as table)");
+                break;
+            case "6":
+                String dateRange = filterByDateRangeMenu.printAndRead();
+                print(generateBankReport(filterByDateRange(dateRange)));
                 break;
         }
+    }
+
+    /**
+     * Filters bank records by date range
+     *
+     * @param dateRange date range as String object
+     * @return filtered set of bank records
+     */
+    private Set<Record> filterByDateRange(String dateRange) {
+
+        Set<Record> rs = Set.of();
+
+        try {
+            String[] dates = dateRange.split(" ");
+            if (dates.length != 2) {
+                throw new IllegalArgumentException();
+            }
+            LocalDate start = LocalDate.parse(dates[0]);
+            LocalDate end = LocalDate.parse(dates[1]);
+
+            var ls = records.stream().filter(r -> r.getDate().compareTo(start) >= 0 && r.getDate().compareTo(end) <= 0)
+                    .collect(Collectors.toList());
+            ls.sort(Comparator.comparing(Record::getDate).reversed());
+            rs = new LinkedHashSet<>(ls);
+
+        } catch (DateTimeParseException | IllegalArgumentException e) {
+            print("Invalid date parameters");
+        }
+
+        return rs;
     }
 
     /**
