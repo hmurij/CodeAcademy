@@ -95,7 +95,8 @@ public class BankPaymentsApplication {
 
         try{
             LocalDate localDate = LocalDate.parse(date);
-            recordsSet = records.stream().filter(r -> r.getDate().compareTo(localDate) == 0).collect(Collectors.toSet());
+//            recordsSet = records.stream().filter(r -> r.getDate().compareTo(localDate) == 0).collect(Collectors.toSet());
+            recordsSet = records.stream().filter(r -> r.getDate().isEqual(localDate)).collect(Collectors.toSet());
         } catch (DateTimeParseException e){
             print("Invalid date parameters");
         }
@@ -121,7 +122,12 @@ public class BankPaymentsApplication {
             LocalDate start = LocalDate.parse(dates[0]);
             LocalDate end = LocalDate.parse(dates[1]);
 
-            recordSet = records.stream().filter(r -> r.getDate().compareTo(start) >= 0 && r.getDate().compareTo(end) <= 0)
+//            recordSet = records.stream().filter(r -> r.getDate().compareTo(start) >= 0 && r.getDate().compareTo(end) <= 0)
+//                    .sorted(Comparator.comparing(Record::getDate)
+//                            .reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
+
+            recordSet = records.stream().filter(r -> r.getDate().isAfter(start.minusDays(1))
+                            && r.getDate().isBefore(end.plusDays(1)))
                     .sorted(Comparator.comparing(Record::getDate)
                             .reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
 
