@@ -9,16 +9,17 @@ import lt.codeacademy.exercise.menu.console.FilterByDateMenu;
 import lt.codeacademy.exercise.menu.console.FilterByDateRangeMenu;
 import lt.codeacademy.exercise.menu.console.MainMenu;
 import lt.codeacademy.exercise.model.Record;
-import lt.codeacademy.exercise.service.BankRecordsFilter;
-import lt.codeacademy.exercise.service.ReportGenerator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static lt.codeacademy.ConsolePrinter.print;
+import static lt.codeacademy.exercise.service.BankRecordsFilter.filterByBankName;
+import static lt.codeacademy.exercise.service.BankRecordsFilter.filterByDate;
+import static lt.codeacademy.exercise.service.BankRecordsFilter.filterByDateRange;
+import static lt.codeacademy.exercise.service.ReportGenerator.generateBankReport;
 
 public class BankPaymentsApplication {
 
@@ -70,25 +71,19 @@ public class BankPaymentsApplication {
         print("Reading formatted \"ShvedData\" payments");
         break;
       case "4":
-        print(ReportGenerator.generateBankReport(records));
+        print(generateBankReport(records));
         break;
       case "5":
         String bankName = BANK_REPORT_MENU.printAndRead();
-        print(
-            ReportGenerator.generateBankReport(
-                records.stream()
-                    .filter(r -> r.getBankName().equals(bankName))
-                    .collect(Collectors.toSet())));
+        print(generateBankReport(filterByBankName(bankName, records)));
         break;
       case "6":
         String dateRange = FILTER_BY_DATE_RANGE_MENU.printAndRead();
-        print(
-            ReportGenerator.generateBankReport(
-                BankRecordsFilter.filterByDateRange(dateRange, records)));
+        print(generateBankReport(filterByDateRange(dateRange, records)));
         break;
       case "7":
         String date = FILTER_BY_DATE_MENU.printAndRead();
-        print(ReportGenerator.generateBankReport(BankRecordsFilter.filterByDate(date, records)));
+        print(generateBankReport(filterByDate(date, records)));
         break;
       default:
         print("Invalid date parameter");

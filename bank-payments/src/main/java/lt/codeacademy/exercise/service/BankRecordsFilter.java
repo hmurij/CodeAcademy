@@ -66,4 +66,10 @@ public class BankRecordsFilter {
 
     return recordSet;
   }
+
+  public static Set<Record> filterByBankName(String bankName, Set<Record> records) {
+    return records.stream()
+        .filter(r -> r.getBankName().equals(bankName))
+        .collect(Collectors.toSet());
+  }
 }
