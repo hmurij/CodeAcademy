@@ -8,11 +8,11 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        List<Person> persons = FileUtils.readPeopleFile("people.txt");
+        List<Person> persons = FileUtils.readPeopleFile("data/people.txt");
 
-        FileUtils.readPaymentsFile("payment.txt", persons);
+        FileUtils.readPaymentsFile("data/payment.txt", persons);
 
-        FileUtils.savePersonsSortedByReceivedMoney("personsSortedByReceivedMoney.txt", persons);
-        FileUtils.savePersonsSortedBySendMoney("personsSortedBySendMoney.txt", persons);
+        FileUtils.savePersonsSortedByReceivedMoney("data/personsSortedByReceivedMoney.txt", persons);
+        FileUtils.savePersonsSortedBySendMoney("data/personsSortedBySendMoney.txt", persons);
     }
 }
