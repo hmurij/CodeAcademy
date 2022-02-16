@@ -17,19 +17,21 @@ import java.util.Scanner;
 
 import static lt.codeacademy.utils.FileUtils.readBiudzetasFromFile;
 import static lt.codeacademy.utils.FileUtils.saveBiudzetasToFile;
+import static lt.codeacademy.utils.MenuUtils.printBiudzetasLogo;
+import static lt.codeacademy.utils.MenuUtils.printMainMenu;
+import static lt.codeacademy.utils.MenuUtils.readUserInput;
 
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
  * turi galimybe gauti reikiamą informaciją kiek išleido ir gavo pajamų.
  */
 public class Programa {
-    private static final Biudzetas biudzetas;
-    private static final Scanner SCANNER;
-
+    private static final Biudzetas BIUDZETAS;
+    public static final Scanner SCANNER;
     private static final String FILE_PATH = "Data/data.dat";
 
     static {
-        biudzetas = readBiudzetasFromFile(FILE_PATH);
+        BIUDZETAS = readBiudzetasFromFile(FILE_PATH);
 
 //        biudzetas = BiudzetasFactory.generateBiudzetasMockObject();
 
@@ -37,59 +39,43 @@ public class Programa {
     }
 
     public static void main(String[] args) {
-        System.out.println("*************************************");
-        System.out.println("* Interaktyvia programą - Biudzetas *");
-        System.out.println("*************************************\n");
+
+        printBiudzetasLogo();
 
         while (true) {
-            int choice;
-            showMainMenu();
+            printMainMenu();
 
-            try {
-                choice = SCANNER.nextInt();
-
-                if (0 > choice || choice > 4) {
-                    throw new InputMismatchException();
-                }
-
-
-            } catch (InputMismatchException e) {
-                System.out.println("Netinkamas parametras!\n");
-                continue;
-            }
-
-            System.out.println("Jusu pasirinkimas: " + choice + "\n");
-            processInput(choice);
-
-
-            if (choice == 0) {
-                System.out.println("Aciu uz demesi!");
-                break;
-            }
+            processInput(readUserInput());
         }
-
-        SCANNER.close();
-        saveBiudzetasToFile(biudzetas, FILE_PATH);
     }
 
     /**
      * Processes user input
      *
-     * @param choice int in range from 0 to 4
+     * @param choice any String with valid input "1", "2", "3", "4", "0"
      */
-    private static void processInput(int choice) {
+    private static void processInput(String choice) {
         switch (choice) {
-            case 1:
+            case "1":
                 newIslaiduIrasasMenu();
                 break;
-            case 2:
+            case "2":
                 newPajamuIrasasMenu();
                 break;
-            case 3:
+            case "3":
                 printIslaiduIrasus();
                 break;
-            case 4:
+            case "4":
                 printPajamuIrasus();
+                break;
+            case "0":
+                System.out.println("Aciu uz demesi!");
+                shutDown();
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Netinkamas parametras!\n");
+                break;
         }
     }
 
@@ -153,7 +139,7 @@ public class Programa {
             return;
         }
 
-        biudzetas.pridetiIslaiduIrasa(new IslaiduIrasas(newSuma,
+        BIUDZETAS.pridetiIslaiduIrasa(new IslaiduIrasas(newSuma,
                 newDataLaikas,
                 kategorijas[kategorija - 1],
                 atsiskaitymoBudai[atsiskaitymoBudas - 1],
@@ -224,7 +210,7 @@ public class Programa {
             return;
         }
 
-        biudzetas.pridetiPajamuIrasa(new PajamuIrasas(newSuma,
+        BIUDZETAS.pridetiPajamuIrasa(new PajamuIrasas(newSuma,
                 newData,
                 kategorijas[kategorija - 1],
                 (pajamosBankeChoice == 1),
@@ -238,7 +224,7 @@ public class Programa {
      * Prints all PajamuIrasas records to console
      */
     private static void printPajamuIrasus() {
-        PajamuIrasas[] pajamuIrasai = biudzetas.gautiPajamuIrasus();
+        PajamuIrasas[] pajamuIrasai = BIUDZETAS.gautiPajamuIrasus();
 
         String separator = "+" + "-".repeat(11) + "+" + "-".repeat(21) + "+" + "-".repeat(16)
                 + "+" + "-".repeat(21) + "+" + "-".repeat(31) + "+\n";
@@ -271,7 +257,7 @@ public class Programa {
      * Prints all IslaiduIrasas records to console
      */
     private static void printIslaiduIrasus() {
-        IslaiduIrasas[] islaiduIrasai = biudzetas.gautiIslaiduIrasus();
+        IslaiduIrasas[] islaiduIrasai = BIUDZETAS.gautiIslaiduIrasus();
         String separator = "+" + "-".repeat(11) + "+" + "-".repeat(21) + "+" + "-".repeat(16)
                 + "+" + "-".repeat(21) + "+" + "-".repeat(31) + "+\n";
 
@@ -297,16 +283,9 @@ public class Programa {
         System.out.println();
     }
 
-    /**
-     * Prints main menu to console
-     */
-    public static void showMainMenu() {
-        System.out.print("Pasirinkit viena is varijantu: " +
-                "\n\t1 - Ivesti nauja islaidu irasa" +
-                "\n\t2 - Ivesti nauja pajamu irasa" +
-                "\n\t3 - Atspausdinti visus islaidu irasus" +
-                "\n\t4 - Atspasdinit visus pajamu irasus" +
-                "\n\t0 - Iseiti" +
-                "\nIveskit jusu pasirinkima: ");
+    private static void shutDown(){
+        SCANNER.close();
+        saveBiudzetasToFile(BIUDZETAS, FILE_PATH);
     }
+
 }
