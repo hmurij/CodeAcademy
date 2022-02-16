@@ -66,7 +66,7 @@ public class Biudzetas implements Serializable {
      *
      * @return part or complete pajamuIrasai array
      */
-    public IslaiduIrasas[] gautiIslaiduIrasa() {
+    public IslaiduIrasas[] gautiIslaiduIrasus() {
         return Arrays.copyOf(islaiduIrasai, islaiduIrasaiSize);
     }
 

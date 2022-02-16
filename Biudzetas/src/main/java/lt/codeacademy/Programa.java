@@ -7,11 +7,6 @@ import lt.codeacademy.type.AtsiskaitymoBudas;
 import lt.codeacademy.type.IslaiduKategorija;
 import lt.codeacademy.type.PajamuKategorija;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,24 +15,28 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static lt.codeacademy.utils.FileUtils.readBiudzetasFromFile;
+import static lt.codeacademy.utils.FileUtils.saveBiudzetasToFile;
+
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
  * turi galimybe gauti reikiamą informaciją kiek išleido ir gavo pajamų.
  */
 public class Programa {
-
-    private static Biudzetas biudzetas;
+    private static final Biudzetas biudzetas;
     private static final Scanner SCANNER;
 
+    private static final String FILE_PATH = "Data/data.dat";
+
     static {
-        biudzetas = new Biudzetas();
+        biudzetas = readBiudzetasFromFile(FILE_PATH);
 
 //        biudzetas = BiudzetasFactory.generateBiudzetasMockObject();
 
         SCANNER = new Scanner(System.in);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("*************************************");
         System.out.println("* Interaktyvia programą - Biudzetas *");
         System.out.println("*************************************\n");
@@ -70,11 +69,8 @@ public class Programa {
         }
 
         SCANNER.close();
-
-        saveBiudzetasToFile();
-
+        saveBiudzetasToFile(biudzetas, FILE_PATH);
     }
-
 
     /**
      * Processes user input
@@ -94,7 +90,6 @@ public class Programa {
                 break;
             case 4:
                 printPajamuIrasus();
-
         }
     }
 
@@ -276,7 +271,7 @@ public class Programa {
      * Prints all IslaiduIrasas records to console
      */
     private static void printIslaiduIrasus() {
-        IslaiduIrasas[] islaiduIrasai = biudzetas.gautiIslaiduIrasa();
+        IslaiduIrasas[] islaiduIrasai = biudzetas.gautiIslaiduIrasus();
         String separator = "+" + "-".repeat(11) + "+" + "-".repeat(21) + "+" + "-".repeat(16)
                 + "+" + "-".repeat(21) + "+" + "-".repeat(31) + "+\n";
 
@@ -313,28 +308,5 @@ public class Programa {
                 "\n\t4 - Atspasdinit visus pajamu irasus" +
                 "\n\t0 - Iseiti" +
                 "\nIveskit jusu pasirinkima: ");
-    }
-
-
-
-    /**
-     * Reads {@link Biudzetas} object from file Data/data.dat
-     */
-    private static void readBiudzetasFromFile() {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data/data.dat"))) {
-            biudzetas = (Biudzetas) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Writed {@link Biudzetas} object to file Data/data.dat
-     * @throws IOException in case of Data/data.dat file is missing.
-     */
-    private static void saveBiudzetasToFile() throws IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Data/data.dat"))) {
-            out.writeObject(biudzetas);
-        }
     }
 }
