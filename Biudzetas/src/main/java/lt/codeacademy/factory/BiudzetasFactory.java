@@ -31,7 +31,6 @@ public class BiudzetasFactory {
         return biudzetas;
     }
 
-
     /**
      * Generates random IslaiduIrasas object
      *

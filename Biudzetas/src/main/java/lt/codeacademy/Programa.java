@@ -6,12 +6,13 @@ import lt.codeacademy.model.PajamuIrasas;
 import lt.codeacademy.type.AtsiskaitymoBudas;
 import lt.codeacademy.type.IslaiduKategorija;
 import lt.codeacademy.type.PajamuKategorija;
+import lt.codeacademy.utils.reports.DebitReportTable;
+import lt.codeacademy.utils.reports.IncomeReportTable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +21,6 @@ import static lt.codeacademy.utils.FileUtils.saveBiudzetasToFile;
 import static lt.codeacademy.utils.MainMenuUtils.printBiudzetasLogo;
 import static lt.codeacademy.utils.MainMenuUtils.printMainMenu;
 import static lt.codeacademy.utils.MainMenuUtils.readUserInput;
-import static lt.codeacademy.utils.PajamuReportTable.printPajamuTable;
 
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
@@ -64,10 +64,10 @@ public class Programa {
                 newPajamuIrasasMenu();
                 break;
             case "3":
-                printIslaiduIrasus();
+                new DebitReportTable().printTable(BIUDZETAS.gautiIslaiduIrasus());
                 break;
             case "4":
-                printPajamuTable(BIUDZETAS.gautiPajamuIrasus());
+                new IncomeReportTable().printTable(BIUDZETAS.gautiPajamuIrasus());
                 break;
             case "0":
                 System.out.println("Aciu uz demesi!");
@@ -221,37 +221,7 @@ public class Programa {
 
     }
 
-    /**
-     * Prints all IslaiduIrasas records to console
-     */
-    private static void printIslaiduIrasus() {
-        IslaiduIrasas[] islaiduIrasai = BIUDZETAS.gautiIslaiduIrasus();
-        String separator = "+" + "-".repeat(11) + "+" + "-".repeat(21) + "+" + "-".repeat(16)
-                + "+" + "-".repeat(21) + "+" + "-".repeat(31) + "+\n";
-
-        System.out.print(separator);
-        String format = "| %-10s| %-20s| %-15s| %-20s| %-30s|\n";
-        System.out.printf(format, "Suma", "Data / laikas", "Kategorija", "Atsiskaitymo Budas", "Informacija");
-        System.out.print(separator);
-
-        format = "| %-10.2f| %-20s| %-15s| %-20s| %-30s|\n";
-        for (IslaiduIrasas islaiduIrasas : islaiduIrasai) {
-            String comment = islaiduIrasas.getPapildomaInfo();
-            System.out.printf(format,
-                    islaiduIrasas.getSuma(),
-                    String.format("%1$tY-%1$tb-%1$td %1$tH:%1$tM", islaiduIrasas.getDataSuLaiku()),
-                    islaiduIrasas.getKategorija(),
-                    islaiduIrasas.getAtsiskaitymoBudas(),
-                    comment.length() > 25 ? comment.substring(0, 25) + "..." : comment);
-        }
-        System.out.print(separator);
-
-        System.out.printf("Is viso: %5.2f\n", Arrays.stream(islaiduIrasai).map(IslaiduIrasas::getSuma)
-                .mapToDouble(Double::doubleValue).sum());
-        System.out.println();
-    }
-
-    private static void shutDown(){
+    private static void shutDown() {
         SCANNER.close();
         saveBiudzetasToFile(BIUDZETAS, FILE_PATH);
     }
