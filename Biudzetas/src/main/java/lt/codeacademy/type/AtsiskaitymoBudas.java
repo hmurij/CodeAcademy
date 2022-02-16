@@ -1,7 +1,7 @@
 package lt.codeacademy.type;
 
 public enum AtsiskaitymoBudas {
-    GYRNAIS("Grynais pinigais"), KORTELE("Banko kortele"), PAVEDIMU("Banko pavedimu");
+    GRYNAIS("Grynais pinigais"), KORTELE("Banko kortele"), PAVEDIMU("Banko pavedimu");
 
     private final String tsiskaitymoBudas;
 

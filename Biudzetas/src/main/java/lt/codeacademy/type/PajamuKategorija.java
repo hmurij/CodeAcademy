@@ -11,7 +11,7 @@ public enum PajamuKategorija {
         this.katerorija = kategorija;
     }
 
-    public String getKaterorija() {
+    public String getKategorija() {
         return katerorija;
     }
 

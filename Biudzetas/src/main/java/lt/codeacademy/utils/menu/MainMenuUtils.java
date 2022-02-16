@@ -1,4 +1,4 @@
-package lt.codeacademy.utils;
+package lt.codeacademy.utils.menu;
 
 import static lt.codeacademy.Programa.SCANNER;
 
