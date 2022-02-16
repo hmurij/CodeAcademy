@@ -1,4 +1,7 @@
-package lt.codeacademy;
+package lt.codeacademy.model;
+
+import lt.codeacademy.type.AtsiskaitymoBudas;
+import lt.codeacademy.type.IslaiduKategorija;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

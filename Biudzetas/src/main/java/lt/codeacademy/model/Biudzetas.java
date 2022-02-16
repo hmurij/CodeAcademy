@@ -1,4 +1,4 @@
-package lt.codeacademy;
+package lt.codeacademy.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -26,11 +26,7 @@ public class Biudzetas implements Serializable {
      */
     public void pridetiPajamuIrasa(PajamuIrasas pajamuIrasas) {
         if (pajamuIrasaiSize == pajamuIrasai.length) {
-            PajamuIrasas[] temp = new PajamuIrasas[pajamuIrasai.length * 2];
-            System.arraycopy(pajamuIrasai, 0, temp, 0, pajamuIrasai.length);
-
-            pajamuIrasai = new PajamuIrasas[pajamuIrasai.length * 2];
-            System.arraycopy(temp, 0, pajamuIrasai, 0, temp.length / 2);
+            pajamuIrasai = Arrays.copyOf(pajamuIrasai, pajamuIrasai.length * 2);
         }
 
         if (pajamuIrasas != null) {
@@ -56,11 +52,7 @@ public class Biudzetas implements Serializable {
      */
     public void pridetiIslaiduIrasa(IslaiduIrasas islaiduIrasas) {
         if (islaiduIrasaiSize == islaiduIrasai.length) {
-            IslaiduIrasas[] temp = new IslaiduIrasas[islaiduIrasai.length * 2];
-            System.arraycopy(islaiduIrasai, 0, temp, 0, islaiduIrasai.length);
-
-            islaiduIrasai = new IslaiduIrasas[islaiduIrasai.length * 2];
-            System.arraycopy(temp, 0, islaiduIrasai, 0, temp.length / 2);
+            islaiduIrasai = Arrays.copyOf(islaiduIrasai, islaiduIrasai.length * 2);
         }
 
         if (islaiduIrasas != null) {
@@ -79,41 +71,3 @@ public class Biudzetas implements Serializable {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

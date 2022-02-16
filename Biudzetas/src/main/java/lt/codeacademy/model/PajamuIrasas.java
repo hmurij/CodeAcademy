@@ -1,4 +1,6 @@
-package lt.codeacademy;
+package lt.codeacademy.model;
+
+import lt.codeacademy.type.PajamuKategorija;
 
 import java.io.Serializable;
 import java.time.LocalDate;

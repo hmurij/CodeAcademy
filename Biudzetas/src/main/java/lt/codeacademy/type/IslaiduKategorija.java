@@ -1,4 +1,4 @@
-package lt.codeacademy;
+package lt.codeacademy.type;
 
 public enum IslaiduKategorija {
     TURTAS("Nekilnojamojo turto įsigijimas"),

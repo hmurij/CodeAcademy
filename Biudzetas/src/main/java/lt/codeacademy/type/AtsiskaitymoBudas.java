@@ -1,4 +1,4 @@
-package lt.codeacademy;
+package lt.codeacademy.type;
 
 public enum AtsiskaitymoBudas {
     GYRNAIS("Grynais pinigais"), KORTELE("Banko kortele"), PAVEDIMU("Banko pavedimu");
