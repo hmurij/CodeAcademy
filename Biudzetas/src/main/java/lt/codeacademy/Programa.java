@@ -17,9 +17,10 @@ import java.util.Scanner;
 
 import static lt.codeacademy.utils.FileUtils.readBiudzetasFromFile;
 import static lt.codeacademy.utils.FileUtils.saveBiudzetasToFile;
-import static lt.codeacademy.utils.MenuUtils.printBiudzetasLogo;
-import static lt.codeacademy.utils.MenuUtils.printMainMenu;
-import static lt.codeacademy.utils.MenuUtils.readUserInput;
+import static lt.codeacademy.utils.MainMenuUtils.printBiudzetasLogo;
+import static lt.codeacademy.utils.MainMenuUtils.printMainMenu;
+import static lt.codeacademy.utils.MainMenuUtils.readUserInput;
+import static lt.codeacademy.utils.PajamuReportTable.printPajamuTable;
 
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
@@ -50,7 +51,7 @@ public class Programa {
     }
 
     /**
-     * Processes user input
+     * Processes user input, program terminates on user entering "0"
      *
      * @param choice any String with valid input "1", "2", "3", "4", "0"
      */
@@ -66,7 +67,7 @@ public class Programa {
                 printIslaiduIrasus();
                 break;
             case "4":
-                printPajamuIrasus();
+                printPajamuTable(BIUDZETAS.gautiPajamuIrasus());
                 break;
             case "0":
                 System.out.println("Aciu uz demesi!");
@@ -217,39 +218,6 @@ public class Programa {
                 info));
 
         System.out.println("\nSekmingai sukurtas naujas pajamu irasas.\n");
-
-    }
-
-    /**
-     * Prints all PajamuIrasas records to console
-     */
-    private static void printPajamuIrasus() {
-        PajamuIrasas[] pajamuIrasai = BIUDZETAS.gautiPajamuIrasus();
-
-        String separator = "+" + "-".repeat(11) + "+" + "-".repeat(21) + "+" + "-".repeat(16)
-                + "+" + "-".repeat(21) + "+" + "-".repeat(31) + "+\n";
-
-        System.out.print(separator);
-        String format = "| %-10s| %-20s| %-15s| %-20s| %-30s|\n";
-        System.out.printf(format, "Suma", "Data", "Kategorija", "Pajamos banke", "Informacija");
-        System.out.print(separator);
-
-        format = "| %-10.2f| %-20s| %-15s| %-20s| %-30s|\n";
-        for (PajamuIrasas pajamuIrasas : pajamuIrasai) {
-            String comment = pajamuIrasas.getPapildomaInfo();
-            System.out.printf(format,
-                    pajamuIrasas.getSuma(),
-                    String.format("%1$tY-%1$tb-%1$td", pajamuIrasas.getData()),
-                    pajamuIrasas.getKategorija(),
-                    pajamuIrasas.isPozymisArIBanka() ? "Taip" : "Ne",
-                    comment.length() > 25 ? comment.substring(0, 25) + "..." : comment);
-
-        }
-        System.out.print(separator);
-        System.out.printf("Is viso: %5.2f\n", Arrays.stream(pajamuIrasai).filter(PajamuIrasas::isPozymisArIBanka)
-                .mapToDouble(PajamuIrasas::getSuma).sum());
-
-        System.out.println();
 
     }
 

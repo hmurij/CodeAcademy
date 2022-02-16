@@ -1,4 +1,4 @@
-package lt.codeacademy.biudzetasfactory;
+package lt.codeacademy.factory;
 
 import lt.codeacademy.model.Biudzetas;
 import lt.codeacademy.model.IslaiduIrasas;

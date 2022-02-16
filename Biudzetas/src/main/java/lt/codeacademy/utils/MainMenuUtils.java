@@ -5,7 +5,7 @@ import static lt.codeacademy.Programa.SCANNER;
 /**
  * Menu utility class to manage user interaction with main program
  */
-public class MenuUtils {
+public class MainMenuUtils {
     private static final String BIUDZETAS_LOGO =
             "*************************************\n" +
                     "* Interaktyvia programą - Biudzetas *\n" +

@@ -1,6 +1,6 @@
 package lt.codeacademy.utils;
 
-import lt.codeacademy.biudzetasfactory.BiudzetasFactory;
+import lt.codeacademy.factory.BiudzetasFactory;
 import lt.codeacademy.model.Biudzetas;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
