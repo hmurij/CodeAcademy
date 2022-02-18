@@ -34,13 +34,13 @@ public class PasswordGeneratorApplication {
     private void processInput(String input) {
         switch(input){
             case "1":
-                new NaturalNumbersPasswordGenerator().generatePassword();
+                System.out.println(new NaturalNumbersPasswordGenerator().getPassword());
                 break;
             case "2":
-                new LetterPasswordGenerator().generatePassword();
+                System.out.println(new LetterPasswordGenerator().getPassword());
                 break;
             case "3":
-                new NumbersLettersPasswordGenerator().generatePassword();
+                System.out.println(new NumbersLettersPasswordGenerator().getPassword());
                 break;
             case "0":
                 System.out.println("Bye");

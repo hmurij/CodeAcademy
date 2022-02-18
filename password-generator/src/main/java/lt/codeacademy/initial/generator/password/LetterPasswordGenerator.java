@@ -1,8 +1,11 @@
 package lt.codeacademy.initial.generator.password;
 
-public class LetterPasswordGenerator implements PasswordGenerator{
+import lt.codeacademy.initial.generator.symbol.SymbolGenerator;
+
+public class LetterPasswordGenerator implements PasswordGenerator<SymbolGenerator> {
+
     @Override
-    public void generatePassword() {
-        System.out.println("Generate password using using letters length minimum 8 symbols");
+    public String getPassword() {
+        return null;
     }
 }

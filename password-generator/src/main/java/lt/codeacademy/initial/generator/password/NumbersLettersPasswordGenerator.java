@@ -1,9 +1,15 @@
 package lt.codeacademy.initial.generator.password;
 
-public class NumbersLettersPasswordGenerator implements PasswordGenerator{
+import lt.codeacademy.initial.generator.symbol.LetterGenerator;
+import lt.codeacademy.initial.generator.symbol.NumberGenerator;
+import lt.codeacademy.initial.generator.symbol.SymbolGenerator;
+
+public class NumbersLettersPasswordGenerator implements PasswordGenerator<SymbolGenerator>{
+    private static final int MIN_SYMBOLS = 8;
+
     @Override
-    public void generatePassword() {
-        System.out.println("Generate password using using letters and numbers length minimum 6 symbols," +
-                " at least one number, lower case and uppercase letter");
+    public String getPassword() {
+        return this.generatePassword(new SymbolGenerator[]{new NumberGenerator(), new LetterGenerator()},
+                MIN_SYMBOLS);
     }
 }

@@ -1,8 +1,11 @@
 package lt.codeacademy.initial.generator.password;
 
-public class NaturalNumbersPasswordGenerator implements PasswordGenerator{
+import lt.codeacademy.initial.generator.symbol.SymbolGenerator;
+
+public class NaturalNumbersPasswordGenerator implements PasswordGenerator<SymbolGenerator> {
+
     @Override
-    public void generatePassword() {
-        System.out.println("Generate password using natural numbers length minimum 12 symbols");
+    public String getPassword() {
+        return null;
     }
 }
