@@ -1,8 +1,8 @@
 package lt.codeacademy.initial;
 
-import lt.codeacademy.initial.generator.LetterPasswordGenerator;
-import lt.codeacademy.initial.generator.NaturalNumberPasswordGenerator;
-import lt.codeacademy.initial.generator.NumbersLettersPasswordGenerator;
+import lt.codeacademy.initial.generator.password.LetterPasswordGenerator;
+import lt.codeacademy.initial.generator.password.NaturalNumbersPasswordGenerator;
+import lt.codeacademy.initial.generator.password.NumbersLettersPasswordGenerator;
 import lt.codeacademy.initial.menu.ConsoleMenu;
 import lt.codeacademy.initial.menu.MainMenu;
 
@@ -34,7 +34,7 @@ public class PasswordGeneratorApplication {
     private void processInput(String input) {
         switch(input){
             case "1":
-                new NaturalNumberPasswordGenerator().generatePassword();
+                new NaturalNumbersPasswordGenerator().generatePassword();
                 break;
             case "2":
                 new LetterPasswordGenerator().generatePassword();

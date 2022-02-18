@@ -1,4 +1,4 @@
-package lt.codeacademy.initial.generator;
+package lt.codeacademy.initial.generator.password;
 
 public class LetterPasswordGenerator implements PasswordGenerator{
     @Override
