@@ -6,8 +6,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public interface PasswordGenerator<T extends SymbolGenerator> {
-    String getPassword();
+public abstract class PasswordGenerator<T extends SymbolGenerator> {
+    abstract String getPassword();
 
     /**
      * Generates password of provided minimum length using array of symbol generators
@@ -16,9 +16,17 @@ public interface PasswordGenerator<T extends SymbolGenerator> {
      * @param minLength minimum length of password
      * @return generated password of minimum length
      */
-    default String generatePassword(T[] symbolGenerators, int minLength){
-        return Stream.generate(()-> symbolGenerators[new Random().nextInt(symbolGenerators.length)].generateSymbol())
-                .limit(minLength + new Random().nextInt(10))
-                .collect(Collectors.joining());
+    String generatePassword(T[] symbolGenerators, int minLength){
+        String password;
+
+        do {
+            password = Stream.generate(()-> symbolGenerators[new Random().nextInt(symbolGenerators.length)].generateSymbol())
+                    .limit(minLength + new Random().nextInt(10))
+                    .collect(Collectors.joining());
+        } while (!validatePassword(password));
+
+        return password;
     }
+
+    abstract boolean validatePassword(String password);
 }

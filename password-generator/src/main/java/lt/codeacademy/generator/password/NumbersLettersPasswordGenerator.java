@@ -6,7 +6,7 @@ import lt.codeacademy.generator.symbol.SymbolGenerator;
 
 import java.util.Arrays;
 
-public class NumbersLettersPasswordGenerator implements PasswordGenerator<SymbolGenerator> {
+public class NumbersLettersPasswordGenerator extends PasswordGenerator<SymbolGenerator> {
     private static final int MIN_SYMBOLS = 8;
 
     /**
@@ -18,14 +18,10 @@ public class NumbersLettersPasswordGenerator implements PasswordGenerator<Symbol
      */
     @Override
     public String getPassword() {
-        String password;
-
-        do {
-            password = this.generatePassword(new SymbolGenerator[]{new NumberGenerator(), new LetterGenerator()},
-                    MIN_SYMBOLS);
-        } while (!validatePassword(password));
-
-        return password;
+        return generatePassword(
+                new SymbolGenerator[]{new NumberGenerator(), new LetterGenerator()},
+                MIN_SYMBOLS
+        );
     }
 
     /**
@@ -35,6 +31,7 @@ public class NumbersLettersPasswordGenerator implements PasswordGenerator<Symbol
      * @param password to validate
      * @return true if password valid, false otherwise
      */
+    @Override
     boolean validatePassword(String password) {
         int length = password.length();
         String[] symbols = password.split("");

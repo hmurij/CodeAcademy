@@ -6,7 +6,7 @@ public class NumberGenerator extends SymbolGenerator {
 
     /**
      * Generates number in range from 0 to 9 inclusive
-     * @return generated number as String object
+     * @return generated number as string
      */
     @Override
     public String generateSymbol() {

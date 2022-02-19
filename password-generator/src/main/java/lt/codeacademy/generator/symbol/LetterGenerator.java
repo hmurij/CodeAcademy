@@ -10,7 +10,8 @@ public class LetterGenerator extends SymbolGenerator{
      */
     @Override
     public String generateSymbol() {
-        String randomUppercaseLetter = "" + (char) (65 + new Random().nextInt(26));
-        return new Random().nextBoolean() ? randomUppercaseLetter : randomUppercaseLetter.toLowerCase();
+        Random random = new Random();
+        String randomUppercaseLetter = "" + (char) (65 + random.nextInt(26));
+        return random.nextBoolean() ? randomUppercaseLetter : randomUppercaseLetter.toLowerCase();
     }
 }
