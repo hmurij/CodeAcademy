@@ -1,10 +1,15 @@
 package lt.codeacademy.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Map <K, V> {
 
-    private List<Pair<K, V>> pairs;
+    private final List<Pair<K, V>> pairs;
+
+    public Map() {
+        this.pairs = new ArrayList<>()  ;
+    }
 
     public void addPair(K key, V value) {
         pairs.add(new Pair<>(key, value));
