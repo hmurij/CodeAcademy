@@ -11,6 +11,7 @@ import lt.codeacademy.model.Spygliuotis;
 
 import java.util.List;
 
+// generics - task 1 solution
 public class App {
     public static void main(String[] args) {
         Berzas berzas = new Berzas();
