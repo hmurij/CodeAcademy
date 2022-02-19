@@ -13,15 +13,16 @@ public abstract class PasswordGenerator<T extends SymbolGenerator> {
      * Generates password of provided minimum length using array of symbol generators
      *
      * @param symbolGenerators array of {@link SymbolGenerator} objects
-     * @param minLength minimum length of password
+     * @param minLength minimum password length
      * @return generated password of minimum length
      */
     String generatePassword(T[] symbolGenerators, int minLength){
+        Random random = new Random();
         String password;
 
         do {
-            password = Stream.generate(()-> symbolGenerators[new Random().nextInt(symbolGenerators.length)].generateSymbol())
-                    .limit(minLength + new Random().nextInt(10))
+            password = Stream.generate(()-> symbolGenerators[random.nextInt(symbolGenerators.length)].generateSymbol())
+                    .limit(minLength + random.nextInt(10))
                     .collect(Collectors.joining());
         } while (!validatePassword(password));
 

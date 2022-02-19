@@ -38,21 +38,28 @@ public class PasswordGeneratorApplication {
     private void processInput(String input) {
         switch(input){
             case "1":
-                System.out.println(new NaturalNumbersPasswordGenerator().getPassword());
+                System.out.println("\nGenerated password: " + new NaturalNumbersPasswordGenerator().getPassword() + "\n");
                 break;
             case "2":
-                System.out.println(new LetterPasswordGenerator().getPassword());
+                System.out.println("\nGenerated password: " + new LetterPasswordGenerator().getPassword() + "\n");
                 break;
             case "3":
-                System.out.println(new NumbersLettersPasswordGenerator().getPassword());
+                System.out.println("\nGenerated password: " + new NumbersLettersPasswordGenerator().getPassword() + "\n");
                 break;
             case "0":
-                System.out.println("Bye");
-                SCANNER.close();
-                System.exit(0);
+                System.out.println("\nThank you for generating!");
+                shutDown();
                 break;
             default:
-                System.out.println("Invalid parameter");
+                System.out.println("\nInvalid parameter\n");
         }
+    }
+
+    /**
+     * Closes SCANNER and exits application
+     */
+    private void shutDown() {
+        SCANNER.close();
+        System.exit(0);
     }
 }

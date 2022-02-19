@@ -3,8 +3,10 @@ package lt.codeacademy.generator.password;
 import lt.codeacademy.generator.symbol.NumberGenerator;
 import lt.codeacademy.generator.symbol.SymbolGenerator;
 
+import java.util.Arrays;
+
 public class NaturalNumbersPasswordGenerator extends PasswordGenerator<SymbolGenerator> {
-    private static final int MIN_SYMBOLS = 8;
+    private static final int MIN_SYMBOLS = 12;
 
     /**
      * Calls generatePassword method with {@link NumberGenerator} as parameter.
@@ -30,7 +32,9 @@ public class NaturalNumbersPasswordGenerator extends PasswordGenerator<SymbolGen
     boolean validatePassword(String password) {
         int length = password.length();
 
-        return length >= MIN_SYMBOLS;
+        boolean onlyDigits = Arrays.stream(password.split("")).filter(s -> Character.isDigit(s.charAt(0))).count() == length;
+
+        return length >= MIN_SYMBOLS && onlyDigits;
     }
 
 }

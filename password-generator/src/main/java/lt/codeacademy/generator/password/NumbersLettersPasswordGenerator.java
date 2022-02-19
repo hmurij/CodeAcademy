@@ -7,7 +7,7 @@ import lt.codeacademy.generator.symbol.SymbolGenerator;
 import java.util.Arrays;
 
 public class NumbersLettersPasswordGenerator extends PasswordGenerator<SymbolGenerator> {
-    private static final int MIN_SYMBOLS = 8;
+    private static final int MIN_SYMBOLS = 6;
 
     /**
      * Calls generatePassword method with {@link NumberGenerator} and {@link LetterGenerator} as parameters.

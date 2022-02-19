@@ -17,9 +17,9 @@ class NumbersLettersPasswordGeneratorTest {
     }
 
     @Test
-    void givenShorPassword_whenValidatePassword_thenFalse() {
+    void givenShortPassword_whenValidatePassword_thenFalse() {
         NumbersLettersPasswordGenerator passwordGenerator = new NumbersLettersPasswordGenerator();
-        String password = "12Kll";
+        String password = "12Kld";
 
         boolean isValid = passwordGenerator.validatePassword(password);
 

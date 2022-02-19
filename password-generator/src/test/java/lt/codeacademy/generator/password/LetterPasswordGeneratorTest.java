@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NaturalNumbersPasswordGeneratorTest {
+class LetterPasswordGeneratorTest {
 
     @Test
     void givenValidPassword_whenValidatePassword_thenTrue() {
-        NaturalNumbersPasswordGenerator passwordGenerator = new NaturalNumbersPasswordGenerator();
-        String password = "123434939392";
+        LetterPasswordGenerator passwordGenerator = new LetterPasswordGenerator();
+        String password = "abcdABCD";
 
         boolean isValid = passwordGenerator.validatePassword(password);
 
@@ -18,8 +18,8 @@ class NaturalNumbersPasswordGeneratorTest {
 
     @Test
     void givenInvalidPassword_whenValidatePassword_thenTrue() {
-        NaturalNumbersPasswordGenerator passwordGenerator = new NaturalNumbersPasswordGenerator();
-        String password = "12d343L493K9392";
+        LetterPasswordGenerator passwordGenerator = new LetterPasswordGenerator();
+        String password = "abcdABCD12";
 
         boolean isValid = passwordGenerator.validatePassword(password);
 
@@ -28,11 +28,12 @@ class NaturalNumbersPasswordGeneratorTest {
 
     @Test
     void givenShortPassword_whenValidatePassword_thenFalse() {
-        NumbersLettersPasswordGenerator passwordGenerator = new NumbersLettersPasswordGenerator();
-        String password = "12345678901";
+        LetterPasswordGenerator passwordGenerator = new LetterPasswordGenerator();
+        String password = "abcdABC";
 
         boolean isValid = passwordGenerator.validatePassword(password);
 
         assertFalse(isValid);
     }
+
 }
