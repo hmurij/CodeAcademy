@@ -4,6 +4,7 @@ import lt.codeacademy.budget.Budget;
 import lt.codeacademy.model.DebitRecord;
 import lt.codeacademy.model.IncomeRecord;
 import lt.codeacademy.type.IncomeType;
+import lt.codeacademy.type.ReceivedType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -59,20 +60,7 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
      * @return new income category
      */
     private IncomeType newIncomeTypeMenu() {
-        IncomeType[] incomeTypes = IncomeType.values();
-
-        System.out.print("\nPasirinkit viena is pajamu kategoriju varijantu: ");
-        for (int i = 0; i < incomeTypes.length; i++) {
-            System.out.print("\n\t" + (i + 1) + " - " + incomeTypes[i].getType());
-        }
-        System.out.print("\nIveskit jusu pasirinkima: ");
-
-        int incomeTypeIndex = Integer.parseInt(SCANNER.nextLine());
-        if (1 > incomeTypeIndex || incomeTypeIndex > incomeTypes.length) {
-            throw new NumberFormatException();
-        }
-
-        return incomeTypes[incomeTypeIndex - 1];
+        return newTypeMenu("\nPasirinkit viena is pajamu kategoriju varijantu: ", IncomeType.values());
     }
 
     /**
@@ -80,16 +68,9 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
      * @return true if received, false otherwise
      */
     private boolean newIsPaymentReceivedMenu() {
-        System.out.print("\nPajamos banke, pasirinkit viena is varijantu: " +
-                "\n\t 1 - Taip" +
-                "\n\t 2 - Ne" +
-                "\nIveskit jusu pasirinkima: ");
-
-        int isPaymentReceived = Integer.parseInt(SCANNER.nextLine());
-        if (1 > isPaymentReceived || isPaymentReceived > 2) {
-            throw new NumberFormatException();
-        }
-
-        return isPaymentReceived == 1;
+        return newTypeMenu(
+                "\nPajamos banke, pasirinkit viena is varijantu: ",
+                ReceivedType.values()
+        ).getType().equals("Taip");
     }
 }

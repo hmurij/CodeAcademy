@@ -1,6 +1,6 @@
 package lt.codeacademy.type;
 
-public enum IncomeType {
+public enum IncomeType implements Type {
 
     ATLYGINIMAS("Atlyginimas"),
     ISOMOKOS("Ismokos"),
@@ -11,10 +11,11 @@ public enum IncomeType {
 
     private final String type;
 
-    IncomeType(String type){
+    IncomeType(String type) {
         this.type = type;
     }
 
+    @Override
     public String getType() {
         return type;
     }

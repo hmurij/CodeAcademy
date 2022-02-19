@@ -1,6 +1,6 @@
 package lt.codeacademy.type;
 
-public enum DebitType {
+public enum DebitType implements Type {
     TURTAS("Nekilnojamojo turto įsigijimas"),
     STATYBA("Statyba, rekonstravimas, remontas ir kiti darbai"),
     REMONTAS("Paprastasis remontas"),
@@ -13,6 +13,7 @@ public enum DebitType {
         this.type = type;
     }
 
+    @Override
     public String getType() {
         return type;
     }

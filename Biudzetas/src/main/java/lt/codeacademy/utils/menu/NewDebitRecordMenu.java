@@ -15,7 +15,7 @@ import static lt.codeacademy.Programa.SCANNER;
  * Utility class to manage user interactions, while entering
  * data for new debit record
  */
-public class NewDebitRecordMenu extends NewRecordMenu{
+public class NewDebitRecordMenu extends NewRecordMenu {
 
     /**
      * Prompts user to enter appropriate fields, creates new {@link DebitRecord} object
@@ -62,21 +62,7 @@ public class NewDebitRecordMenu extends NewRecordMenu{
      * @return new debit category
      */
     private DebitType newDebitCategoryMenu() {
-        DebitType[] categories = DebitType.values();
-
-        System.out.print("\nPasirinkit viena is islaidu kategoriju varijantu: ");
-        for (int i = 0; i < categories.length; i++) {
-            System.out.print("\n\t" + (i + 1) + " - " + categories[i].getType());
-        }
-
-        System.out.print("\nIveskit jusu pasirinkima: ");
-        int debitCategoryIndex = Integer.parseInt(SCANNER.nextLine());
-
-        if (1 > debitCategoryIndex || debitCategoryIndex > categories.length) {
-            throw new NumberFormatException();
-        }
-
-        return categories[debitCategoryIndex - 1];
+        return newTypeMenu("\nPasirinkit viena is islaidu kategoriju varijantu: ", DebitType.values());
     }
 
     /**
@@ -86,20 +72,6 @@ public class NewDebitRecordMenu extends NewRecordMenu{
      * @return new payment type
      */
     private PaymentType newPaymentTypeMenu() {
-        PaymentType[] paymentType = PaymentType.values();
-
-        System.out.print("\nPasirinkit viena is atsiskaitymo budu:");
-        for (int i = 0; i < paymentType.length; i++) {
-            System.out.print("\n\t" + (i + 1) + " - " + paymentType[i].getType());
-        }
-
-        System.out.print("\nIveskit jusu pasirinkima: ");
-        int paymentTypeIndex = Integer.parseInt(SCANNER.nextLine());
-
-        if (1 > paymentTypeIndex || paymentTypeIndex > paymentType.length) {
-            throw new NumberFormatException();
-        }
-
-        return paymentType[paymentTypeIndex - 1];
+        return newTypeMenu("\nPasirinkit viena is atsiskaitymo budu:", PaymentType.values());
     }
 }

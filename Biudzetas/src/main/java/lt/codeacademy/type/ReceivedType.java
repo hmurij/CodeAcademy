@@ -1,13 +1,12 @@
 package lt.codeacademy.type;
 
-public enum PaymentType implements Type {
-    GRYNAIS("Grynais pinigais"),
-    KORTELE("Banko kortele"),
-    PAVEDIMU("Banko pavedimu");
+public enum ReceivedType implements Type{
+    YES("Taip"),
+    NO("Ne");
 
     private final String type;
 
-    PaymentType(String type) {
+    ReceivedType(String type) {
         this.type = type;
     }
 

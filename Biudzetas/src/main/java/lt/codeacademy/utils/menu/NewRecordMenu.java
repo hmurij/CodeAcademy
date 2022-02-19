@@ -1,5 +1,7 @@
 package lt.codeacademy.utils.menu;
 
+import lt.codeacademy.type.Type;
+
 import static lt.codeacademy.Programa.SCANNER;
 
 public abstract class NewRecordMenu {
@@ -20,6 +22,33 @@ public abstract class NewRecordMenu {
         }
 
         return amount;
+    }
+
+    /**
+     * Prompts user select new type, throws NumberFormatException
+     * in case of invalid type index
+     *
+     * @return new type
+     */
+    protected <T extends Type> T newTypeMenu(String prompt, T[] types) {
+        System.out.print(prompt);
+
+        printTypes(types);
+
+        System.out.print("\nIveskit jusu pasirinkima: ");
+        int typeIndex = Integer.parseInt(SCANNER.nextLine());
+
+        if (1 > typeIndex || typeIndex > types.length) {
+            throw new NumberFormatException();
+        }
+
+        return types[typeIndex - 1];
+    }
+
+    protected <T extends Type> void printTypes(T[] types) {
+        for (int i = 0; i < types.length; i++) {
+            System.out.print("\n\t" + (i + 1) + " - " + types[i].getType());
+        }
     }
 
     /**
