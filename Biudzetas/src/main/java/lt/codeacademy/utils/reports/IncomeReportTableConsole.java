@@ -8,7 +8,15 @@ public class IncomeReportTableConsole extends ReportTableConsole<IncomeRecord> {
 
     @Override
     String generateTableHeader() {
-        return String.format(ReportTableConsole.HEADER_FORMAT, "Suma", "Data", "Kategorija", "Pajamos banke", "Informacija");
+        return String.format(
+                ReportTableConsole.HEADER_FORMAT,
+                "Id",
+                "Suma",
+                "Data",
+                "Kategorija",
+                "Pajamos banke",
+                "Informacija"
+        );
     }
 
     @Override
@@ -19,6 +27,7 @@ public class IncomeReportTableConsole extends ReportTableConsole<IncomeRecord> {
             String comment = incomeRecord.getComments();
             body.append(
                     String.format(ReportTableConsole.BODY_FORMAT,
+                    incomeRecord.getId(),
                     incomeRecord.getAmount(),
                     String.format("%1$tY-%1$tb-%1$td", incomeRecord.getDate()),
                     incomeRecord.getIncomeType(),
