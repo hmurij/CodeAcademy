@@ -1,6 +1,6 @@
-package lt.codeacademy.initial.menu;
+package lt.codeacademy.menu;
 
-import static lt.codeacademy.initial.PasswordGeneratorApplication.SCANNER;
+import static lt.codeacademy.PasswordGeneratorApplication.SCANNER;
 
 /**
  * Every console menu's should use this interface

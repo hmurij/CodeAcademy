@@ -1,6 +1,6 @@
-package lt.codeacademy.initial.generator.password;
+package lt.codeacademy.generator.password;
 
-import lt.codeacademy.initial.generator.symbol.SymbolGenerator;
+import lt.codeacademy.generator.symbol.SymbolGenerator;
 
 public class NaturalNumbersPasswordGenerator implements PasswordGenerator<SymbolGenerator> {
 

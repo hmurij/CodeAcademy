@@ -1,4 +1,4 @@
-package lt.codeacademy.initial.menu;
+package lt.codeacademy.menu;
 
 public class MainMenu implements ConsoleMenu {
 

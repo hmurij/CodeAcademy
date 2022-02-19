@@ -1,4 +1,4 @@
-package lt.codeacademy.initial.generator.symbol;
+package lt.codeacademy.generator.symbol;
 
 import org.junit.jupiter.api.RepeatedTest;
 

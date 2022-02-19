@@ -1,4 +1,4 @@
-package lt.codeacademy.initial;
+package lt.codeacademy;
 
 public class Application {
 

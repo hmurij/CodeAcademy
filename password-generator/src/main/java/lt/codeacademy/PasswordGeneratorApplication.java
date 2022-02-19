@@ -1,10 +1,10 @@
-package lt.codeacademy.initial;
+package lt.codeacademy;
 
-import lt.codeacademy.initial.generator.password.LetterPasswordGenerator;
-import lt.codeacademy.initial.generator.password.NaturalNumbersPasswordGenerator;
-import lt.codeacademy.initial.generator.password.NumbersLettersPasswordGenerator;
-import lt.codeacademy.initial.menu.ConsoleMenu;
-import lt.codeacademy.initial.menu.MainMenu;
+import lt.codeacademy.generator.password.LetterPasswordGenerator;
+import lt.codeacademy.generator.password.NaturalNumbersPasswordGenerator;
+import lt.codeacademy.generator.password.NumbersLettersPasswordGenerator;
+import lt.codeacademy.menu.ConsoleMenu;
+import lt.codeacademy.menu.MainMenu;
 
 import java.util.Scanner;
 
@@ -31,6 +31,10 @@ public class PasswordGeneratorApplication {
 
     }
 
+    /**
+     * Processes user input. Terminates program on user input "0"
+     * @param input user input
+     */
     private void processInput(String input) {
         switch(input){
             case "1":
