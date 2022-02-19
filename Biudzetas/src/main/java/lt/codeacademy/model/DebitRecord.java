@@ -1,47 +1,34 @@
 package lt.codeacademy.model;
 
-import lt.codeacademy.type.PaymentType;
 import lt.codeacademy.type.DebitType;
+import lt.codeacademy.type.PaymentType;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-public class DebitRecord implements Serializable {
-    private double amount;
-    private LocalDateTime dateTime;
+public class DebitRecord extends Record {
+    private LocalTime time;
     private DebitType debitType;
     private PaymentType paymentType;
-    private String comments;
-
-    public DebitRecord() {
-    }
 
     public DebitRecord(double amount,
-                       LocalDateTime dateTime,
+                       LocalDate date,
+                       LocalTime time,
                        DebitType debitType,
                        PaymentType paymentType,
                        String comments) {
-        this.amount = amount;
-        this.dateTime = dateTime;
+        super(amount, date, comments);
+        this.time = time;
         this.debitType = debitType;
         this.paymentType = paymentType;
-        this.comments = comments;
     }
 
-    public double getAmount() {
-        return amount;
+    public LocalTime getTime() {
+        return time;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     public DebitType getDebitType() {
@@ -60,22 +47,15 @@ public class DebitRecord implements Serializable {
         this.paymentType = paymentType;
     }
 
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
     @Override
     public String toString() {
-        return "DebitRecord{" +
-                "amount=" + amount +
-                ", dataTime=" + dateTime +
-                ", kategorija=" + debitType +
-                ", paymentType=" + paymentType +
-                ", papildomaInfo='" + comments + '\'' +
+        return "DebitRecord{"
+                + "amount=" + getAmount()
+                + ", data=" + getDate()
+                + ", laikas= " + time
+                + ", kategorija=" + debitType
+                + ", paymentType=" + paymentType
+                + ", papildomaInfo='" + getComments() + '\'' +
                 '}';
     }
 }

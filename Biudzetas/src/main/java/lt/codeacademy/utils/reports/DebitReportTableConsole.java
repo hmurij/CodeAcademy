@@ -4,10 +4,10 @@ import lt.codeacademy.model.DebitRecord;
 
 import java.util.Arrays;
 
-public class DebitReportTable extends ReportTable<DebitRecord> {
+public class DebitReportTableConsole extends ReportTableConsole<DebitRecord> {
     @Override
     String generateTableHeader() {
-        return String.format(ReportTable.HEADER_FORMAT, "Suma", "Data / laikas", "Kategorija", "Atsiskaitymo Budas", "Informacija");
+        return String.format(ReportTableConsole.HEADER_FORMAT, "Suma", "Data / laikas", "Kategorija", "Atsiskaitymo Budas", "Informacija");
     }
 
     @Override
@@ -16,9 +16,9 @@ public class DebitReportTable extends ReportTable<DebitRecord> {
 
         for (DebitRecord debitRecord : records) {
             String comment = debitRecord.getComments();
-            body.append(String.format(ReportTable.BODY_FORMAT,
+            body.append(String.format(ReportTableConsole.BODY_FORMAT,
                     debitRecord.getAmount(),
-                    String.format("%1$tY-%1$tb-%1$td %1$tH:%1$tM", debitRecord.getDateTime()),
+                    String.format("%s %2$tH:%2$tM", debitRecord.getDate(), debitRecord.getTime()),
                     debitRecord.getDebitType(),
                     debitRecord.getPaymentType(),
                     comment.length() > 25 ? comment.substring(0, 25) + "..." : comment));

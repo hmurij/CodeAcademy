@@ -1,6 +1,6 @@
 package lt.codeacademy.utils.reports;
 
-public abstract class ReportTable<T> {
+public abstract class ReportTableConsole<T> {
     static final String SEPARATOR = "+" + "-".repeat(11) + "+" + "-".repeat(21) + "+" + "-".repeat(16)
             + "+" + "-".repeat(21) + "+" + "-".repeat(31) + "+\n";
     static final String HEADER_FORMAT = "| %-10s| %-20s| %-15s| %-20s| %-30s|\n";

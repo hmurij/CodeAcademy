@@ -4,8 +4,8 @@ import lt.codeacademy.budget.Budget;
 import lt.codeacademy.factory.BudgetFactory;
 import lt.codeacademy.utils.menu.NewDebitRecordMenu;
 import lt.codeacademy.utils.menu.NewIncomeRecordMenu;
-import lt.codeacademy.utils.reports.DebitReportTable;
-import lt.codeacademy.utils.reports.IncomeReportTable;
+import lt.codeacademy.utils.reports.DebitReportTableConsole;
+import lt.codeacademy.utils.reports.IncomeReportTableConsole;
 
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class Programa {
     private static final String FILE_PATH = "Data/data.dat";
 
     static {
-//        BUDGET = readBiudzetasFromFile(FILE_PATH);
+//        BUDGET = FileUtils.readBudgetFromFile(FILE_PATH);
 
         BUDGET = BudgetFactory.generateBudgetMockObject();
 
@@ -56,10 +56,10 @@ public class Programa {
                 new NewIncomeRecordMenu().newIncomeRecordMenu(BUDGET);
                 break;
             case "3":
-                new DebitReportTable().printTable(BUDGET.getDebitRecords());
+                new DebitReportTableConsole().printTable(BUDGET.getDebitRecords());
                 break;
             case "4":
-                new IncomeReportTable().printTable(BUDGET.getIncomeRecords());
+                new IncomeReportTableConsole().printTable(BUDGET.getIncomeRecords());
                 break;
             case "0":
                 System.out.println("Aciu uz demesi!");

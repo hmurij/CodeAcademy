@@ -30,7 +30,8 @@ public class NewDebitRecordMenu extends NewRecordMenu{
             String newComment = newCommentMenu();
 
             budget.addDebitRecord(new DebitRecord(newAmount,
-                    newDateTime,
+                    newDateTime.toLocalDate(),
+                    newDateTime.toLocalTime(),
                     newDebitCategory,
                     newPaymentType,
                     newComment));

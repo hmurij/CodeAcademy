@@ -4,11 +4,11 @@ import lt.codeacademy.model.IncomeRecord;
 
 import java.util.Arrays;
 
-public class IncomeReportTable extends ReportTable<IncomeRecord> {
+public class IncomeReportTableConsole extends ReportTableConsole<IncomeRecord> {
 
     @Override
     String generateTableHeader() {
-        return String.format(ReportTable.HEADER_FORMAT, "Suma", "Data", "Kategorija", "Pajamos banke", "Informacija");
+        return String.format(ReportTableConsole.HEADER_FORMAT, "Suma", "Data", "Kategorija", "Pajamos banke", "Informacija");
     }
 
     @Override
@@ -18,7 +18,7 @@ public class IncomeReportTable extends ReportTable<IncomeRecord> {
         for (IncomeRecord incomeRecord : records) {
             String comment = incomeRecord.getComments();
             body.append(
-                    String.format(ReportTable.BODY_FORMAT,
+                    String.format(ReportTableConsole.BODY_FORMAT,
                     incomeRecord.getAmount(),
                     String.format("%1$tY-%1$tb-%1$td", incomeRecord.getDate()),
                     incomeRecord.getIncomeType(),

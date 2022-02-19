@@ -3,12 +3,12 @@ package lt.codeacademy.factory;
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.model.DebitRecord;
 import lt.codeacademy.model.IncomeRecord;
-import lt.codeacademy.type.PaymentType;
 import lt.codeacademy.type.DebitType;
 import lt.codeacademy.type.IncomeType;
+import lt.codeacademy.type.PaymentType;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Random;
 
 /**
@@ -18,9 +18,10 @@ public class BudgetFactory {
 
     /**
      * Creates new Budget objects and populates it with generated data
+     *
      * @return biudzetas object with 10 records of DebitRecord and IncomeRecord objects
      */
-    public static Budget generateBudgetMockObject(){
+    public static Budget generateBudgetMockObject() {
         Budget budget = new Budget();
 
         for (int i = 0; i < 10; i++) {
@@ -41,11 +42,14 @@ public class BudgetFactory {
         DebitType[] kategorijas = DebitType.values();
         PaymentType[] atsiskaitymoBudas = PaymentType.values();
 
-        return new DebitRecord(r.nextDouble() * 1000,
-                LocalDateTime.now().minusDays(r.nextInt(365)).minusMinutes(r.nextInt(60 * 24)),
+        return new DebitRecord(
+                r.nextDouble() * 1000,
+                LocalDate.now().minusDays(r.nextInt(365)),
+                LocalTime.now().minusMinutes(r.nextInt(60 * 24)),
                 kategorijas[r.nextInt(kategorijas.length)],
                 atsiskaitymoBudas[r.nextInt(atsiskaitymoBudas.length)],
-                generateComment());
+                generateComment()
+        );
     }
 
     /**
