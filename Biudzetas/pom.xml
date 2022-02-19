@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>lt.codeacademy</groupId>
-    <artifactId>biudzetas</artifactId>
+    <artifactId>budget</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -23,7 +23,7 @@
         </dependency>
     </dependencies>
 
-    <name>biudzetas</name>
+    <name>budget</name>
 
 
 </project>

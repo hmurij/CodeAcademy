@@ -1,7 +1,7 @@
 package lt.codeacademy.utils;
 
-import lt.codeacademy.factory.BiudzetasFactory;
-import lt.codeacademy.model.Biudzetas;
+import lt.codeacademy.factory.BudgetFactory;
+import lt.codeacademy.budget.Budget;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +19,11 @@ class FileUtilsTest {
         int expectedIslaiduIrasuLength = 0;
         int expectedPajamuIrasuLength = 0;
 
-        Biudzetas biudzetas = FileUtils.readBiudzetasFromFile(filePath);
+        Budget budget = FileUtils.readBudgetFromFile(filePath);
 
         assertAll(
-                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, biudzetas.gautiIslaiduIrasus().length),
-                () -> Assertions.assertEquals(expectedPajamuIrasuLength, biudzetas.gautiPajamuIrasus().length)
+                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, budget.getDebitRecords().length),
+                () -> Assertions.assertEquals(expectedPajamuIrasuLength, budget.getIncomeRecords().length)
         );
     }
 
@@ -33,11 +33,11 @@ class FileUtilsTest {
         int expectedIslaiduIrasuLength = 10;
         int expectedPajamuIrasuLength = 10;
 
-        Biudzetas biudzetas = FileUtils.readBiudzetasFromFile(filePath);
+        Budget budget = FileUtils.readBudgetFromFile(filePath);
 
         assertAll(
-                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, biudzetas.gautiIslaiduIrasus().length),
-                () -> Assertions.assertEquals(expectedPajamuIrasuLength, biudzetas.gautiPajamuIrasus().length)
+                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, budget.getDebitRecords().length),
+                () -> Assertions.assertEquals(expectedPajamuIrasuLength, budget.getIncomeRecords().length)
         );
 
     }
@@ -45,11 +45,11 @@ class FileUtilsTest {
     @Test
     void givenMockBiudzetasObject_whenSaveBiudzetasToFile_thenFileExistsFalseBeforeTrueAfter() {
         String filePath = "src/test/resources/testWriteData.dat";
-        Biudzetas biudzetas = BiudzetasFactory.generateBiudzetasMockObject();
+        Budget budget = BudgetFactory.generateBudgetMockObject();
         File file = new File(filePath);
 
         boolean fileExistBeforeSaveBiudzetasToFile = file.exists();
-        FileUtils.saveBiudzetasToFile(biudzetas, filePath);
+        FileUtils.saveBudgetToFile(budget, filePath);
         boolean fileExistAfterSaveBiudzetasToFile = file.exists();
         boolean fileDeleted = file.delete();
 

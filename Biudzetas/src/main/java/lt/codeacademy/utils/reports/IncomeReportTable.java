@@ -1,10 +1,10 @@
 package lt.codeacademy.utils.reports;
 
-import lt.codeacademy.model.PajamuIrasas;
+import lt.codeacademy.model.IncomeRecord;
 
 import java.util.Arrays;
 
-public class IncomeReportTable extends ReportTable<PajamuIrasas> {
+public class IncomeReportTable extends ReportTable<IncomeRecord> {
 
     @Override
     String generateTableHeader() {
@@ -12,25 +12,27 @@ public class IncomeReportTable extends ReportTable<PajamuIrasas> {
     }
 
     @Override
-    String generateTableBody(PajamuIrasas[] records) {
+    String generateTableBody(IncomeRecord[] records) {
         StringBuilder body = new StringBuilder();
 
-        for (PajamuIrasas pajamuIrasas : records) {
-            String comment = pajamuIrasas.getPapildomaInfo();
-            body.append(String.format(ReportTable.BODY_FORMAT,
-                    pajamuIrasas.getSuma(),
-                    String.format("%1$tY-%1$tb-%1$td", pajamuIrasas.getData()),
-                    pajamuIrasas.getKategorija(),
-                    pajamuIrasas.isPozymisArIBanka() ? "Taip" : "Ne",
-                    comment.length() > 25 ? comment.substring(0, 25) + "..." : comment));
+        for (IncomeRecord incomeRecord : records) {
+            String comment = incomeRecord.getComments();
+            body.append(
+                    String.format(ReportTable.BODY_FORMAT,
+                    incomeRecord.getAmount(),
+                    String.format("%1$tY-%1$tb-%1$td", incomeRecord.getDate()),
+                    incomeRecord.getIncomeType(),
+                    incomeRecord.isIncomeReceived() ? "Taip" : "Ne",
+                    comment.length() > 25 ? comment.substring(0, 25) + "..." : comment)
+            );
         }
 
         return body.toString();
     }
 
     @Override
-    double calculateTotal(PajamuIrasas[] records) {
-       return Arrays.stream(records).filter(PajamuIrasas::isPozymisArIBanka)
-                .mapToDouble(PajamuIrasas::getSuma).sum();
+    double calculateTotal(IncomeRecord[] records) {
+       return Arrays.stream(records).filter(IncomeRecord::isIncomeReceived)
+                .mapToDouble(IncomeRecord::getAmount).sum();
     }
 }

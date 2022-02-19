@@ -1,26 +1,26 @@
 package lt.codeacademy.utils.reports;
 
-import lt.codeacademy.model.IslaiduIrasas;
+import lt.codeacademy.model.DebitRecord;
 
 import java.util.Arrays;
 
-public class DebitReportTable extends ReportTable<IslaiduIrasas> {
+public class DebitReportTable extends ReportTable<DebitRecord> {
     @Override
     String generateTableHeader() {
         return String.format(ReportTable.HEADER_FORMAT, "Suma", "Data / laikas", "Kategorija", "Atsiskaitymo Budas", "Informacija");
     }
 
     @Override
-    String generateTableBody(IslaiduIrasas[] records) {
+    String generateTableBody(DebitRecord[] records) {
         StringBuilder body = new StringBuilder();
 
-        for (IslaiduIrasas islaiduIrasas : records) {
-            String comment = islaiduIrasas.getPapildomaInfo();
+        for (DebitRecord debitRecord : records) {
+            String comment = debitRecord.getComments();
             body.append(String.format(ReportTable.BODY_FORMAT,
-                    islaiduIrasas.getSuma(),
-                    String.format("%1$tY-%1$tb-%1$td %1$tH:%1$tM", islaiduIrasas.getDataSuLaiku()),
-                    islaiduIrasas.getKategorija(),
-                    islaiduIrasas.getAtsiskaitymoBudas(),
+                    debitRecord.getAmount(),
+                    String.format("%1$tY-%1$tb-%1$td %1$tH:%1$tM", debitRecord.getDateTime()),
+                    debitRecord.getDebitType(),
+                    debitRecord.getPaymentType(),
                     comment.length() > 25 ? comment.substring(0, 25) + "..." : comment));
         }
 
@@ -28,7 +28,7 @@ public class DebitReportTable extends ReportTable<IslaiduIrasas> {
     }
 
     @Override
-    double calculateTotal(IslaiduIrasas[] records) {
-        return Arrays.stream(records).map(IslaiduIrasas::getSuma).mapToDouble(Double::doubleValue).sum();
+    double calculateTotal(DebitRecord[] records) {
+        return Arrays.stream(records).map(DebitRecord::getAmount).mapToDouble(Double::doubleValue).sum();
     }
 }

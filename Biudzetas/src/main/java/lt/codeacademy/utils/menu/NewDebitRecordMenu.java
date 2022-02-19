@@ -1,9 +1,9 @@
 package lt.codeacademy.utils.menu;
 
-import lt.codeacademy.model.Biudzetas;
-import lt.codeacademy.model.IslaiduIrasas;
-import lt.codeacademy.type.AtsiskaitymoBudas;
-import lt.codeacademy.type.IslaiduKategorija;
+import lt.codeacademy.budget.Budget;
+import lt.codeacademy.model.DebitRecord;
+import lt.codeacademy.type.PaymentType;
+import lt.codeacademy.type.DebitType;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,18 +18,18 @@ import static lt.codeacademy.Programa.SCANNER;
 public class NewDebitRecordMenu extends NewRecordMenu{
 
     /**
-     * Prompts user to enter appropriate fields, creates new {@link IslaiduIrasas} object
-     * and adds new record to biudzetas.
+     * Prompts user to enter appropriate fields, creates new {@link DebitRecord} object
+     * and adds new record to budget.
      */
-    public void newDebitRecordMenu(Biudzetas biudzetas) {
+    public void newDebitRecordMenu(Budget budget) {
         try {
             double newAmount = newAmountMenu();
             LocalDateTime newDateTime = newDateTimeMenu();
-            IslaiduKategorija newDebitCategory = newDebitCategoryMenu();
-            AtsiskaitymoBudas newPaymentType = newPaymentTypeMenu();
+            DebitType newDebitCategory = newDebitCategoryMenu();
+            PaymentType newPaymentType = newPaymentTypeMenu();
             String newComment = newCommentMenu();
 
-            biudzetas.pridetiIslaiduIrasa(new IslaiduIrasas(newAmount,
+            budget.addDebitRecord(new DebitRecord(newAmount,
                     newDateTime,
                     newDebitCategory,
                     newPaymentType,
@@ -60,12 +60,12 @@ public class NewDebitRecordMenu extends NewRecordMenu{
      *
      * @return new debit category
      */
-    private IslaiduKategorija newDebitCategoryMenu() {
-        IslaiduKategorija[] categories = IslaiduKategorija.values();
+    private DebitType newDebitCategoryMenu() {
+        DebitType[] categories = DebitType.values();
 
         System.out.print("\nPasirinkit viena is islaidu kategoriju varijantu: ");
         for (int i = 0; i < categories.length; i++) {
-            System.out.print("\n\t" + (i + 1) + " - " + categories[i].getKategorija());
+            System.out.print("\n\t" + (i + 1) + " - " + categories[i].getType());
         }
 
         System.out.print("\nIveskit jusu pasirinkima: ");
@@ -84,12 +84,12 @@ public class NewDebitRecordMenu extends NewRecordMenu{
      *
      * @return new payment type
      */
-    private AtsiskaitymoBudas newPaymentTypeMenu() {
-        AtsiskaitymoBudas[] paymentType = AtsiskaitymoBudas.values();
+    private PaymentType newPaymentTypeMenu() {
+        PaymentType[] paymentType = PaymentType.values();
 
         System.out.print("\nPasirinkit viena is atsiskaitymo budu:");
         for (int i = 0; i < paymentType.length; i++) {
-            System.out.print("\n\t" + (i + 1) + " - " + paymentType[i].getAtsiskaitymoBudas());
+            System.out.print("\n\t" + (i + 1) + " - " + paymentType[i].getType());
         }
 
         System.out.print("\nIveskit jusu pasirinkima: ");

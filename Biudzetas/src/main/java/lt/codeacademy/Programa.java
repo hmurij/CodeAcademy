@@ -1,6 +1,7 @@
 package lt.codeacademy;
 
-import lt.codeacademy.model.Biudzetas;
+import lt.codeacademy.budget.Budget;
+import lt.codeacademy.factory.BudgetFactory;
 import lt.codeacademy.utils.menu.NewDebitRecordMenu;
 import lt.codeacademy.utils.menu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTable;
@@ -8,32 +9,31 @@ import lt.codeacademy.utils.reports.IncomeReportTable;
 
 import java.util.Scanner;
 
-import static lt.codeacademy.utils.FileUtils.readBiudzetasFromFile;
-import static lt.codeacademy.utils.FileUtils.saveBiudzetasToFile;
-import static lt.codeacademy.utils.menu.MainMenuUtils.printBiudzetasLogo;
-import static lt.codeacademy.utils.menu.MainMenuUtils.printMainMenu;
-import static lt.codeacademy.utils.menu.MainMenuUtils.readUserInput;
+import static lt.codeacademy.utils.FileUtils.saveBudgetToFile;
+import static lt.codeacademy.utils.menu.MainMenu.printBudgetLogo;
+import static lt.codeacademy.utils.menu.MainMenu.printMainMenu;
+import static lt.codeacademy.utils.menu.MainMenu.readUserInput;
 
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
  * turi galimybe gauti reikiamą informaciją kiek išleido ir gavo pajamų.
  */
 public class Programa {
-    private static final Biudzetas BIUDZETAS;
+    private static final Budget BUDGET;
     public static final Scanner SCANNER;
     private static final String FILE_PATH = "Data/data.dat";
 
     static {
-        BIUDZETAS = readBiudzetasFromFile(FILE_PATH);
+//        BUDGET = readBiudzetasFromFile(FILE_PATH);
 
-//        BIUDZETAS = BiudzetasFactory.generateBiudzetasMockObject();
+        BUDGET = BudgetFactory.generateBudgetMockObject();
 
         SCANNER = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
 
-        printBiudzetasLogo();
+        printBudgetLogo();
 
         while (true) {
             printMainMenu();
@@ -50,16 +50,16 @@ public class Programa {
     private static void processInput(String choice) {
         switch (choice) {
             case "1":
-                new NewDebitRecordMenu().newDebitRecordMenu(BIUDZETAS);
+                new NewDebitRecordMenu().newDebitRecordMenu(BUDGET);
                 break;
             case "2":
-                new NewIncomeRecordMenu().newIncomeRecordMenu(BIUDZETAS);
+                new NewIncomeRecordMenu().newIncomeRecordMenu(BUDGET);
                 break;
             case "3":
-                new DebitReportTable().printTable(BIUDZETAS.gautiIslaiduIrasus());
+                new DebitReportTable().printTable(BUDGET.getDebitRecords());
                 break;
             case "4":
-                new IncomeReportTable().printTable(BIUDZETAS.gautiPajamuIrasus());
+                new IncomeReportTable().printTable(BUDGET.getIncomeRecords());
                 break;
             case "0":
                 System.out.println("Aciu uz demesi!");
@@ -73,10 +73,10 @@ public class Programa {
     }
 
     /**
-     * On program exit closes scanner and saves biudzetas to file
+     * On program exit closes scanner and saves budget to file
      */
     private static void shutDown() {
         SCANNER.close();
-        saveBiudzetasToFile(BIUDZETAS, FILE_PATH);
+        saveBudgetToFile(BUDGET, FILE_PATH);
     }
 }

@@ -5,8 +5,8 @@ import static lt.codeacademy.Programa.SCANNER;
 /**
  * Menu utility class to manage user interaction with main program
  */
-public class MainMenuUtils {
-    private static final String BIUDZETAS_LOGO =
+public class MainMenu {
+    private static final String BUDGET_LOGO =
             "*************************************\n" +
                     "* Interaktyvia programą - Biudzetas *\n" +
                     "*************************************\n";
@@ -24,8 +24,8 @@ public class MainMenuUtils {
     /**
      * Prints main program logo
      */
-    public static void printBiudzetasLogo() {
-        System.out.println(BIUDZETAS_LOGO);
+    public static void printBudgetLogo() {
+        System.out.println(BUDGET_LOGO);
     }
 
     /**

@@ -1,9 +1,9 @@
 package lt.codeacademy.utils.menu;
 
-import lt.codeacademy.model.Biudzetas;
-import lt.codeacademy.model.IslaiduIrasas;
-import lt.codeacademy.model.PajamuIrasas;
-import lt.codeacademy.type.PajamuKategorija;
+import lt.codeacademy.budget.Budget;
+import lt.codeacademy.model.DebitRecord;
+import lt.codeacademy.model.IncomeRecord;
+import lt.codeacademy.type.IncomeType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -17,18 +17,18 @@ import static lt.codeacademy.Programa.SCANNER;
 public class NewIncomeRecordMenu extends NewRecordMenu {
 
     /**
-     * Prompts user to enter appropriate fields, creates new {@link IslaiduIrasas} object
-     * and adds new record to biudzetas.
+     * Prompts user to enter appropriate fields, creates new {@link DebitRecord} object
+     * and adds new record to budget.
      */
-    public void newIncomeRecordMenu(Biudzetas biudzetas) {
+    public void newIncomeRecordMenu(Budget budget) {
         try {
             double newAmount = newAmountMenu();
             LocalDate newDate = newDateMenu();
-            PajamuKategorija newIncomeCategory = newIncomeTypeMenu();
+            IncomeType newIncomeCategory = newIncomeTypeMenu();
             boolean isReceived = newIsPaymentReceivedMenu();
             String newComment = newCommentMenu();
 
-            biudzetas.pridetiPajamuIrasa(new PajamuIrasas(newAmount,
+            budget.addIncomeRecord(new IncomeRecord(newAmount,
                     newDate,
                     newIncomeCategory,
                     isReceived,
@@ -58,12 +58,12 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
      *
      * @return new income category
      */
-    private PajamuKategorija newIncomeTypeMenu() {
-        PajamuKategorija[] incomeTypes = PajamuKategorija.values();
+    private IncomeType newIncomeTypeMenu() {
+        IncomeType[] incomeTypes = IncomeType.values();
 
         System.out.print("\nPasirinkit viena is pajamu kategoriju varijantu: ");
         for (int i = 0; i < incomeTypes.length; i++) {
-            System.out.print("\n\t" + (i + 1) + " - " + incomeTypes[i].getKategorija());
+            System.out.print("\n\t" + (i + 1) + " - " + incomeTypes[i].getType());
         }
         System.out.print("\nIveskit jusu pasirinkima: ");
 
@@ -92,5 +92,4 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
 
         return isPaymentReceived == 1;
     }
-
 }

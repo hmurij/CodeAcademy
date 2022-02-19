@@ -1,19 +1,19 @@
 package lt.codeacademy.type;
 
-public enum IslaiduKategorija {
+public enum DebitType {
     TURTAS("Nekilnojamojo turto įsigijimas"),
     STATYBA("Statyba, rekonstravimas, remontas ir kiti darbai"),
     REMONTAS("Paprastasis remontas"),
     TRANSPOTAS("Transportavimo islaidos"),
     IRANGA("Kompiuterinė ir programinė  įranga");
 
-    private final String kategorija;
+    private final String type;
 
-    IslaiduKategorija(String kategorija) {
-        this.kategorija = kategorija;
+    DebitType(String type) {
+        this.type = type;
     }
 
-    public String getKategorija() {
-        return kategorija;
+    public String getType() {
+        return type;
     }
 }
