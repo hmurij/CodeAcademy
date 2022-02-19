@@ -2,7 +2,7 @@ package lt.codeacademy.utils.reports;
 
 import lt.codeacademy.model.DebitRecord;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class DebitReportTableConsole extends ReportTableConsole<DebitRecord> {
     @Override
@@ -19,7 +19,7 @@ public class DebitReportTableConsole extends ReportTableConsole<DebitRecord> {
     }
 
     @Override
-    String generateTableBody(DebitRecord[] records) {
+    String generateTableBody(List<DebitRecord> records) {
         StringBuilder body = new StringBuilder();
 
         for (DebitRecord debitRecord : records) {
@@ -37,7 +37,7 @@ public class DebitReportTableConsole extends ReportTableConsole<DebitRecord> {
     }
 
     @Override
-    double calculateTotal(DebitRecord[] records) {
-        return Arrays.stream(records).map(DebitRecord::getAmount).mapToDouble(Double::doubleValue).sum();
+    double calculateTotal(List<DebitRecord> records) {
+        return records.stream().map(DebitRecord::getAmount).mapToDouble(Double::doubleValue).sum();
     }
 }

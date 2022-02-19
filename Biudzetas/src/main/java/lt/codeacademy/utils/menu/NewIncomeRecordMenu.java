@@ -29,11 +29,13 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
             boolean isReceived = newIsPaymentReceivedMenu();
             String newComment = newCommentMenu();
 
-            budget.addIncomeRecord(new IncomeRecord(newAmount,
+            budget.addRecord(
+                    new IncomeRecord(newAmount,
                     newDate,
                     newIncomeCategory,
                     isReceived,
-                    newComment));
+                    newComment)
+            );
 
             System.out.println("\nSekmingai sukurtas naujas pajamu irasas.\n");
         } catch (NumberFormatException | DateTimeParseException e) {

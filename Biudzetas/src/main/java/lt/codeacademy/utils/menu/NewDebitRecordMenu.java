@@ -29,12 +29,14 @@ public class NewDebitRecordMenu extends NewRecordMenu {
             PaymentType newPaymentType = newPaymentTypeMenu();
             String newComment = newCommentMenu();
 
-            budget.addDebitRecord(new DebitRecord(newAmount,
+            budget.addRecord(
+                    new DebitRecord(newAmount,
                     newDateTime.toLocalDate(),
                     newDateTime.toLocalTime(),
                     newDebitCategory,
                     newPaymentType,
-                    newComment));
+                    newComment)
+            );
 
             System.out.println("\nSekmingai sukurtas naujas islaidu irasas.\n");
         } catch (NumberFormatException | DateTimeParseException e) {

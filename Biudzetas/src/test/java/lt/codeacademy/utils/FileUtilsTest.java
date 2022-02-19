@@ -22,8 +22,8 @@ class FileUtilsTest {
         Budget budget = FileUtils.readBudgetFromFile(filePath);
 
         assertAll(
-                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, budget.getDebitRecords().length),
-                () -> Assertions.assertEquals(expectedPajamuIrasuLength, budget.getIncomeRecords().length)
+                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, budget.getDebitRecords().size()),
+                () -> Assertions.assertEquals(expectedPajamuIrasuLength, budget.getIncomeRecords().size())
         );
     }
 
@@ -36,8 +36,8 @@ class FileUtilsTest {
         Budget budget = FileUtils.readBudgetFromFile(filePath);
 
         assertAll(
-                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, budget.getDebitRecords().length),
-                () -> Assertions.assertEquals(expectedPajamuIrasuLength, budget.getIncomeRecords().length)
+                () -> Assertions.assertEquals(expectedIslaiduIrasuLength, budget.getDebitRecords().size()),
+                () -> Assertions.assertEquals(expectedPajamuIrasuLength, budget.getIncomeRecords().size())
         );
 
     }

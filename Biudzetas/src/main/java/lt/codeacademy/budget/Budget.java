@@ -2,67 +2,36 @@ package lt.codeacademy.budget;
 
 import lt.codeacademy.model.DebitRecord;
 import lt.codeacademy.model.IncomeRecord;
+import lt.codeacademy.model.Record;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Budget implements Serializable {
-    private IncomeRecord[] incomeRecords;
-    private int incomeRecordSize;
-
-    private DebitRecord[] debitRecords;
-    private int debitRecordsSize;
+    private final List<Record> records;
 
     public Budget() {
-        incomeRecords = new IncomeRecord[1];
-        debitRecords = new DebitRecord[1];
-
-        incomeRecordSize = 0;
-        debitRecordsSize = 0;
+        records = new ArrayList<>();
     }
 
     /**
      * Add new income record
      *
-     * @param incomeRecord new income record
+     * @param record new record
      */
-    public void addIncomeRecord(IncomeRecord incomeRecord) {
-        if (incomeRecordSize == incomeRecords.length) {
-            incomeRecords = Arrays.copyOf(incomeRecords, incomeRecords.length * 2);
-        }
-
-        if (incomeRecord != null) {
-            incomeRecords[incomeRecordSize] = incomeRecord;
-            incomeRecordSize++;
-        }
+    public void addRecord(Record record) {
+        records.add(record);
     }
 
-    public IncomeRecord[] getIncomeRecords() {
-        return Arrays.copyOf(incomeRecords, incomeRecordSize);
+    public List<IncomeRecord> getIncomeRecords() {
+        return records.stream().filter(IncomeRecord.class::isInstance)
+                .map(record -> (IncomeRecord) record).collect(Collectors.toList());
     }
 
-    /**
-     * Add new debit record
-     *
-     * @param debitRecord new debit record
-     */
-    public void addDebitRecord(DebitRecord debitRecord) {
-        if (debitRecordsSize == debitRecords.length) {
-            debitRecords = Arrays.copyOf(debitRecords, debitRecords.length * 2);
-        }
-
-        if (debitRecord != null) {
-            debitRecords[debitRecordsSize] = debitRecord;
-            debitRecordsSize++;
-        }
-    }
-
-    /**
-     * Returns filled up part of pajamuIrasai array
-     *
-     * @return part or complete pajamuIrasai array
-     */
-    public DebitRecord[] getDebitRecords() {
-        return Arrays.copyOf(debitRecords, debitRecordsSize);
+    public List<DebitRecord> getDebitRecords() {
+        return records.stream().filter(DebitRecord.class::isInstance)
+                .map(record -> (DebitRecord) record).collect(Collectors.toList());
     }
 }

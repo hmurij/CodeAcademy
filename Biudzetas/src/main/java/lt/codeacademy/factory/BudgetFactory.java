@@ -25,8 +25,8 @@ public class BudgetFactory {
         Budget budget = new Budget();
 
         for (int i = 0; i < 10; i++) {
-            budget.addDebitRecord(generateDebitRecord());
-            budget.addIncomeRecord(generateIncomeRecord());
+            budget.addRecord(generateDebitRecord());
+            budget.addRecord(generateIncomeRecord());
         }
 
         return budget;
