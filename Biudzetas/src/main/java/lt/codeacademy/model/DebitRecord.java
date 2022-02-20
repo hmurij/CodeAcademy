@@ -50,7 +50,8 @@ public class DebitRecord extends Record {
     @Override
     public String toString() {
         return "DebitRecord{"
-                + "amount=" + getAmount()
+                + "id=" + super.getId()
+                + ", amount=" + getAmount()
                 + ", data=" + getDate()
                 + ", laikas= " + time
                 + ", kategorija=" + debitType

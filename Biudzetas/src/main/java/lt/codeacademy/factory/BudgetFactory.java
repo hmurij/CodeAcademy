@@ -37,7 +37,7 @@ public class BudgetFactory {
      *
      * @return random DebitRecord object
      */
-    private static DebitRecord generateDebitRecord() {
+    public static DebitRecord generateDebitRecord() {
         Random r = new Random();
         DebitType[] kategorijas = DebitType.values();
         PaymentType[] atsiskaitymoBudas = PaymentType.values();
@@ -57,7 +57,7 @@ public class BudgetFactory {
      *
      * @return random IncomeRecord object
      */
-    private static IncomeRecord generateIncomeRecord() {
+    public static IncomeRecord generateIncomeRecord() {
         Random r = new Random();
         IncomeType[] kategorijas = IncomeType.values();
 

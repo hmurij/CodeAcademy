@@ -52,6 +52,14 @@ public class Record implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Record record = (Record) o;
+        return id == record.id;
+    }
+
+    @Override
     public String toString() {
         return "Record{" +
                 "id=" + id +

@@ -26,7 +26,8 @@ public class IncomeReportTableConsole extends ReportTableConsole<IncomeRecord> {
         for (IncomeRecord incomeRecord : records) {
             String comment = incomeRecord.getComments();
             body.append(
-                    String.format(ReportTableConsole.BODY_FORMAT,
+                    String.format(
+                            ReportTableConsole.BODY_FORMAT,
                             incomeRecord.getId(),
                             incomeRecord.getAmount(),
                             String.format("%1$tY-%1$tb-%1$td", incomeRecord.getDate()),

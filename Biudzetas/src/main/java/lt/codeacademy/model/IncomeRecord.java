@@ -36,12 +36,13 @@ public class IncomeRecord extends Record {
 
     @Override
     public String toString() {
-        return "PajamuIrasas{" +
-                "suma=" + getAmount() +
-                ", data=" + getDate() +
-                ", kategorija=" + incomeType +
-                ", pozymisArIBanka=" + incomeReceived +
-                ", papildomaInfo='" + super.getComments() + '\'' +
-                '}';
+        return "PajamuIrasas{"
+                + "id=" + super.getId()
+                + ", suma=" + getAmount()
+                + ", data=" + getDate()
+                + ", kategorija=" + incomeType
+                + ", pozymisArIBanka=" + incomeReceived
+                + ", papildomaInfo='" + super.getComments() + '\''
+                + '}';
     }
 }

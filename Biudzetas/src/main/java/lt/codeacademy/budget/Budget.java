@@ -34,4 +34,6 @@ public class Budget implements Serializable {
         return records.stream().filter(DebitRecord.class::isInstance)
                 .map(record -> (DebitRecord) record).collect(Collectors.toList());
     }
+
+
 }
