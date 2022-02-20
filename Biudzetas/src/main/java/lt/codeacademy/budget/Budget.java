@@ -7,6 +7,7 @@ import lt.codeacademy.model.Record;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Budget implements Serializable {
@@ -36,10 +37,22 @@ public class Budget implements Serializable {
     }
 
     /**
+     * Deletes record with provided id
+     * @param id of record to be deleted
+     * @return true if record is deleted, false otherwise
+     */
+    public boolean deleteRecord(int id) {
+        Optional<Record> deleteRecord = records.stream().filter(record -> record.getId() == id).findAny();
+        deleteRecord.ifPresent(records::remove);
+        return deleteRecord.isPresent();
+    }
+
+    /**
      * Calculates balance of the budget.
+     *
      * @return budget balance
      */
-    public double getBalance(){
+    public double getBalance() {
         return getTotalIncome() - getTotalDebit();
     }
 

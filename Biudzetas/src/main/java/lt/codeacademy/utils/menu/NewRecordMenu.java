@@ -2,7 +2,7 @@ package lt.codeacademy.utils.menu;
 
 import lt.codeacademy.type.Type;
 
-import static lt.codeacademy.Programa.SCANNER;
+import static lt.codeacademy.Program.SCANNER;
 
 public abstract class NewRecordMenu {
 

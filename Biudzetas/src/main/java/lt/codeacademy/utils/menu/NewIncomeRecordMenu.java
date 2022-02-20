@@ -9,7 +9,7 @@ import lt.codeacademy.type.ReceivedType;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import static lt.codeacademy.Programa.SCANNER;
+import static lt.codeacademy.Program.SCANNER;
 
 /**
  * Utility class to manage user interactions, while entering

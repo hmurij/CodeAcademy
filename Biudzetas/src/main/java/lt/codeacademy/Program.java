@@ -2,7 +2,6 @@ package lt.codeacademy;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.factory.BudgetFactory;
-import lt.codeacademy.utils.menu.CheckBalanceMenu;
 import lt.codeacademy.utils.menu.NewDebitRecordMenu;
 import lt.codeacademy.utils.menu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTableConsole;
@@ -11,6 +10,8 @@ import lt.codeacademy.utils.reports.IncomeReportTableConsole;
 import java.util.Scanner;
 
 import static lt.codeacademy.utils.FileUtils.saveBudgetToFile;
+import static lt.codeacademy.utils.menu.CheckBalanceMenu.checkBalanceMenu;
+import static lt.codeacademy.utils.menu.DeleteRecordMenu.deleteRecordMenu;
 import static lt.codeacademy.utils.menu.MainMenu.printBudgetLogo;
 import static lt.codeacademy.utils.menu.MainMenu.printMainMenu;
 import static lt.codeacademy.utils.menu.MainMenu.readUserInput;
@@ -19,7 +20,7 @@ import static lt.codeacademy.utils.menu.MainMenu.readUserInput;
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
  * turi galimybe gauti reikiamą informaciją kiek išleido ir gavo pajamų.
  */
-public class Programa {
+public class Program {
     private static final Budget BUDGET;
     public static final Scanner SCANNER;
     private static final String FILE_PATH = "Data/data.dat";
@@ -51,19 +52,22 @@ public class Programa {
     private static void processInput(String choice) {
         switch (choice) {
             case "1":
-                new NewDebitRecordMenu().newDebitRecordMenu(BUDGET);
-                break;
-            case "2":
-                new NewIncomeRecordMenu().newIncomeRecordMenu(BUDGET);
-                break;
-            case "3":
                 new DebitReportTableConsole().printTable(BUDGET.getDebitRecords());
                 break;
-            case "4":
+            case "2":
                 new IncomeReportTableConsole().printTable(BUDGET.getIncomeRecords());
                 break;
-            case "5":
-                new CheckBalanceMenu().checkBalance(BUDGET);
+            case "3":
+                new NewDebitRecordMenu().newDebitRecordMenu(BUDGET);
+                break;
+            case "4":
+                new NewIncomeRecordMenu().newIncomeRecordMenu(BUDGET);
+                break;
+            case "7":
+                deleteRecordMenu(BUDGET);
+                break;
+            case "8":
+                checkBalanceMenu(BUDGET);
                 break;
             case "0":
                 System.out.println("Aciu uz demesi!");
