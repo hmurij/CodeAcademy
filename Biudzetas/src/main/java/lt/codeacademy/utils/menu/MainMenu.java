@@ -17,6 +17,7 @@ public class MainMenu {
                     "\n\t2 - Ivesti nauja pajamu irasa" +
                     "\n\t3 - Atspausdinti visus islaidu irasus" +
                     "\n\t4 - Atspasdinit visus pajamu irasus" +
+                    "\n\t5 - Pasitikrinti balansa" +
                     "\n\t0 - Iseiti" +
                     "\nIveskit jusu pasirinkima: ";
 

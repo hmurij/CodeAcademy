@@ -2,6 +2,7 @@ package lt.codeacademy;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.factory.BudgetFactory;
+import lt.codeacademy.utils.menu.CheckBalanceMenu;
 import lt.codeacademy.utils.menu.NewDebitRecordMenu;
 import lt.codeacademy.utils.menu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTableConsole;
@@ -60,6 +61,9 @@ public class Programa {
                 break;
             case "4":
                 new IncomeReportTableConsole().printTable(BUDGET.getIncomeRecords());
+                break;
+            case "5":
+                new CheckBalanceMenu().checkBalance(BUDGET);
                 break;
             case "0":
                 System.out.println("Aciu uz demesi!");

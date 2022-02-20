@@ -35,5 +35,21 @@ public class Budget implements Serializable {
                 .map(record -> (DebitRecord) record).collect(Collectors.toList());
     }
 
+    /**
+     * Calculates balance of the budget.
+     * @return budget balance
+     */
+    public double getBalance(){
+        return getTotalIncome() - getTotalDebit();
+    }
 
+    public double getTotalDebit() {
+        return records.stream().filter(DebitRecord.class::isInstance)
+                .mapToDouble(Record::getAmount).sum();
+    }
+
+    public double getTotalIncome() {
+        return records.stream().filter(IncomeRecord.class::isInstance)
+                .mapToDouble(Record::getAmount).sum();
+    }
 }
