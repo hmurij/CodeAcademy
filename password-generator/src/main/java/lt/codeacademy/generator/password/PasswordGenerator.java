@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class PasswordGenerator<T extends SymbolGenerator> {
-    abstract String getPassword();
+    abstract public String getPassword();
 
     /**
      * Generates password of provided minimum length using array of symbol generators

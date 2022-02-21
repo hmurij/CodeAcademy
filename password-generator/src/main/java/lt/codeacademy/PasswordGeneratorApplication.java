@@ -1,8 +1,6 @@
 package lt.codeacademy;
 
-import lt.codeacademy.generator.password.LetterPasswordGenerator;
-import lt.codeacademy.generator.password.NaturalNumbersPasswordGenerator;
-import lt.codeacademy.generator.password.NumbersLettersPasswordGenerator;
+import lt.codeacademy.factory.GeneratorFactory;
 import lt.codeacademy.menu.ConsoleMenu;
 import lt.codeacademy.menu.MainMenu;
 
@@ -33,18 +31,22 @@ public class PasswordGeneratorApplication {
 
     /**
      * Processes user input. Terminates program on user input "0"
+     *
      * @param input user input
      */
     private void processInput(String input) {
-        switch(input){
+        switch (input) {
             case "1":
-                System.out.println("\nGenerated password: " + new NaturalNumbersPasswordGenerator().getPassword() + "\n");
+                System.out.println("\nGenerated password: "
+                        + GeneratorFactory.getGenerator(GeneratorType.NUMBERS).getPassword() + "\n");
                 break;
             case "2":
-                System.out.println("\nGenerated password: " + new LetterPasswordGenerator().getPassword() + "\n");
+                System.out.println("\nGenerated password: "
+                        + GeneratorFactory.getGenerator(GeneratorType.LETTERS).getPassword() + "\n");
                 break;
             case "3":
-                System.out.println("\nGenerated password: " + new NumbersLettersPasswordGenerator().getPassword() + "\n");
+                System.out.println("\nGenerated password: "
+                        + GeneratorFactory.getGenerator(GeneratorType.NUMBERS_LETTERS).getPassword() + "\n");
                 break;
             case "0":
                 System.out.println("\nThank you for generating!");
