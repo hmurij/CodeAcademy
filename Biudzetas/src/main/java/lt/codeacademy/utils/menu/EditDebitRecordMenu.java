@@ -2,9 +2,23 @@ package lt.codeacademy.utils.menu;
 
 import lt.codeacademy.budget.Budget;
 
+import static lt.codeacademy.Program.SCANNER;
+
 public class EditDebitRecordMenu {
 
     public void editDebitRecordMenu(Budget budget){
-        System.out.println("Iveskyte redaguojamo ");
+        int id;
+        try {
+            System.out.println("Iveskyte redaguojamo iraso id: ");
+            id = Integer.parseInt(SCANNER.nextLine());
+
+//            DebitRecord debitRecord = budget.getRecordById(id).orElse(null);
+
+
+
+        } catch (NumberFormatException e) {
+            System.out.println("Netinkamas parametras!\n");
+        }
+
     }
 }
