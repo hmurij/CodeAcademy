@@ -12,7 +12,7 @@ public class EditDebitRecordMenu {
             System.out.println("Iveskyte redaguojamo iraso id: ");
             id = Integer.parseInt(SCANNER.nextLine());
 
-//            DebitRecord debitRecord = budget.getRecordById(id).orElse(null);
+//            DebitRecord debitRecord = budget.getRecordById(id).
 
 
 

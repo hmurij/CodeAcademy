@@ -43,7 +43,7 @@ public class Budget implements Serializable {
      * @return true if record is deleted, false otherwise
      */
     public boolean deleteRecord(int id) {
-        Optional<Record> deleteRecord = getRecordById(id);
+        Optional<Record> deleteRecord = getRecordById(id, Record.class);
         deleteRecord.ifPresent(records::remove);
         return deleteRecord.isPresent();
     }
@@ -54,8 +54,8 @@ public class Budget implements Serializable {
      * @param id of the record
      * @return Optional containing record if found, empty optional otherwise
      */
-    public Optional<Record> getRecordById(int id) {
-        return records.stream().filter(record -> record.getId() == id).findAny();
+    public Optional<Record> getRecordById(int id, Class<? extends Record> type) {
+        return records.stream().filter(type::isInstance).filter(r -> r.getId() == id).findAny();
     }
 
     /**
