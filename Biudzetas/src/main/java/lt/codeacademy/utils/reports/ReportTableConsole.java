@@ -17,17 +17,10 @@ public abstract class ReportTableConsole<T> {
                 generateTableHeader() +
                 SEPARATOR +
                 generateTableBody(records) +
-                SEPARATOR +
-                generateFooter(records);
+                SEPARATOR;
     }
 
     abstract String generateTableHeader();
 
     abstract String generateTableBody(List<T> records);
-
-    private String generateFooter(List<T> records) {
-        return String.format("Is viso: %5.2f\n", calculateTotal(records));
-    }
-
-    abstract double calculateTotal(List<T> records);
 }

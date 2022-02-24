@@ -2,6 +2,8 @@ package lt.codeacademy;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.factory.BudgetFactory;
+import lt.codeacademy.utils.menu.EditDebitRecordMenu;
+import lt.codeacademy.utils.menu.MainMenu;
 import lt.codeacademy.utils.menu.NewDebitRecordMenu;
 import lt.codeacademy.utils.menu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTableConsole;
@@ -12,9 +14,6 @@ import java.util.Scanner;
 import static lt.codeacademy.utils.FileUtils.saveBudgetToFile;
 import static lt.codeacademy.utils.menu.CheckBalanceMenu.checkBalanceMenu;
 import static lt.codeacademy.utils.menu.DeleteRecordMenu.deleteRecordMenu;
-import static lt.codeacademy.utils.menu.MainMenu.printBudgetLogo;
-import static lt.codeacademy.utils.menu.MainMenu.printMainMenu;
-import static lt.codeacademy.utils.menu.MainMenu.readUserInput;
 
 /**
  * Interaktyvia programą, su kurios pagalba vartotojas turi galimybę pasirinkti ką įvesti (pajamas/išlaidas),
@@ -25,32 +24,35 @@ public class Program {
     public static final Scanner SCANNER;
     private static final String FILE_PATH = "Data/data.dat";
 
+    private static final MainMenu MAIN_MENU;
+
     static {
 //        BUDGET = FileUtils.readBudgetFromFile(FILE_PATH);
 
         BUDGET = BudgetFactory.generateBudgetMockObject();
 
         SCANNER = new Scanner(System.in);
+
+        MAIN_MENU = new MainMenu();
     }
 
     public static void main(String[] args) {
 
-        printBudgetLogo();
+        MAIN_MENU.printBudgetLogo();
 
         while (true) {
-            printMainMenu();
-
-            processInput(readUserInput());
+            MAIN_MENU.printMenu();
+            processInput(MAIN_MENU.readUserInput());
         }
     }
 
     /**
      * Processes user input, program terminates on user entering "0"
      *
-     * @param choice any String with valid input "1", "2", "3", "4", "0"
+     * @param input any String with valid input "1", "2", "3", "4", "0"
      */
-    private static void processInput(String choice) {
-        switch (choice) {
+    private static void processInput(String input) {
+        switch (input) {
             case "1":
                 new DebitReportTableConsole().printTable(BUDGET.getDebitRecords());
                 break;
@@ -62,6 +64,9 @@ public class Program {
                 break;
             case "4":
                 new NewIncomeRecordMenu().newIncomeRecordMenu(BUDGET);
+                break;
+            case "5":
+                new EditDebitRecordMenu().editDebitRecordMenu(BUDGET);
                 break;
             case "7":
                 deleteRecordMenu(BUDGET);

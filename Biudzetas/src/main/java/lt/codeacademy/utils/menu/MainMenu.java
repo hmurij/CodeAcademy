@@ -1,11 +1,9 @@
 package lt.codeacademy.utils.menu;
 
-import static lt.codeacademy.Program.SCANNER;
-
 /**
  * Menu utility class to manage user interaction with main program
  */
-public class MainMenu {
+public class MainMenu extends Menu {
     private static final String BUDGET_LOGO =
             "*************************************\n" +
                     "* Interaktyvia programą - Biudzetas *\n" +
@@ -24,24 +22,14 @@ public class MainMenu {
                     "\n\t0 - Iseiti" +
                     "\nIveskit jusu pasirinkima: ";
 
+    public MainMenu() {
+        super(MAIN_MENU);
+    }
 
     /**
      * Prints main program logo
      */
-    public static void printBudgetLogo() {
+    public void printBudgetLogo() {
         System.out.println(BUDGET_LOGO);
-    }
-
-    /**
-     * Prints main menu to console
-     */
-    public static void printMainMenu() {
-        System.out.print(MAIN_MENU);
-    }
-
-    public static String readUserInput(){
-        String choice = SCANNER.nextLine();
-        System.out.println("Jusu pasirinkimas: " + choice + "\n");
-        return choice;
     }
 }

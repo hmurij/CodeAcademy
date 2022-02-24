@@ -39,9 +39,4 @@ public class IncomeReportTableConsole extends ReportTableConsole<IncomeRecord> {
 
         return body.toString();
     }
-
-    @Override
-    double calculateTotal(List<IncomeRecord> records) {
-        return records.stream().filter(IncomeRecord::isIncomeReceived).mapToDouble(IncomeRecord::getAmount).sum();
-    }
 }

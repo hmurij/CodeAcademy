@@ -122,7 +122,7 @@ class BudgetTest {
         budget.addRecord(record2);
         int id = record2.getId();
 
-        Optional<Record> foundRecord = budget.getRecordById(id, IncomeRecord.class);
+        Optional<IncomeRecord> foundRecord = budget.getRecordById(id, IncomeRecord.class);
 
         assertFalse(foundRecord.isPresent());
     }
@@ -135,7 +135,7 @@ class BudgetTest {
         budget.addRecord(record2);
         int id = record2.getId();
 
-        Optional<Record> foundRecord = budget.getRecordById(id, DebitRecord.class);
+        Optional<DebitRecord> foundRecord = budget.getRecordById(id, DebitRecord.class);
 
         assertAll(
                 () -> assertTrue(foundRecord.isPresent()),

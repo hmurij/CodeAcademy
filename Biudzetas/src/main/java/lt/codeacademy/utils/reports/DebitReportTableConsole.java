@@ -36,9 +36,4 @@ public class DebitReportTableConsole extends ReportTableConsole<DebitRecord> {
 
         return body.toString();
     }
-
-    @Override
-    double calculateTotal(List<DebitRecord> records) {
-        return records.stream().map(DebitRecord::getAmount).mapToDouble(Double::doubleValue).sum();
-    }
 }
