@@ -7,14 +7,19 @@ import lt.codeacademy.model.Record;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BudgetTest {
 
     private Budget budget;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         budget = new Budget();
     }
 
@@ -81,5 +86,60 @@ class BudgetTest {
         boolean isDeleted = budget.deleteRecord(id);
 
         assertFalse(isDeleted);
+    }
+
+    @Test
+    void givenBudgetValidId_whenGetRecordById_thenTrueAndEquals() {
+        Record record1 = BudgetFactory.generateIncomeRecord();
+        Record record2 = BudgetFactory.generateDebitRecord();
+        budget.addRecord(record1);
+        budget.addRecord(record2);
+        int id = record1.getId();
+
+        Optional<Record> foundRecord = budget.getRecordById(id, Record.class);
+
+        assertTrue(foundRecord.isPresent());
+    }
+
+    @Test
+    void givenBudgetInvalidId_whenGetRecordById_thenTrueAndEquals() {
+        Record record1 = BudgetFactory.generateIncomeRecord();
+        Record record2 = BudgetFactory.generateDebitRecord();
+        budget.addRecord(record1);
+        budget.addRecord(record2);
+        int id = 100;
+
+        Optional<Record> foundRecord = budget.getRecordById(id, Record.class);
+
+        assertFalse(foundRecord.isPresent());
+    }
+
+    @Test
+    void givenBudgetInvalidClass_whenGetRecordById_thenFalse() {
+        Record record1 = BudgetFactory.generateIncomeRecord();
+        Record record2 = BudgetFactory.generateDebitRecord();
+        budget.addRecord(record1);
+        budget.addRecord(record2);
+        int id = record2.getId();
+
+        Optional<Record> foundRecord = budget.getRecordById(id, IncomeRecord.class);
+
+        assertFalse(foundRecord.isPresent());
+    }
+
+    @Test
+    void givenBudgetValidClass_whenGetRecordById_thenTureAndEquals() {
+        Record record1 = BudgetFactory.generateIncomeRecord();
+        Record record2 = BudgetFactory.generateDebitRecord();
+        budget.addRecord(record1);
+        budget.addRecord(record2);
+        int id = record2.getId();
+
+        Optional<Record> foundRecord = budget.getRecordById(id, DebitRecord.class);
+
+        assertAll(
+                () -> assertTrue(foundRecord.isPresent()),
+                () -> assertEquals(foundRecord.get().getClass(), DebitRecord.class)
+        );
     }
 }
