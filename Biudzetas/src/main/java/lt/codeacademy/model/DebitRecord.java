@@ -48,10 +48,20 @@ public class DebitRecord extends Record {
     }
 
     @Override
+    public String toCsvString(){
+        return "D,"
+                + String.format("%.2f", getAmount()) + ","
+                + String.format("%s %2$tH:%2$tM", getDate(), time) + ","
+                + debitType + ","
+                + paymentType + ","
+                + (getComments().split(" ").length > 1 ? "\"" + getComments() + "\"" : getComments()) + "\n";
+    }
+
+    @Override
     public String toString() {
         return "DebitRecord{"
-                + "id=" + super.getId()
-                + ", amount=" + getAmount()
+                + "id=" + getId()
+                + ", amount=" + String.format("%.2f", getAmount())
                 + ", data=" + getDate()
                 + ", laikas= " + time
                 + ", kategorija=" + debitType

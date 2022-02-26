@@ -19,6 +19,7 @@ public class MainMenu extends Menu {
                     "\n\t6 - Redaguoti pajamu irasa" +
                     "\n\t7 - Pasalinti irasa" +
                     "\n\t8 - Pasitikrinti balansa" +
+                    "\n\t9 - Issaugoti duomenis" +
                     "\n\t0 - Iseiti" +
                     "\nIveskit jusu pasirinkima: ";
 

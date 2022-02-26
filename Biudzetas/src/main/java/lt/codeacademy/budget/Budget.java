@@ -4,17 +4,20 @@ import lt.codeacademy.model.DebitRecord;
 import lt.codeacademy.model.IncomeRecord;
 import lt.codeacademy.model.Record;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Budget implements Serializable {
+public class Budget {
     private final List<Record> records;
 
     public Budget() {
-        records = new ArrayList<>();
+        this(new ArrayList<>());
+    }
+
+    public Budget(List<Record> records) {
+        this.records = records;
     }
 
     /**
@@ -37,7 +40,7 @@ public class Budget implements Serializable {
     }
 
     /**
-     * Retrieves record by id
+     * Retrieves record of specified type by id.
      *
      * @param id of the record
      * @param type record class
@@ -48,7 +51,7 @@ public class Budget implements Serializable {
     }
 
     /**
-     * Replaces old record with edited record
+     * Replaces record with edited record
      *
      * @param record edited record
      */

@@ -35,10 +35,21 @@ public class IncomeRecord extends Record {
     }
 
     @Override
+    public String toCsvString() {
+        return "I,"
+                + String.format("%.2f", getAmount()) + ","
+                + getDate() + ","
+                + incomeType + ","
+                + incomeReceived + ","
+                + (getComments().split(" ").length > 1 ? "\"" + getComments() + "\"" : getComments()) + "\n";
+    }
+
+
+    @Override
     public String toString() {
         return "PajamuIrasas{"
                 + "id=" + super.getId()
-                + ", suma=" + getAmount()
+                + ", suma=" + String.format("%.2f", getAmount())
                 + ", data=" + getDate()
                 + ", kategorija=" + incomeType
                 + ", pozymisArIBanka=" + incomeReceived

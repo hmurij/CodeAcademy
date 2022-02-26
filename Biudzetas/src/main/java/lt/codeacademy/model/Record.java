@@ -1,10 +1,8 @@
 package lt.codeacademy.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Record implements Serializable {
-
+public class Record {
     private static int nextId = 1;
 
     private final int id;
@@ -59,11 +57,17 @@ public class Record implements Serializable {
         return id == record.id;
     }
 
+    public String toCsvString(){
+        return "R,"
+                + amount + ","
+                + (comments.split(" ").length > 1 ? "\"" + comments + "\"" : comments) + "\n";
+    }
+
     @Override
     public String toString() {
         return "Record{" +
                 "id=" + id +
-                ", amount=" + amount +
+                ", amount=" + String.format("%.2f", amount) +
                 ", date=" + date +
                 ", comments='" + comments + '\'' +
                 '}';

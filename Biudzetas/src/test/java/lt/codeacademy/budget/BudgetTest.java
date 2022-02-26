@@ -130,7 +130,6 @@ class BudgetTest {
         budget.addRecord(record);
         record.setAmount(editedRecord.getAmount());
         record.setDate(editedRecord.getDate());
-        record.setComments(editedRecord.getComments());
 
         budget.editRecord(record);
 
@@ -138,8 +137,7 @@ class BudgetTest {
         assertAll(
                 () -> assertTrue(resultRecord.isPresent()),
                 () -> assertEquals(editedRecord.getAmount(), resultRecord.get().getAmount()),
-                () -> assertEquals(editedRecord.getDate(), resultRecord.get().getDate()),
-                () -> assertEquals(editedRecord.getComments(), resultRecord.get().getComments())
+                () -> assertEquals(editedRecord.getDate(), resultRecord.get().getDate())
         );
     }
 
@@ -155,8 +153,7 @@ class BudgetTest {
         assertAll(
                 () -> assertTrue(resultRecord.isPresent()),
                 () -> assertNotEquals(editedRecord.getAmount(), resultRecord.get().getAmount()),
-                () -> assertNotEquals(editedRecord.getDate(), resultRecord.get().getDate()),
-                () -> assertNotEquals(editedRecord.getComments(), resultRecord.get().getComments())
+                () -> assertNotEquals(editedRecord.getDate(), resultRecord.get().getDate())
         );
     }
 

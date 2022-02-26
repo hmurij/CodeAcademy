@@ -33,7 +33,6 @@ public class DebitReportTableConsole extends ReportTableConsole<DebitRecord> {
                     debitRecord.getPaymentType(),
                     comment.length() > 25 ? comment.substring(0, 25) + "..." : comment));
         }
-
         return body.toString();
     }
 }

@@ -3,7 +3,6 @@ package lt.codeacademy.utils.menu;
 import static lt.codeacademy.Program.SCANNER;
 
 public abstract class Menu {
-
     private final String MENU;
 
     public Menu(String menu) {

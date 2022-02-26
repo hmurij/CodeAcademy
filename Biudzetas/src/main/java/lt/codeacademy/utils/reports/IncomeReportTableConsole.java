@@ -36,7 +36,6 @@ public class IncomeReportTableConsole extends ReportTableConsole<IncomeRecord> {
                             comment.length() > 25 ? comment.substring(0, 25) + "..." : comment)
             );
         }
-
         return body.toString();
     }
 }
