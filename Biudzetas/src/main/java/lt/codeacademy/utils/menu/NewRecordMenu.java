@@ -35,7 +35,7 @@ public abstract class NewRecordMenu {
 
         printTypes(types);
 
-        System.out.print("\nIveskit jusu pasirinkima: ");
+        System.out.print("Iveskit jusu pasirinkima: ");
         int typeIndex = Integer.parseInt(SCANNER.nextLine());
 
         if (1 > typeIndex || typeIndex > types.length) {
@@ -57,7 +57,7 @@ public abstract class NewRecordMenu {
      * @return new comment
      */
     protected String newCommentMenu() {
-        System.out.print("\nIveskit papildoma informacija: ");
+        System.out.print("Iveskit papildoma informacija: ");
         return SCANNER.nextLine();
     }
 }

@@ -50,7 +50,7 @@ public class NewDebitRecordMenu extends NewRecordMenu {
      *
      * @return new date and time
      */
-    private LocalDateTime newDateTimeMenu() {
+    protected LocalDateTime newDateTimeMenu() {
         System.out.print("Iveskit data ir laika formatu (YYYY-MM-DD HH:MM): ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -63,8 +63,8 @@ public class NewDebitRecordMenu extends NewRecordMenu {
      *
      * @return new debit category
      */
-    private DebitType newDebitCategoryMenu() {
-        return newTypeMenu("\nPasirinkit viena is islaidu kategoriju varijantu: ", DebitType.values());
+    protected DebitType newDebitCategoryMenu() {
+        return newTypeMenu("Pasirinkit viena is islaidu kategoriju varijantu: ", DebitType.values());
     }
 
     /**
@@ -73,7 +73,7 @@ public class NewDebitRecordMenu extends NewRecordMenu {
      *
      * @return new payment type
      */
-    private PaymentType newPaymentTypeMenu() {
-        return newTypeMenu("\nPasirinkit viena is atsiskaitymo budu:", PaymentType.values());
+    protected PaymentType newPaymentTypeMenu() {
+        return newTypeMenu("Pasirinkit viena is atsiskaitymo budu:", PaymentType.values());
     }
 }

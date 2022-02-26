@@ -49,7 +49,7 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
      *
      * @return new date
      */
-    private LocalDate newDateMenu() {
+    protected LocalDate newDateMenu() {
         System.out.print("Iveskit data formatu (YYYY-MM-DD): ");
 
         return LocalDate.parse(SCANNER.nextLine());
@@ -61,17 +61,17 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
      *
      * @return new income category
      */
-    private IncomeType newIncomeTypeMenu() {
-        return newTypeMenu("\nPasirinkit viena is pajamu kategoriju varijantu: ", IncomeType.values());
+    protected IncomeType newIncomeTypeMenu() {
+        return newTypeMenu("Pasirinkit viena is pajamu kategoriju varijantu: ", IncomeType.values());
     }
 
     /**
      * Prompts user to select whether payment received
      * @return true if received, false otherwise
      */
-    private boolean newIsPaymentReceivedMenu() {
+    protected boolean newIsPaymentReceivedMenu() {
         return newTypeMenu(
-                "\nPajamos banke, pasirinkit viena is varijantu: ",
+                "Pajamos banke, pasirinkit viena is varijantu: ",
                 ReceivedType.values()
         ).getType().equals("Taip");
     }
