@@ -1,4 +1,6 @@
-package lt.codeacademy.utils.menu;
+package lt.codeacademy.utils.menu.editmenu;
+
+import lt.codeacademy.utils.menu.Menu;
 
 public class EditMenu extends Menu {
 

@@ -1,7 +1,8 @@
-package lt.codeacademy.utils.menu;
+package lt.codeacademy.utils.menu.editmenu;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.model.DebitRecord;
+import lt.codeacademy.utils.menu.newmenu.NewDebitRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTableConsole;
 
 import java.time.LocalDateTime;

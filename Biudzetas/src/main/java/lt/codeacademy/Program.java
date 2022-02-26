@@ -2,11 +2,11 @@ package lt.codeacademy;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.factory.BudgetFactory;
-import lt.codeacademy.utils.menu.EditDebitRecordMenu;
-import lt.codeacademy.utils.menu.EditIncomeRecordMenu;
+import lt.codeacademy.utils.menu.editmenu.EditDebitRecordMenu;
+import lt.codeacademy.utils.menu.editmenu.EditIncomeRecordMenu;
 import lt.codeacademy.utils.menu.MainMenu;
-import lt.codeacademy.utils.menu.NewDebitRecordMenu;
-import lt.codeacademy.utils.menu.NewIncomeRecordMenu;
+import lt.codeacademy.utils.menu.newmenu.NewDebitRecordMenu;
+import lt.codeacademy.utils.menu.newmenu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTableConsole;
 import lt.codeacademy.utils.reports.IncomeReportTableConsole;
 

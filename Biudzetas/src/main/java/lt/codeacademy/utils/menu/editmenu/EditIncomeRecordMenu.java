@@ -1,7 +1,8 @@
-package lt.codeacademy.utils.menu;
+package lt.codeacademy.utils.menu.editmenu;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.model.IncomeRecord;
+import lt.codeacademy.utils.menu.newmenu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.IncomeReportTableConsole;
 
 import java.time.format.DateTimeParseException;

@@ -1,4 +1,4 @@
-package lt.codeacademy.utils.menu;
+package lt.codeacademy.utils.menu.newmenu;
 
 import lt.codeacademy.type.Type;
 
