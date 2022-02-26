@@ -3,6 +3,7 @@ package lt.codeacademy;
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.factory.BudgetFactory;
 import lt.codeacademy.utils.menu.EditDebitRecordMenu;
+import lt.codeacademy.utils.menu.EditIncomeRecordMenu;
 import lt.codeacademy.utils.menu.MainMenu;
 import lt.codeacademy.utils.menu.NewDebitRecordMenu;
 import lt.codeacademy.utils.menu.NewIncomeRecordMenu;
@@ -67,6 +68,9 @@ public class Program {
                 break;
             case "5":
                 new EditDebitRecordMenu().editDebitRecordMenu(BUDGET);
+                break;
+            case "6":
+                new EditIncomeRecordMenu().editDebitRecordMenu(BUDGET);
                 break;
             case "7":
                 deleteRecordMenu(BUDGET);

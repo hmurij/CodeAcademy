@@ -35,7 +35,7 @@ public abstract class NewRecordMenu {
 
         printTypes(types);
 
-        System.out.print("Iveskit jusu pasirinkima: ");
+        System.out.print("\nIveskit jusu pasirinkima: ");
         int typeIndex = Integer.parseInt(SCANNER.nextLine());
 
         if (1 > typeIndex || typeIndex > types.length) {

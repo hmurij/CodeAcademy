@@ -28,12 +28,12 @@ public class Budget implements Serializable {
 
     public List<IncomeRecord> getIncomeRecords() {
         return records.stream().filter(IncomeRecord.class::isInstance)
-                .map(record -> (IncomeRecord) record).collect(Collectors.toList());
+                .map(IncomeRecord.class::cast).collect(Collectors.toList());
     }
 
     public List<DebitRecord> getDebitRecords() {
         return records.stream().filter(DebitRecord.class::isInstance)
-                .map(record -> (DebitRecord) record).collect(Collectors.toList());
+                .map(DebitRecord.class::cast).collect(Collectors.toList());
     }
 
     /**
