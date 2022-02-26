@@ -18,12 +18,12 @@ public abstract class Menu {
     }
 
     /**
-     * Reads and prints user input
+     * Reads user input
      * @return user input
      */
     public String readUserInput(){
         String choice = SCANNER.nextLine();
-        System.out.println("Jusu pasirinkimas: " + choice + "\n");
+        System.out.println();
         return choice;
     }
 }

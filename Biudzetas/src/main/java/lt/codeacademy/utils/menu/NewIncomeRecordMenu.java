@@ -21,7 +21,7 @@ public class NewIncomeRecordMenu extends NewRecordMenu {
      * Prompts user to enter appropriate fields, creates new {@link DebitRecord} object
      * and adds new record to budget.
      */
-    public void newIncomeRecordMenu(Budget budget) {
+    public final void newIncomeRecordMenu(Budget budget) {
         try {
             double newAmount = newAmountMenu();
             LocalDate newDate = newDateMenu();

@@ -12,6 +12,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BudgetTest {
@@ -68,27 +69,6 @@ class BudgetTest {
     }
 
     @Test
-    void givenBudgetWithOneRecord_whenDeleteRecord_thenTrue() {
-        Record record = BudgetFactory.generateIncomeRecord();
-        int id = record.getId();
-        budget.addRecord(record);
-
-        boolean isDeleted = budget.deleteRecord(id);
-
-        assertTrue(isDeleted);
-    }
-
-    @Test
-    void givenEmptyBudget_whenDeleteRecord_thenFalse() {
-        Record record = BudgetFactory.generateIncomeRecord();
-        int id = record.getId();
-
-        boolean isDeleted = budget.deleteRecord(id);
-
-        assertFalse(isDeleted);
-    }
-
-    @Test
     void givenBudgetValidId_whenGetRecordById_thenTrueAndEquals() {
         Record record1 = BudgetFactory.generateIncomeRecord();
         Record record2 = BudgetFactory.generateDebitRecord();
@@ -141,5 +121,63 @@ class BudgetTest {
                 () -> assertTrue(foundRecord.isPresent()),
                 () -> assertEquals(foundRecord.get().getClass(), DebitRecord.class)
         );
+    }
+
+    @Test
+    void givenBudgetWithOneRecord_editRecord_thenEqualsTrue(){
+        Record record = BudgetFactory.generateIncomeRecord();
+        Record editedRecord = BudgetFactory.generateIncomeRecord();
+        budget.addRecord(record);
+        record.setAmount(editedRecord.getAmount());
+        record.setDate(editedRecord.getDate());
+        record.setComments(editedRecord.getComments());
+
+        budget.editRecord(record);
+
+        Optional<Record> resultRecord = budget.getRecordById(record.getId(), Record.class);
+        assertAll(
+                () -> assertTrue(resultRecord.isPresent()),
+                () -> assertEquals(editedRecord.getAmount(), resultRecord.get().getAmount()),
+                () -> assertEquals(editedRecord.getDate(), resultRecord.get().getDate()),
+                () -> assertEquals(editedRecord.getComments(), resultRecord.get().getComments())
+        );
+    }
+
+    @Test
+    void givenBudgetWithInvalidEditRecord_editRecord_thenEqualsFalse(){
+        Record record = BudgetFactory.generateIncomeRecord();
+        Record editedRecord = BudgetFactory.generateIncomeRecord();
+        budget.addRecord(record);
+
+        budget.editRecord(editedRecord);
+
+        Optional<Record> resultRecord = budget.getRecordById(record.getId(), Record.class);
+        assertAll(
+                () -> assertTrue(resultRecord.isPresent()),
+                () -> assertNotEquals(editedRecord.getAmount(), resultRecord.get().getAmount()),
+                () -> assertNotEquals(editedRecord.getDate(), resultRecord.get().getDate()),
+                () -> assertNotEquals(editedRecord.getComments(), resultRecord.get().getComments())
+        );
+    }
+
+    @Test
+    void givenBudgetWithOneRecord_whenDeleteRecord_thenTrue() {
+        Record record = BudgetFactory.generateIncomeRecord();
+        int id = record.getId();
+        budget.addRecord(record);
+
+        boolean isDeleted = budget.deleteRecord(id);
+
+        assertTrue(isDeleted);
+    }
+
+    @Test
+    void givenEmptyBudget_whenDeleteRecord_thenFalse() {
+        Record record = BudgetFactory.generateIncomeRecord();
+        int id = record.getId();
+
+        boolean isDeleted = budget.deleteRecord(id);
+
+        assertFalse(isDeleted);
     }
 }
