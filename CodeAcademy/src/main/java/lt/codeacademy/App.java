@@ -1,13 +1,13 @@
 package lt.codeacademy;
 
-/**
- * Hello world!
- *
- */
-public class App 
+import java.util.List;
+
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        List<Integer> ints = List.of(2, 4, 5, 3, 8, 1, 7, 6);
+        ints.sort(Integer::compareTo);
+        System.out.println(ints);
     }
 }
