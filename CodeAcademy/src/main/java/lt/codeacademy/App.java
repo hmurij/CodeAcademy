@@ -2,7 +2,6 @@ package lt.codeacademy;
 
 /**
  * Hello world!
- *
  */
 public class App 
 {
