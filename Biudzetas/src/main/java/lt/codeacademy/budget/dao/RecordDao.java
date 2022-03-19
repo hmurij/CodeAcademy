@@ -11,4 +11,8 @@ public interface RecordDao {
     List<Record> findAll();
 
     <T extends Record> Optional<T> getById(int id, Class<T> type);
+
+    void edit(Record record);
+
+    void deleteById(int id);
 }
