@@ -45,7 +45,7 @@ public class EditIncomeRecordMenu extends NewIncomeRecordMenu {
                     EDIT_MENU.printMenu();
                     input = processInput(EDIT_MENU.readUserInput(), editRecord);
                 } while (!input.equals("0"));
-
+                budget.editRecord(editRecord);
             } else {
                 System.out.println("Nerastas irasas id: " + id + "\n");
             }

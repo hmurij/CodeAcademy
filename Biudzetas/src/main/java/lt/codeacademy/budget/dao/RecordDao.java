@@ -14,5 +14,5 @@ public interface RecordDao {
 
     void edit(Record record);
 
-    void deleteById(int id);
+    void delete(Record record);
 }

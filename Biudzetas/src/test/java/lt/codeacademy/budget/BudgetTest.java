@@ -1,27 +1,25 @@
 package lt.codeacademy.budget;
 
-import lt.codeacademy.factory.BudgetFactory;
+import lt.codeacademy.budget.dao.RecordDaoHibernateImpl;
 import lt.codeacademy.budget.entity.DebitRecord;
 import lt.codeacademy.budget.entity.IncomeRecord;
 import lt.codeacademy.budget.entity.Record;
-import org.junit.jupiter.api.BeforeEach;
+import lt.codeacademy.budget.service.RecordServiceImpl;
+import lt.codeacademy.factory.BudgetFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BudgetTest {
+    private Budget budget = new Budget(new RecordServiceImpl(new RecordDaoHibernateImpl()));
 
-    private Budget budget;
-
-    @BeforeEach
-    void setUp() {
-        budget = new Budget();
+    @AfterEach
+    void clearBudget(){
+        budget.getDebitRecords().forEach(debitRecord -> budget.deleteRecord(debitRecord.getId()));
+        budget.getIncomeRecords().forEach(incomeRecord -> budget.deleteRecord(incomeRecord.getId()));
     }
 
     @Test
@@ -160,8 +158,8 @@ class BudgetTest {
     @Test
     void givenBudgetWithOneRecord_whenDeleteRecord_thenTrue() {
         Record record = BudgetFactory.generateIncomeRecord();
-        int id = record.getId();
         budget.addRecord(record);
+        int id = record.getId();
 
         boolean isDeleted = budget.deleteRecord(id);
 

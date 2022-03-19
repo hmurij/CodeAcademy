@@ -47,17 +47,16 @@ public class RecordDaoHibernateImpl implements RecordDao {
     public void edit(Record record) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.update(record);
+            session.merge(record);
             session.getTransaction().commit();
         }
     }
 
     @Override
-    public void deleteById(int id) {
-        Optional<Record> record = getById(id, Record.class);
+    public void delete(Record record) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            record.ifPresent(session::delete);
+            session.delete(record);
             session.getTransaction().commit();
         }
     }
