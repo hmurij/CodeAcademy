@@ -2,7 +2,7 @@ package lt.codeacademy.utils;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.exception.RecordMapperException;
-import lt.codeacademy.model.Record;
+import lt.codeacademy.budget.entity.Record;
 import lt.codeacademy.utils.mapper.RecordMapper;
 
 import java.io.IOException;

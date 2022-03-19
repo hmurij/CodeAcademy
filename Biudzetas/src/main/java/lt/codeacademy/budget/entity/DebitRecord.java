@@ -1,15 +1,22 @@
-package lt.codeacademy.model;
+package lt.codeacademy.budget.entity;
 
 import lt.codeacademy.type.DebitType;
 import lt.codeacademy.type.PaymentType;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Entity
+@Table(name = "debit_record", schema = "budget")
 public class DebitRecord extends Record {
     private LocalTime time;
     private DebitType debitType;
     private PaymentType paymentType;
+
+    public DebitRecord() {
+    }
 
     public DebitRecord(double amount,
                        LocalDate date,

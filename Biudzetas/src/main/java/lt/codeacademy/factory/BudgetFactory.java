@@ -1,8 +1,8 @@
 package lt.codeacademy.factory;
 
 import lt.codeacademy.budget.Budget;
-import lt.codeacademy.model.DebitRecord;
-import lt.codeacademy.model.IncomeRecord;
+import lt.codeacademy.budget.entity.DebitRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
 import lt.codeacademy.type.DebitType;
 import lt.codeacademy.type.IncomeType;
 import lt.codeacademy.type.PaymentType;

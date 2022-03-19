@@ -2,7 +2,7 @@ package lt.codeacademy.utils;
 
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.factory.BudgetFactory;
-import lt.codeacademy.model.Record;
+import lt.codeacademy.budget.entity.Record;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package lt.codeacademy.utils.reports;
 
-import lt.codeacademy.model.DebitRecord;
+import lt.codeacademy.budget.entity.DebitRecord;
 
 import java.util.List;
 

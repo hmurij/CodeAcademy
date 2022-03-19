@@ -1,9 +1,9 @@
 package lt.codeacademy.utils.mapper;
 
 import lt.codeacademy.exception.RecordMapperException;
-import lt.codeacademy.model.DebitRecord;
-import lt.codeacademy.model.IncomeRecord;
-import lt.codeacademy.model.Record;
+import lt.codeacademy.budget.entity.DebitRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
+import lt.codeacademy.budget.entity.Record;
 import lt.codeacademy.type.DebitType;
 import lt.codeacademy.type.IncomeType;
 import lt.codeacademy.type.PaymentType;

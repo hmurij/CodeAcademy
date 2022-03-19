@@ -1,12 +1,19 @@
-package lt.codeacademy.model;
+package lt.codeacademy.budget.entity;
 
 import lt.codeacademy.type.IncomeType;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "income_record", schema = "budget")
 public class IncomeRecord extends Record {
     private IncomeType incomeType;
     private boolean incomeReceived;
+
+    public IncomeRecord() {
+    }
 
     public IncomeRecord(double amount,
                         LocalDate date,

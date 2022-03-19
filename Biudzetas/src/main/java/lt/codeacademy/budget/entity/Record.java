@@ -1,17 +1,26 @@
-package lt.codeacademy.model;
+package lt.codeacademy.budget.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "record", schema = "budget")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Record {
     private static int nextId = 1;
 
-    private final int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private double amount;
     private LocalDate date;
     private String comments;
 
+    public Record() {
+    }
+
     public Record(double amount, LocalDate date, String comments) {
-        this.id = generateId();
+//        this.id = generateId();
         this.amount = amount;
         this.date = date;
         this.comments = comments;

@@ -1,8 +1,8 @@
 package lt.codeacademy.budget;
 
-import lt.codeacademy.model.DebitRecord;
-import lt.codeacademy.model.IncomeRecord;
-import lt.codeacademy.model.Record;
+import lt.codeacademy.budget.entity.DebitRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
+import lt.codeacademy.budget.entity.Record;
 
 import java.util.ArrayList;
 import java.util.List;

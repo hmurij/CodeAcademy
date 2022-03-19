@@ -12,10 +12,8 @@
         <property name="show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <mapping class="lt.codeacademy.model.RecordDb"/>
-
-
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+        <mapping class="lt.codeacademy.budget.entity.Record"/>
+        <mapping class="lt.codeacademy.budget.entity.IncomeRecord"/>
+        <mapping class="lt.codeacademy.budget.entity.DebitRecord"/>
     </session-factory>
 </hibernate-configuration>

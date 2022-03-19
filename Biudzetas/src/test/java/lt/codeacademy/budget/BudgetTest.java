@@ -1,9 +1,9 @@
 package lt.codeacademy.budget;
 
 import lt.codeacademy.factory.BudgetFactory;
-import lt.codeacademy.model.DebitRecord;
-import lt.codeacademy.model.IncomeRecord;
-import lt.codeacademy.model.Record;
+import lt.codeacademy.budget.entity.DebitRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
+import lt.codeacademy.budget.entity.Record;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
