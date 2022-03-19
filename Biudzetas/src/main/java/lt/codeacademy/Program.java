@@ -3,6 +3,7 @@ package lt.codeacademy;
 import lt.codeacademy.budget.Budget;
 import lt.codeacademy.model.Record;
 import lt.codeacademy.utils.FileUtils;
+import lt.codeacademy.utils.HibernateUtils;
 import lt.codeacademy.utils.menu.MainMenu;
 import lt.codeacademy.utils.menu.editmenu.EditDebitRecordMenu;
 import lt.codeacademy.utils.menu.editmenu.EditIncomeRecordMenu;
@@ -10,6 +11,7 @@ import lt.codeacademy.utils.menu.newmenu.NewDebitRecordMenu;
 import lt.codeacademy.utils.menu.newmenu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTableConsole;
 import lt.codeacademy.utils.reports.IncomeReportTableConsole;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 import java.util.Scanner;
@@ -25,6 +27,7 @@ import static lt.codeacademy.utils.menu.DeleteRecordMenu.deleteRecordMenu;
  */
 public class Program {
     public static final Scanner SCANNER;
+    public static final SessionFactory SESSION_FACTORY = HibernateUtils.getSessionFactory();
     private static final String FILE_PATH = "Data/data.csv";
     private static final MainMenu MAIN_MENU;
 
