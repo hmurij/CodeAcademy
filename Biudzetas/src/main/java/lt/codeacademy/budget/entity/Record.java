@@ -7,8 +7,6 @@ import java.time.LocalDate;
 @Table(name = "record", schema = "budget")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Record {
-    private static int nextId = 1;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,14 +18,9 @@ public class Record {
     }
 
     public Record(double amount, LocalDate date, String comments) {
-//        this.id = generateId();
         this.amount = amount;
         this.date = date;
         this.comments = comments;
-    }
-
-    private int generateId(){
-        return nextId++;
     }
 
     public int getId() {

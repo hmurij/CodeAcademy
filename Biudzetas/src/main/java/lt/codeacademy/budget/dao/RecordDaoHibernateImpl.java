@@ -26,7 +26,7 @@ public class RecordDaoHibernateImpl implements RecordDao {
         List<Record> records;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            records = session.createQuery("from Record", Record.class).list();
+            records = session.createQuery("from Record order by id asc", Record.class).list();
             session.getTransaction().commit();
         }
         return records;
