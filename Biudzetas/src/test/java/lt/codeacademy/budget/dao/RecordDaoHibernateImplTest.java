@@ -108,7 +108,6 @@ class RecordDaoHibernateImplTest {
         recordDaoHibernate.edit(debitRecord);
 
         DebitRecord retrievedRecord = recordDaoHibernate.getById(debitRecord.getId(), DebitRecord.class).orElseGet(BudgetFactory::generateDebitRecord);
-
         assertAll(
                 () -> assertEquals(debitRecord.getAmount(), retrievedRecord.getAmount()),
                 () -> assertEquals(debitRecord.getDebitType(), retrievedRecord.getDebitType()),

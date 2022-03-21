@@ -30,7 +30,6 @@ public class Budget {
         recordService.save(record);
     }
 
-
     public List<IncomeRecord> getIncomeRecords() {
         return recordService.findAll().stream()
                 .filter(IncomeRecord.class::isInstance)
@@ -76,7 +75,7 @@ public class Budget {
                 .map(record -> {
                     recordService.delete(record);
                     return true;
-                }).orElseGet(() -> false);
+                }).orElse(false);
     }
 
     /**

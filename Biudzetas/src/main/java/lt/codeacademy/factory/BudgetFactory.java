@@ -12,6 +12,7 @@ import lt.codeacademy.type.PaymentType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Random;
+import java.util.stream.Stream;
 
 /**
  * Factory class generated mock data for Budget object
@@ -21,16 +22,16 @@ public class BudgetFactory {
     /**
      * Creates new Budget objects and populates it with generated data
      *
-     * @return biudzetas object with 10 records of DebitRecord and IncomeRecord objects
+     * @return budget object with 10 records of DebitRecord and IncomeRecord objects
      */
     public static Budget generateBudgetMockObject() {
         Budget budget = new Budget(new RecordServiceImpl(new RecordDaoHibernateImpl()));
-
-        for (int i = 0; i < 10; i++) {
-            budget.addRecord(generateDebitRecord());
-            budget.addRecord(generateIncomeRecord());
-        }
-
+        Stream.of(
+                        Stream.generate(BudgetFactory::generateDebitRecord).limit(10),
+                        Stream.generate(BudgetFactory::generateIncomeRecord).limit(10)
+                )
+                .flatMap(record -> record)
+                .forEach(budget::addRecord);
         return budget;
     }
 
@@ -41,15 +42,15 @@ public class BudgetFactory {
      */
     public static DebitRecord generateDebitRecord() {
         Random r = new Random();
-        DebitType[] kategorijas = DebitType.values();
-        PaymentType[] atsiskaitymoBudas = PaymentType.values();
+        DebitType[] debitTypes = DebitType.values();
+        PaymentType[] paymentType = PaymentType.values();
 
         return new DebitRecord(
                 r.nextDouble() * 1000,
                 LocalDate.now().minusDays(r.nextInt(365)),
                 LocalTime.now().minusMinutes(r.nextInt(60 * 24)),
-                kategorijas[r.nextInt(kategorijas.length)],
-                atsiskaitymoBudas[r.nextInt(atsiskaitymoBudas.length)],
+                debitTypes[r.nextInt(debitTypes.length)],
+                paymentType[r.nextInt(paymentType.length)],
                 generateComment()
         );
     }
@@ -61,11 +62,11 @@ public class BudgetFactory {
      */
     public static IncomeRecord generateIncomeRecord() {
         Random r = new Random();
-        IncomeType[] kategorijas = IncomeType.values();
+        IncomeType[] incomeType = IncomeType.values();
 
         return new IncomeRecord(r.nextDouble() * 1000,
                 LocalDate.now().minusDays(r.nextInt(365)),
-                kategorijas[r.nextInt(kategorijas.length)],
+                incomeType[r.nextInt(incomeType.length)],
                 r.nextBoolean(),
                 generateComment());
     }

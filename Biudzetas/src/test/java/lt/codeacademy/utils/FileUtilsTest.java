@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FileUtilsTest {
 
     @Test
-    void givenInvalidFilePath_whenReadBiudzetasFromFile_thenLengthZero() {
+    void givenInvalidFilePath_whenReadBudgetFromFile_thenLengthZero() {
         String filePath = "data.dat";
         int expectedSize = 0;
 
@@ -28,7 +28,7 @@ class FileUtilsTest {
     }
 
     @Test
-    void givenValidFilePath_whenReadBiudzetasFromFile_thenReturnNull() {
+    void givenValidFilePath_whenReadBudgetFromFile_thenReturnNull() {
         String filePath = "src/test/resources/testReadData.csv";
         int expectedSize = 20;
 
