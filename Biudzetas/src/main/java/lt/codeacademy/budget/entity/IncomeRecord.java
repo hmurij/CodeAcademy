@@ -2,14 +2,16 @@ package lt.codeacademy.budget.entity;
 
 import lt.codeacademy.type.IncomeType;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "income_record", schema = "budget")
 public class IncomeRecord extends Record {
+    @Column(name = "income_type")
+    @Enumerated(EnumType.STRING)
     private IncomeType incomeType;
+    @Column(name = "income_received")
     private boolean incomeReceived;
 
     public IncomeRecord() {

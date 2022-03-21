@@ -1,7 +1,9 @@
+drop schema if exists budget cascade;
 create schema budget;
+
 create table budget.record
 (
-    id       identity primary key,
+    id       serial primary key,
     amount   double precision,
     comments varchar(255),
     date     date
