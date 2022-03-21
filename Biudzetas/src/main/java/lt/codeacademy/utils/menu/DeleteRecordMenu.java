@@ -10,6 +10,7 @@ public class DeleteRecordMenu {
      * Prompts user to enter id of record to be deleted.
      * If record exists it is deleted otherwise user informed that record with
      * provided id does not exist.
+     *
      * @param budget from which to delete record
      */
     public static void deleteRecordMenu(Budget budget){

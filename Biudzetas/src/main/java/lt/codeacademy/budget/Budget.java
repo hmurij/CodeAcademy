@@ -1,23 +1,24 @@
 package lt.codeacademy.budget;
 
-import lt.codeacademy.model.DebitRecord;
-import lt.codeacademy.model.IncomeRecord;
-import lt.codeacademy.model.Record;
+import lt.codeacademy.budget.entity.DebitRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
+import lt.codeacademy.budget.entity.Record;
+import lt.codeacademy.budget.service.RecordService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Budget {
-    private final List<Record> records;
+    private RecordService recordService;
 
-    public Budget() {
-        this(new ArrayList<>());
+    public Budget(RecordService recordService) {
+        this.recordService = recordService;
     }
 
-    public Budget(List<Record> records) {
-        this.records = records;
+    public Budget(List<Record> records, RecordService recordService) {
+        this(recordService);
+        records.forEach(this::addRecord);
     }
 
     /**
@@ -26,28 +27,33 @@ public class Budget {
      * @param record new record
      */
     public void addRecord(Record record) {
-        records.add(record);
+        recordService.save(record);
     }
 
+
     public List<IncomeRecord> getIncomeRecords() {
-        return records.stream().filter(IncomeRecord.class::isInstance)
-                .map(IncomeRecord.class::cast).collect(Collectors.toList());
+        return recordService.findAll().stream()
+                .filter(IncomeRecord.class::isInstance)
+                .map(IncomeRecord.class::cast)
+                .collect(Collectors.toList());
     }
 
     public List<DebitRecord> getDebitRecords() {
-        return records.stream().filter(DebitRecord.class::isInstance)
-                .map(DebitRecord.class::cast).collect(Collectors.toList());
+        return recordService.findAll().stream()
+                .filter(DebitRecord.class::isInstance)
+                .map(DebitRecord.class::cast)
+                .collect(Collectors.toList());
     }
 
     /**
      * Retrieves record of specified type by id.
      *
-     * @param id of the record
+     * @param id   of the record
      * @param type record class
      * @return Optional containing record if found, empty optional otherwise
      */
     public <T extends Record> Optional<T> getRecordById(int id, Class<T> type) {
-        return records.stream().filter(type::isInstance).map(type::cast).filter(record -> record.getId() == id).findAny();
+        return recordService.getById(id, type);
     }
 
     /**
@@ -56,9 +62,7 @@ public class Budget {
      * @param record edited record
      */
     public void editRecord(Record record) {
-        if (deleteRecord(record.getId())) {
-            addRecord(record);
-        }
+        recordService.getById(record.getId(), Record.class).ifPresent(foundRecord -> recordService.edit(record));
     }
 
     /**
@@ -68,9 +72,11 @@ public class Budget {
      * @return true if record is deleted, false otherwise
      */
     public boolean deleteRecord(int id) {
-        Optional<? extends Record> deleteRecord = getRecordById(id, Record.class);
-        deleteRecord.ifPresent(records::remove);
-        return deleteRecord.isPresent();
+        return recordService.getById(id, Record.class)
+                .map(record -> {
+                    recordService.delete(record);
+                    return true;
+                }).orElseGet(() -> false);
     }
 
     /**
@@ -83,12 +89,10 @@ public class Budget {
     }
 
     public double getTotalDebit() {
-        return records.stream().filter(DebitRecord.class::isInstance)
-                .mapToDouble(Record::getAmount).sum();
+        return getDebitRecords().stream().mapToDouble(Record::getAmount).sum();
     }
 
     public double getTotalIncome() {
-        return records.stream().filter(IncomeRecord.class::isInstance)
-                .mapToDouble(Record::getAmount).sum();
+        return getIncomeRecords().stream().mapToDouble(Record::getAmount).sum();
     }
 }

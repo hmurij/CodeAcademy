@@ -1,7 +1,7 @@
 package lt.codeacademy.utils.menu.editmenu;
 
 import lt.codeacademy.budget.Budget;
-import lt.codeacademy.model.DebitRecord;
+import lt.codeacademy.budget.entity.DebitRecord;
 import lt.codeacademy.utils.menu.newmenu.NewDebitRecordMenu;
 import lt.codeacademy.utils.reports.DebitReportTableConsole;
 
@@ -46,7 +46,7 @@ public class EditDebitRecordMenu extends NewDebitRecordMenu {
                     EDIT_MENU.printMenu();
                     input = processInput(EDIT_MENU.readUserInput(), editRecord);
                 } while (!input.equals("0"));
-
+                budget.editRecord(editRecord);
             } else {
                 System.out.println("Nerastas irasas id: " + id + "\n");
             }

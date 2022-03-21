@@ -1,7 +1,7 @@
 package lt.codeacademy.utils.menu.newmenu;
 
 import lt.codeacademy.budget.Budget;
-import lt.codeacademy.model.DebitRecord;
+import lt.codeacademy.budget.entity.DebitRecord;
 import lt.codeacademy.type.PaymentType;
 import lt.codeacademy.type.DebitType;
 

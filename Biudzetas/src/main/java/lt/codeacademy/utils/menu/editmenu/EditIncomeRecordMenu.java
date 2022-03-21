@@ -1,7 +1,7 @@
 package lt.codeacademy.utils.menu.editmenu;
 
 import lt.codeacademy.budget.Budget;
-import lt.codeacademy.model.IncomeRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
 import lt.codeacademy.utils.menu.newmenu.NewIncomeRecordMenu;
 import lt.codeacademy.utils.reports.IncomeReportTableConsole;
 
@@ -45,7 +45,7 @@ public class EditIncomeRecordMenu extends NewIncomeRecordMenu {
                     EDIT_MENU.printMenu();
                     input = processInput(EDIT_MENU.readUserInput(), editRecord);
                 } while (!input.equals("0"));
-
+                budget.editRecord(editRecord);
             } else {
                 System.out.println("Nerastas irasas id: " + id + "\n");
             }

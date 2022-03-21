@@ -1,7 +1,9 @@
 package lt.codeacademy;
 
 import lt.codeacademy.budget.Budget;
-import lt.codeacademy.model.Record;
+import lt.codeacademy.budget.dao.RecordDaoHibernateImpl;
+import lt.codeacademy.budget.entity.Record;
+import lt.codeacademy.budget.service.RecordServiceImpl;
 import lt.codeacademy.utils.FileUtils;
 import lt.codeacademy.utils.menu.MainMenu;
 import lt.codeacademy.utils.menu.editmenu.EditDebitRecordMenu;
@@ -28,8 +30,13 @@ public class Program {
     private static final String FILE_PATH = "Data/data.csv";
     private static final MainMenu MAIN_MENU;
 
-    private static final Budget Budget = new Budget(FileUtils.readData(FILE_PATH));
-//    private static final Budget Budget = BudgetFactory.generateBudgetMockObject();
+    private static final Budget budget = new Budget(new RecordServiceImpl(new RecordDaoHibernateImpl()));
+/*
+    private static final Budget budget = new Budget(
+            FileUtils.readData(FILE_PATH),
+            new RecordServiceImpl(new RecordDaoHibernateImpl())
+    );
+*/
 
     static {
         SCANNER = new Scanner(System.in);
@@ -52,28 +59,28 @@ public class Program {
     private static void processInput(String input) {
         switch (input) {
             case "1":
-                new DebitReportTableConsole().printTable(Budget.getDebitRecords());
+                new DebitReportTableConsole().printTable(budget.getDebitRecords());
                 break;
             case "2":
-                new IncomeReportTableConsole().printTable(Budget.getIncomeRecords());
+                new IncomeReportTableConsole().printTable(budget.getIncomeRecords());
                 break;
             case "3":
-                new NewDebitRecordMenu().newDebitRecordMenu(Budget);
+                new NewDebitRecordMenu().newDebitRecordMenu(budget);
                 break;
             case "4":
-                new NewIncomeRecordMenu().newIncomeRecordMenu(Budget);
+                new NewIncomeRecordMenu().newIncomeRecordMenu(budget);
                 break;
             case "5":
-                new EditDebitRecordMenu().editDebitRecordMenu(Budget);
+                new EditDebitRecordMenu().editDebitRecordMenu(budget);
                 break;
             case "6":
-                new EditIncomeRecordMenu().editDebitRecordMenu(Budget);
+                new EditIncomeRecordMenu().editDebitRecordMenu(budget);
                 break;
             case "7":
-                deleteRecordMenu(Budget);
+                deleteRecordMenu(budget);
                 break;
             case "8":
-                checkBalanceMenu(Budget);
+                checkBalanceMenu(budget);
                 break;
             case "9":
                 saveData();
@@ -91,7 +98,7 @@ public class Program {
     }
 
     private static void saveData() {
-        List<Record> records = Stream.of(Budget.getDebitRecords(), Budget.getIncomeRecords())
+        List<Record> records = Stream.of(budget.getDebitRecords(), budget.getIncomeRecords())
                 .flatMap(List::stream).collect(Collectors.toList());
         FileUtils.saveData(records, FILE_PATH);
     }

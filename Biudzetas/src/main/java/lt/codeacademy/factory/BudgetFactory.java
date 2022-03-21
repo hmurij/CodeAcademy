@@ -1,8 +1,10 @@
 package lt.codeacademy.factory;
 
 import lt.codeacademy.budget.Budget;
-import lt.codeacademy.model.DebitRecord;
-import lt.codeacademy.model.IncomeRecord;
+import lt.codeacademy.budget.dao.RecordDaoHibernateImpl;
+import lt.codeacademy.budget.entity.DebitRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
+import lt.codeacademy.budget.service.RecordServiceImpl;
 import lt.codeacademy.type.DebitType;
 import lt.codeacademy.type.IncomeType;
 import lt.codeacademy.type.PaymentType;
@@ -22,7 +24,7 @@ public class BudgetFactory {
      * @return biudzetas object with 10 records of DebitRecord and IncomeRecord objects
      */
     public static Budget generateBudgetMockObject() {
-        Budget budget = new Budget();
+        Budget budget = new Budget(new RecordServiceImpl(new RecordDaoHibernateImpl()));
 
         for (int i = 0; i < 10; i++) {
             budget.addRecord(generateDebitRecord());

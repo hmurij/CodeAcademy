@@ -1,6 +1,6 @@
 package lt.codeacademy.utils.reports;
 
-import lt.codeacademy.model.IncomeRecord;
+import lt.codeacademy.budget.entity.IncomeRecord;
 
 import java.util.List;
 

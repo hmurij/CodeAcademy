@@ -1,4 +1,4 @@
-package lt.codeacademy.model;
+package lt.codeacademy.budget.entity;
 
 import lt.codeacademy.factory.BudgetFactory;
 import org.junit.jupiter.api.Test;
