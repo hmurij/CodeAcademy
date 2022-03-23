@@ -1,6 +1,12 @@
 package lt.codeacademy.budget.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
@@ -59,7 +65,7 @@ public class Record {
         return id == record.id;
     }
 
-    public String toCsvString(){
+    public String toCsvString() {
         return "R,"
                 + amount + ","
                 + (comments.split(" ").length > 1 ? "\"" + comments + "\"" : comments) + "\n";

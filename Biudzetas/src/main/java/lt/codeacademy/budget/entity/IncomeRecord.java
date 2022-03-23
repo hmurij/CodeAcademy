@@ -2,7 +2,11 @@ package lt.codeacademy.budget.entity;
 
 import lt.codeacademy.type.IncomeType;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
