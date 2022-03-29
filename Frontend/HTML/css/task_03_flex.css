@@ -1,0 +1,18 @@
+.flex-container{
+    height: 600px;
+    display: flex;
+    /*flex-direction: column;*/
+    /*flex-wrap: wrap;*/
+    /*flex-flow: column wrap;*/
+    justify-content: center;
+    align-items: center;
+    /*align-content: center;*/
+    background-color: dodgerblue;
+}
+
+.flex-container > div {
+    background-color: aliceblue;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
