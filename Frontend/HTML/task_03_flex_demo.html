@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex</title>
+    <link type="text/css" rel="stylesheet" href="css/task_03_flex_demo.css">
+</head>
+<body class="border">
+<div class="demo-section margin-top border">
+    <p>Parent Element (Container)</p>
+    <div class="flex-container margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-direction Property - <code>flex-direction: column;</code>
+        <br>The column value stacks the flex items vertically (from top to bottom):</p>
+    <div class="flex-container flex-direction-column margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-direction Property - <code>flex-direction: column-reverse;</code>
+        <br>The column-reverse value stacks the flex items vertically (but from bottom to top):</p>
+    <div class="flex-container flex-direction-column-reverse margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p><b>(default)</b> - flex-direction Property - <code>flex-direction: row;</code>
+        <br>The row value stacks the flex items horizontally (from left to right):</p>
+    <div class="flex-container flex-direction-row margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-direction Property - <code>flex-direction: row-reverse;</code>
+        <br>The row-reverse value stacks the flex items horizontally (but from right to left):</p>
+    <div class="flex-container flex-direction-row-reverse margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-wrap Property - <code>flex-wrap: wrap;</code>
+        <br>The wrap value specifies that the flex items will wrap if necessary:</p>
+    <div class="flex-container flex-wrap margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p><b>(default)</b> - flex-wrap Property - <code>flex-wrap: nowrap;</code>
+        <br>The nowrap value specifies that the flex items will not wrap (this is default):</p>
+    <div class="flex-container flex-nowrap margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-wrap Property - <code>flex-wrap: wrap-reverse;</code>
+        <br>The wrap-reverse value specifies that the flexible items will wrap if necessary, in reverse order:</p>
+    <div class="flex-container flex-wrap-reverse margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-flow Property - <code>flex-flow: row wrap;</code>
+        <br>The flex-flow property is a shorthand property for setting both the flex-direction and flex-wrap properties.</p>
+    <div class="flex-container flex-flow-row-wrap margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>justify-content Property - <code>justify-content: center;</code>
+        <br>The center value aligns the flex items at the center of the container:</p>
+    <div class="flex-container flex-justify-content-center margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p><b>(default)</b> - justify-content Property - <code>justify-content: flex-start;</code>
+        <br>The flex-start value aligns the flex items at the beginning of the container (this is default):</p>
+    <div class="flex-container flex-justify-content-start margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>justify-content Property - <code>justify-content: flex-end;</code>
+        <br>The flex-end value aligns the flex items at the end of the container:</p>
+    <div class="flex-container flex-justify-content-end margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>justify-content Property - <code>justify-content: space-around;</code>
+        <br>The space-around value displays the flex items with space before, between, and after the lines:</p>
+    <div class="flex-container flex-justify-content-space-around margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>justify-content Property - <code>justify-content: space-between;</code>
+        <br>The space-between value displays the flex items with space between the lines:</p>
+    <div class="flex-container flex-justify-content-space-between margin-top">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-items Property - <code>align-items: center;</code>
+        <br>The center value aligns the flex items in the middle of the container:</p>
+    <div class="flex-container flex-align-items-center margin-top height-200px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-items Property - <code>align-items: flex-start;</code>
+        <br>The flex-start value aligns the flex items at the top of the container:</p>
+    <div class="flex-container flex-align-items-start margin-top height-200px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-items Property - <code>align-items: flex-end;</code>
+        <br>The flex-end value aligns the flex items at the bottom of the container:</p>
+    <div class="flex-container flex-align-items-end margin-top height-200px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p><b>(default)</b> - align-items Property - <code>align-items: stretch;</code>
+        <br>The stretch value stretches the flex items to fill the container (this is default):</p>
+    <div class="flex-container flex-align-items-stretch margin-top height-200px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-items Property - <code>align-items: baseline;</code>
+        <br>The baseline value aligns the flex items such as their baselines aligns:</p>
+    <div class="flex-container flex-align-items-baseline margin-top height-200px">
+        <div><h1>1</h1></div>
+        <div><h6>2</h6></div>
+        <div><h3>3</h3></div>
+        <div><small>4</small></div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-content Property - <code>align-content: space-between;</code>
+        <br>The space-between value displays the flex lines with equal space between them:</p>
+    <div class="flex-container flex-align-content-space-between flex-wrap margin-top height-600px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-content Property - <code>align-content: space-around;</code>
+        <br>The space-around value displays the flex lines with space before, between, and after them:</p>
+    <div class="flex-container flex-align-content-space-around flex-wrap margin-top height-600px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p><b>(default)</b> - align-content Property - <code>align-content: stretch;</code>
+        <br>The stretch value stretches the flex lines to take up the remaining space (this is default):</p>
+    <div class="flex-container flex-align-content-stretch flex-wrap margin-top height-600px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p><b>(default)</b> - align-content Property - <code>align-content: center;</code>
+        <br>The center value displays display the flex lines in the middle of the container:</p>
+    <div class="flex-container flex-align-content-center  flex-wrap margin-top height-600px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-content Property - <code>align-content: flex-start;</code>
+        <br>The flex-start value displays the flex lines at the start of the container:</p>
+    <div class="flex-container flex-align-content-start flex-wrap margin-top height-600px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-content Property - <code>align-content: flex-end;</code>
+        <br>The flex-end value displays the flex lines at the end of the container: </p>
+    <div class="flex-container flex-align-content-end flex-wrap margin-top height-600px">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>Perfect Centering</p>
+    <div class="flex-container flex-align-items-center flex-justify-content-center  margin-top height-600px">
+        <div>1</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>order Property - <code>order: n</code></p>
+    <div class="flex-container margin-top">
+        <div class="flex-item-order-3">1</div>
+        <div class="flex-item-order-2">2</div>
+        <div class="flex-item-order-4">3</div>
+        <div class="flex-item-order-1">4</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-grow Property - <code>flex-grow: n</code>
+        <br>The flex-grow property specifies how much a flex item will grow relative to the rest of the flex items.</p>
+    <div class="flex-container margin-top">
+        <div class="flex-grow-3">1</div>
+        <div class="flex-grow-1">2</div>
+        <div class="flex-grow-2">3</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-shrink Property - <code>flex-shrink: n</code>
+        <br>The flex-shrink property specifies how much a flex item will shrink relative to the rest of the flex items.</p>
+    <div class="flex-container margin-top">
+        <div>1</div>
+        <div class="">2</div>
+        <div class="flex-shrink-0">3</div>
+        <div class="">4</div>
+        <div class="">5</div>
+        <div class="">6</div>
+        <div class="">7</div>
+        <div class="">8</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex-basis Property - <code>flex-basis: value_px</code>
+        <br>The flex-basis property specifies the initial length of a flex item.</p>
+    <div class="flex-container margin-top">
+        <div class="">1</div>
+        <div class="">2</div>
+        <div class="flex-basis-200px">3</div>
+        <div class="">4</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>flex Property - <code>flex-basis: value_px</code>
+        <br>The flex property is a shorthand property for the <code>flex-grow</code>, <code>flex-shrink</code>, and <code>flex-basis</code>
+        properties.</p>
+    <div class="flex-container margin-top">
+        <div class="">1</div>
+        <div class="flex-flex-0-0-200px">2</div>
+        <div class="">3</div>
+        <div class="">4</div>
+    </div>
+</div>
+
+<div class="demo-section margin-top border">
+    <p>align-self Property - <code>align-self: center/start/end</code>
+        <br>The align-self property specifies the alignment for the selected item inside the flexible container.</p>
+    <div class="flex-container margin-top height-200px">
+        <div class="">1</div>
+        <div class="flex-align-self-center">2</div>
+        <div class="flex-align-self-end">3</div>
+        <div class="flex-align-self-start">4</div>
+    </div>
+</div>
+
+</body>
+</html>

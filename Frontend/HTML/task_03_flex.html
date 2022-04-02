@@ -2,24 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flex</title>
-    <link type="text/css" rel="stylesheet" href="css/task_03_flex.css" >
+    <title>task 03 Flex</title>
+    <link type="text/css" rel="stylesheet" href="css/task_03_flex.css">
 </head>
 <body>
-    <div class="flex-container">
-        <div></div>
-<!--        <div>2</div>-->
-<!--        <div>3</div>-->
-<!--        <div>4</div>-->
-<!--        <div>5</div>-->
-<!--        <div>6</div>-->
-<!--        <div>7</div>-->
-<!--        <div>8</div>-->
-<!--        <div>9</div>-->
-<!--        <div>10</div>-->
-<!--        <div>11</div>-->
-<!--        <div>12</div>-->
+<div class="flex-container justify-content-center align-items-center border-1em-whitesmoke height-100">
+    <div class="main-content-wrapper flex-container border">
+        <div class="content-left-wrapper flex-container flex-direction-column width-50 border">
+            <div class="content-left-upper-wrapper height-40 border">
+                <p class="font-size-30 margin-bottom-1em">You're in good company</p>
+                <p class="font-size-20">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+                    massa. Cum sociis
+                    natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+            </div>
+            <div class="content-left-lower-wrapper flex-container flex-wrap flex-align-content-start flex-justify-content-space-between  height-60 border">
+                <div class="left-content-image flex-container flex-wrap border">
+                    <img src="images/logo.jpeg">
+                </div>
+                <div class="left-content-image flex-container flex-wrap border">
+                    <img src="images/logo.jpeg">
+                </div>
+                <div class="left-content-image flex-container flex-wrap border">
+                    <img src="images/logo.jpeg">
+                </div>
+                <div class="left-content-image flex-container flex-wrap border">
+                    <img src="images/logo.jpeg">
+                </div>
+                <div class="left-content-image flex-container flex-wrap border">
+                    <img src="images/logo.jpeg">
+                </div>
+                <div class="left-content-image flex-container flex-wrap border">
+                    <img src="images/logo.jpeg">
+                </div>
+            </div>
+        </div>
+        <div class="content-right-wrapper width-50 border">
+            <div class="content-right flex-container flex-direction-column height-90 border-2px-whitesmoke-solid">
+                <div class="content-right-top flex-container flex-wrap height-60 border">
+                    <img src="images/logo.jpeg">
+                </div>
+                <div class="content-right-bottom height-40 border">
+                    <p class="margin-top-30px font-size-20 font-weight-bold">Lorem ipsum dolor sit amet.</p>
+                    <p class="margin-top-20px">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                        natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                        pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+                        vulputate eget, arcu. </p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 </body>
 </html>
