@@ -1,0 +1,49 @@
+.parent {
+    background-color: lightblue;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+}
+
+body{
+    height: 2000px;
+}
+
+h1 {
+    margin: 0;
+}
+
+.child {
+    min-height: 100px;
+}
+
+.child-one {
+    background-color: whitesmoke;
+    position: relative;
+    left: 30px;
+    top: 40px;
+}
+
+.child-one-absolute {
+    background-color: whitesmoke;
+    position: absolute;
+    left: 30px;
+    bottom: 40px;
+    width: 100%;
+}
+
+.child-two {
+    background-color: lightgray;
+}
+
+.child-two-fixed {
+    background-color: lightgray;
+    position: fixed;
+    top: 500px;
+}
+
+.child-three-sticky {
+    background-color: lavender;
+    position: sticky;
+    top: 50px;
+}

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Grid Layout - Demo</title>
+    <link rel="stylesheet" href="css/task_04_grid_demo.css">
+</head>
+<body class="">
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Display Property <code>display: grid;</code><br>
+        An HTML element becomes a grid container when its display property is set to grid or inline-grid.
+    </p>
+    <div class="grid-container-grid grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Display Property <code>display: inline-grid;</code><br>
+        An HTML element becomes a grid container when its display property is set to grid or inline-grid.
+    </p>
+    <div class="grid-container-inline-grid grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Grid Gaps Property <code>column-gap: value_px;</code><br>
+        The column-gap property sets the gap between the columns:
+    </p>
+    <div class="grid-container-grid column-gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Grid Gaps Property <code>row-gap: value_px;</code><br>
+        The row-gap property sets the gap between the rows:
+    </p>
+    <div class="grid-container-grid row-gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Grid Gaps Property <code>gap: value_px value_px;</code><br>
+        The gap property is a shorthand property for the row-gap and the column-gap properties:
+    </p>
+    <div class="grid-container-grid gap-50px-100px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Grid Gaps Property <code>gap: value_px;</code><br>
+        The gap property can also be used to set both the row gap and the column gap in one value:
+    </p>
+    <div class="grid-container-grid gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Grid Lines Property <code>grid-column-start: value; grid-column-end: value;</code><br>
+    </p>
+    <div class="grid-container-grid gap-50px grid-template-columns-auto-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="grid-item-1 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="grid-item-5 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="grid-item-9 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+        <div class="grid-item-10 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">11</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Grid Lines Property <code>grid-row-start: value; grid-row-end: value;</code><br>
+    </p>
+    <div class="grid-container-grid gap-50px grid-template-columns-auto-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">1</div>
+        <div class="grid-item-2 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">5</div>
+        <div class="grid-item-6 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">6</div>
+        <div class="grid-item-7 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">10</div>
+        <div class="grid-item-11 background-color-lightblue padding-20px font-size-30px text-align-center border-1px-black-solid">11</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-template-columns Property <code>grid-template-columns: value_px value_px value_px value_px;</code><br>
+        The grid-template-columns property can also be used to specify the size (width) of the columns.
+    </p>
+    <div class="grid-container-grid gap-50px grid-template-columns-80px-200px-auto-40px background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-template-rows Property <code>grid-template-rows: value_px value_px;</code><br>
+        The grid-template-rows property defines the height of each row.
+    </p>
+    <div class="grid-container-grid gap-50px grid-template-rows-80px-200px grid-template-columns-auto-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The justify-content Property <code>justify-content: space-evenly;</code><br>
+        The justify-content property is used to align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid justify-content-space-evenly gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The justify-content Property <code>justify-content: space-around;</code><br>
+        The justify-content property is used to align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid justify-content-space-around gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The justify-content Property <code>justify-content: space-between;</code><br>
+        The justify-content property is used to align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid justify-content-space-between gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The justify-content Property <code>justify-content: center;</code><br>
+        The justify-content property is used to align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid justify-content-center gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The justify-content Property <code>justify-content: start;</code><br>
+        The justify-content property is used to align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid justify-content-start gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The justify-content Property <code>justify-content: end;</code><br>
+        The justify-content property is used to align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid justify-content-end gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The align-content Property <code>align-content: center;</code><br>
+        The align-content property is used to vertically align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid align-content-center height-400px gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The align-content Property <code>align-content: space-evenly;</code><br>
+        The align-content property is used to vertically align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid align-content-space-evenly height-400px gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The align-content Property <code>align-content: space-around;</code><br>
+        The align-content property is used to vertically align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid align-content-space-around height-400px gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The align-content Property <code>align-content: space-between;</code><br>
+        The align-content property is used to vertically align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid align-content-space-between height-400px gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The align-content Property <code>align-content: start;</code><br>
+        The align-content property is used to vertically align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid align-content-start height-400px gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The align-content Property <code>align-content: end;</code><br>
+        The align-content property is used to vertically align the whole grid inside the container.
+    </p>
+    <div class="grid-container-grid align-content-end height-400px gap-50px grid-template-columns-auto-auto-auto background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-column Property <code>grid-column: value / value;</code><br>
+        The grid-column property defines on which column(s) to place an item.
+    </p>
+    <div class="grid-container-grid grid-template-columns-auto-auto-auto-auto-auto-auto gap-50px background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="grid-item-8 background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">13</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">14</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">15</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-column Property <code>grid-column: value / span value;</code><br>
+        The grid-column property defines on which column(s) to place an item.
+    </p>
+    <div class="grid-container-grid grid-template-columns-auto-auto-auto-auto-auto-auto gap-50px background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="grid-item-3 background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">13</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">14</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">15</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-row Property <code>grid-row: value / value;</code><br>
+        You define where the item will start, and where the item will end.
+    </p>
+    <div class="grid-container-grid grid-template-columns-auto-auto-auto gap-50px background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="grid-time-4 background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">13</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">14</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">15</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-row Property <code>grid-row: value / span value;</code><br>
+        You define where the item will start, and where the item will end.
+    </p>
+    <div class="grid-container-grid grid-template-columns-auto-auto-auto gap-50px background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">8</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="grid-item-12 background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">13</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">14</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">15</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-area Property <code>grid-area: value / value / value / value;</code><br>
+        The grid-area property can be used as a shorthand property for the grid-row-start, grid-column-start, grid-row-end and the
+        grid-column-end properties.
+    </p>
+    <div class="grid-container-grid grid-template-columns-auto-auto-auto-auto-auto-auto gap-50px background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="grid-area-1-2-5-6 background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">8
+        </div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">13</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">14</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">15</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        The grid-area Property <code>grid-area: value / value / span value / span value;</code><br>
+        The grid-area property can be used as a shorthand property for the grid-row-start, grid-column-start, grid-row-end and the
+        grid-column-end properties.
+    </p>
+    <div class="grid-container-grid grid-template-columns-auto-auto-auto-auto-auto-auto gap-50px background-color-dodgerblue padding-10px">
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">7</div>
+        <div class="grid-area-2-1-span-2-span-3 background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">
+            8
+        </div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">9</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">10</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">11</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">12</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">13</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">14</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">15</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        TNaming Grid Items <code>grid-area: grid_area_name;</code><br>
+        The grid-area property can also be used to assign names to grid items.
+    </p>
+    <div class="grid-container-grid grid-template-areas-myArea-5  gap-50px background-color-dodgerblue padding-10px">
+        <div class="grid-area-myArea background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1
+        </div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        TNaming Grid Items <code>grid-area: grid_area_name . . .;</code><br>
+        The grid-area property can also be used to assign names to grid items.
+    </p>
+    <div class="grid-container-grid grid-template-areas-myArea-2  gap-50px background-color-dodgerblue padding-10px">
+        <div class="grid-area-myArea background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1
+        </div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Naming Grid Items <code>grid-area: . grid_area_name . .;</code><br>
+        The grid-area property can also be used to assign names to grid items.
+    </p>
+    <div class="grid-container-grid grid-template-areas-myArea-2-myArea-2  gap-50px background-color-dodgerblue padding-10px">
+        <div class="grid-area-myArea background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">1
+        </div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">2</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">3</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">4</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">5</div>
+        <div class="background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">6</div>
+    </div>
+</div>
+
+<div class="demo-section padding-10px">
+    <p class="font-size-20px margin-bottom-10px">
+        Naming Grid Items
+    </p>
+    <div class="grid-container-grid grid-area-page-template gap-10px background-color-dodgerblue padding-10px">
+        <div class="grid-area-header background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">
+            Header
+        </div>
+        <div class="grid-area-menu background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">Menu
+        </div>
+        <div class="grid-area-main background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">Main
+        </div>
+        <div class="grid-area-right background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">Right
+        </div>
+        <div class="grid-area-footer background-color-lightblue padding-10px font-size-20px text-align-center border-1px-black-solid">
+            Footer
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
