@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title>Bootstrap demo</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Hello</h1>
+    <div class="row">
+        <div class='col-md-1' style="background-color: red">Left</div>
+        <div class='col-md-1' style="background-color: green">Middle</div>
+        <div class='col-md-1' style="background-color: blue">Right</div>
+        <div class='col-md-1' style="background-color: yellow">Left</div>
+        <div class='col-md-1' style="background-color: aqua">Middle</div>
+        <div class='col-md-1' style="background-color: blueviolet">Right</div>
+        <div class='col-md-1' style="background-color: brown">Left</div>
+        <div class='col-md-1' style="background-color: chartreuse">Middle</div>
+        <div class='col-md-1' style="background-color: coral">Right</div>
+        <div class='col-md-1' style="background-color: crimson">Left</div>
+        <div class='col-md-1' style="background-color: darkgreen">Middle</div>
+        <div class='col-md-1' style="background-color: darkmagenta">Right</div>
+        <div class='col-md-1' style="background-color: darkorange">Nr 13</div>
+    </div>
+
+    <div class="row m-2">
+        <div class='col-md-1' style="background-color: red">Left</div>
+        <div class='col-md-2' style="background-color: green">Middle</div>
+        <div class='col-md-3' style="background-color: blue">Right</div>
+        <div class='col-md-4' style="background-color: yellow">Left</div>
+        <div class='col-md-5' style="background-color: aqua">Middle</div>
+        <div class='col-md-6' style="background-color: blueviolet">Right</div>
+    </div>
+
+    <div class="row">
+        <div class='col-12 col-sm-9 col-md-3 col-lg-6' style="background-color: red">Left</div>
+        <div class='col-12 col-sm-3 col-md-9 col-lg-6' style="background-color: green">Middle</div>
+    </div>
+
+    <div class="row">
+        <div class='col-md-6' style="background-color: red">Left</div>
+        <div class='col-md-6' style="background-color: green">Middle</div>
+    </div>
+
+    <h1>CodeAcademy<small>Small text</small></h1>
+    <h2>CodeAcademy<small>Small text</small></h2>
+    <h3>CodeAcademy<small>Small text</small></h3>
+    <h4>CodeAcademy<small>Small text</small></h4>
+    <h5>CodeAcademy<small>Small text</small></h5>
+    <h6>CodeAcademy<small>Small text</small></h6>
+
+    <p class="text-start">Text start</p>
+    <p class="text-end">Text end</p>
+    <p class="text-center">Text center</p>
+    <p class="text-nowrap mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum dolorem dolorum eius eligendi harum in
+        incidunt iste iusto maiores nostrum, quae quidem quisquam ratione reprehenderit repudiandae, rerum veniam veritatis.</p>
+    <code>for(int i = 0; i < 10; i++)</code>
+    <code>
+        <pre>    System.out.println("Hello World!");</pre>
+    </code>
+
+    <p class="text-muted">Muted- Lorem ipsum dolor sit amet.</p>
+    <p class="text-primary">Primary - Lorem ipsum dolor sit amet.</p>
+    <p class="text-success">Success - Lorem ipsum dolor sit amet.</p>
+    <p class="text-info">Info - Lorem ipsum dolor sit amet.</p>
+    <p class="text-warning">Warning - Lorem ipsum dolor sit amet.</p>
+    <p class="text-danger">Danger - Lorem ipsum dolor sit amet.</p>
+
+    <p class="bg-muted">Muted- Lorem ipsum dolor sit amet.</p>
+    <p class="bg-primary">Primary - Lorem ipsum dolor sit amet.</p>
+    <p class="bg-success">Success - Lorem ipsum dolor sit amet.</p>
+    <p class="bg-info">Info - Lorem ipsum dolor sit amet.</p>
+    <p class="bg-warning">Warning - Lorem ipsum dolor sit amet.</p>
+    <p class="bg-danger">Danger - Lorem ipsum dolor sit amet.</p>
+
+    <button class="btn btn-muted">Muted - Button</button>
+    <button class="btn btn-primary">Primary - Button</button>
+    <button class="btn btn-success">Success - Button</button>
+    <button class="btn btn-info">Info - Button</button>
+    <button class="btn btn-warning">Warning - Button</button>
+    <button class="btn btn-danger">Danger - Button</button>
+</div>
+
+<div class="container border mt-5 mb-5 p-3">
+    <form>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password"
+                   aria-describedby="passwordHelp" data>
+            <small id="passwordHelp" class="form-text text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
