@@ -1,0 +1,112 @@
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: "Agency FB", sans-serif;
+  color: #06d9d8;
+}
+
+p {
+  font-size: 1.5em;
+  font-weight: light;
+  font-family: "Agency FB", sans-serif;
+  color: #57bf57;
+}
+
+li {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: "Agency FB", sans-serif;
+  color: #474774;
+}
+
+body {
+  background: azure;
+}
+
+.block:not(.first-block) {
+  background: #95b1e3;
+  height: 200px;
+  margin-bottom: 2em;
+  border: 2px black solid;
+}
+
+.first-block {
+  background: bisque;
+  height: 200px;
+  margin-bottom: 2em;
+  padding: 2em 1em 3em 2em;
+}
+
+#central-block {
+  padding: 2em;
+}
+#central-block > ul {
+  list-style: none;
+}
+#central-block > ul > li {
+  font-size: xx-large;
+  font-family: "Agency FB", sans-serif;
+}
+
+a:hover {
+  color: #995D81;
+}
+a:hover:hover {
+  color: #EB8258;
+}
+a:hover:active {
+  color: #F6F740;
+}
+a:hover:visited {
+  color: #D8DC6A;
+}
+
+.grid {
+  float: left;
+  width: 100%;
+}
+.grid > div {
+  float: left;
+  background: #995D81;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  height: 150px;
+  width: 21.25%;
+  margin-right: 5%;
+}
+.grid > div:nth-child(4n) {
+  margin-right: 0;
+}
+.grid > div:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  -webkit-transition: 1s;
+  transition: 1s;
+  background: #3a2331;
+}
+
+.some_class-25 {
+  width: 75px;
+  height: 100px;
+}
+
+.some_class-26 {
+  width: 76px;
+  height: 102px;
+}
+
+.some_class-27 {
+  width: 77px;
+  height: 104px;
+}
+
+.some_class-28 {
+  width: 78px;
+  height: 106px;
+}
+
+.some_class-29 {
+  width: 79px;
+  height: 108px;
+}

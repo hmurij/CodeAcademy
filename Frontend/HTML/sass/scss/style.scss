@@ -1,0 +1,65 @@
+@import "variables";
+@import "mixins";
+
+h1 {
+  @include font($weight: bold);
+}
+
+p {
+  @include font($weight: light, $color: #57bf57);
+}
+
+li {
+  @include font(#474774, bold);
+}
+
+body {
+  background: $mainColor;
+}
+
+.block:not(.first-block) {
+  background: $secondColor;
+  height: 200px;
+  margin-bottom: $blockMargin;
+  border: $border;
+}
+
+.first-block {
+  background: $mainBlockColor;
+  height: $mainBlocHeight * 2;
+  margin-bottom: $blockMargin;
+  @include padding(2em 1em 3em 2em)
+}
+
+#central-block {
+  padding: $mainPadding;
+
+  > ul {
+    list-style: none;
+
+    > li {
+      font-size: xx-large;
+      font-family: $mainFontFamily;
+    }
+  }
+}
+
+a:hover {
+  @include link(#995D81, #EB8258, #F6F740, #D8DC6A)
+}
+
+.grid{
+  float: left;
+  width: 100%;
+
+  > div {
+    @include grid(4, 5%)
+  }
+}
+
+@for $i from 25 to 30 {
+  .#{$someVar}-#{$i} {
+    width: 50px + $i;
+    height: 50px + $i * 2;
+  }
+}
