@@ -1,0 +1,17 @@
+@mixin font-awesome-on-hover {
+  transform: scale(1.2);
+  transition: 0.5s;
+  background: lighten($backgroundColor, 10%);
+}
+
+@mixin font($fontColor: black, $fontSize, $fontWeight: normal,  $textTransform: none){
+  color: $fontColor;
+  font: $fontSize 'Poppins', sans-serif;
+  font-weight: $fontWeight;
+  text-transform: $textTransform;
+}
+
+@mixin font-awesome-padding($topBottom, $leftRight: 20px) {
+  padding: $topBottom $leftRight;
+}
+

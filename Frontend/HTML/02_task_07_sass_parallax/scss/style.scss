@@ -1,0 +1,156 @@
+@import "varialbes";
+@import "mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.border {
+  border: 1px red dotted;
+}
+
+.parallax {
+  background-attachment: fixed;
+}
+
+.background {
+  background-image: url("/images/logo.jpeg");
+  min-height: $minHeight;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intro {
+  padding-bottom: 100px;
+}
+
+.intro > h1 {
+  @include font(white, 40px, bold, uppercase);
+}
+
+.icon-wrapper {
+  margin-top: 10px;
+}
+
+.icon-wrapper > i {
+  color: white;
+  font-size: 40px;
+}
+
+.fa-twitter, .fa-magnifying-glass {
+  border-radius: $borderRadius;
+  @include font-awesome-padding(20px);
+}
+
+.fa-facebook-f {
+  border-radius: $borderRadius;
+  @include font-awesome-padding(20px, 28px);
+}
+
+.fa-rss {
+  border-radius: $borderRadius;
+  @include font-awesome-padding(20px, 22px);
+}
+
+.fa-facebook-f:hover, .fa-twitter:hover, .fa-rss:hover, .fa-magnifying-glass:hover {
+  @include font-awesome-on-hover;
+}
+
+.sticky-menu {
+  min-height: 55px;
+  position: sticky;
+  top: 0;
+  background-color: darken($backgroundColor, 5%);
+}
+
+.sticky-menu > a {
+  @include font(white, 20px, normal, uppercase);
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.sticky-menu > a:hover {
+  transition: 0.5s;
+  transform: scale(1.1);
+  color: lighten($backgroundColor, 50%);
+}
+
+.services {
+  min-height: $minHeight;
+  padding-top: 55px;
+}
+
+.services-heading {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.services-heading > h1 {
+  @include font($backgroundColor, 40px, bold, none);
+  margin-top: 60px;
+}
+
+.services-heading > h3 {
+  @include font($backgroundColor, 24px, bold, none);
+  margin-top: 20px;
+}
+
+.services-wrapper {
+  flex-grow: 8;
+}
+
+.web-design > i, .mobile-app > i, .eCommerce > i, .multimedia > i  {
+  color: $backgroundColor;
+  font-size: 60px;
+  @include font-awesome-padding(40px, 40px);
+  border-radius: $borderRadius;
+}
+
+.web-design, .mobile-app, .eCommerce, .multimedia {
+  max-width: 24%;
+  flex-grow: 1;
+}
+
+.portfolio {
+  min-height: $minHeight;
+  padding-top: 55px;
+}
+
+.form {
+  min-height: $minHeight;
+  padding-top: 55px;
+}
+
+.container-flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+.align-center {
+  align-content: center;
+}
+
+.align-end {
+  align-content: end;
+}
+
+.wrapper {
+  height: 100%;
+}
