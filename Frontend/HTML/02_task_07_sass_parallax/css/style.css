@@ -40,17 +40,17 @@
 }
 
 .fa-twitter, .fa-magnifying-glass {
-  border-radius: 75px;
+  border-radius: 50%;
   padding: 20px 20px;
 }
 
 .fa-facebook-f {
-  border-radius: 75px;
+  border-radius: 50%;
   padding: 20px 28px;
 }
 
 .fa-rss {
-  border-radius: 75px;
+  border-radius: 50%;
   padding: 20px 22px;
 }
 
@@ -120,18 +120,55 @@
           flex-grow: 8;
 }
 
-.web-design > i, .mobile-app > i, .eCommerce > i, .multimedia > i {
-  color: #1d4056;
-  font-size: 60px;
-  padding: 40px 40px;
-  border-radius: 75px;
-}
-
 .web-design, .mobile-app, .eCommerce, .multimedia {
-  max-width: 24%;
+  max-width: 20%;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  text-align: center;
+  color: #1d4056;
+}
+
+.web-design {
+  margin-top: 15%;
+}
+
+.mobile-app {
+  margin-top: 10%;
+}
+
+.eCommerce {
+  margin-top: 5%;
+}
+
+.fa-wrapper {
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 50%;
+  border: 2px #1d4056 solid;
+}
+
+.fa-wrapper > i {
+  font-size: 60px;
+  padding: 50px 20px;
+}
+
+.web-design > h3, .mobile-app > h3, .eCommerce > h3, .multimedia > h3 {
+  color: #1d4056;
+  font: 20px "Poppins", sans-serif;
+  font-weight: bold;
+  text-transform: none;
+  margin-top: 20px;
+}
+
+.web-design > p, .mobile-app > p, .eCommerce > p, .multimedia > p {
+  color: #2a5c7c;
+  font: 18px "Poppins", sans-serif;
+  font-weight: bold;
+  text-transform: none;
+  margin-top: 20px;
 }
 
 .portfolio {

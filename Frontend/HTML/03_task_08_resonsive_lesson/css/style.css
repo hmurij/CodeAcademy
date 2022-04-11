@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.border {
+    border: 2px white solid;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ccc;
+    height: 200px;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    /*align-items: center;*/
+    /*justify-content: space-evenly;*/
+}
+
+.header {
+    height: 120px;
+    width: 100%;
+    background-color: #581845;
+}
+
+.box {
+    width: 25%;
+    height: 150px;
+    /*float: left;*/
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*align-items: center;*/
+    /*justify-content: space-evenly;*/
+}
+
+.box1 {
+    background-color: #900c3f;
+}
+
+.box2 {
+    background-color: #c70039;
+}
+
+.box3 {
+    background-color: #ffc300;
+}
+
+.box4 {
+    background-color: #ff5733;
+}
+
+/*tablet*/
+@media screen and (max-width: 768px) {
+    .box1, .box2, .box3, .box4 {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 320px) and (max-width: 480px) {
+    .box3 {
+        width: 100%;
+    }
+
+    .box4 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .box4 {
+        display: none;
+    }
+
+    .header {
+        height: 50px;
+        background-color: #5DB7DE;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        font-family: "Franklin Gothic Medium", sans-serif;
+    }
+
+    .box3 {
+        width: 100%;
+    }
+}

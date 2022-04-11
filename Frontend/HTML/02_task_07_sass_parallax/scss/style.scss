@@ -101,17 +101,54 @@
   flex-grow: 8;
 }
 
-.web-design > i, .mobile-app > i, .eCommerce > i, .multimedia > i  {
+.web-design, .mobile-app, .eCommerce, .multimedia {
+  max-width: 20%;
+  flex-grow: 1;
+  text-align: center;
   color: $backgroundColor;
-  font-size: 60px;
-  @include font-awesome-padding(40px, 40px);
-  border-radius: $borderRadius;
 }
 
-.web-design, .mobile-app, .eCommerce, .multimedia {
-  max-width: 24%;
-  flex-grow: 1;
+.web-design {
+  margin-top: 15%;
 }
+
+.mobile-app {
+  margin-top: 10%;
+}
+
+.eCommerce {
+  margin-top: 5%;
+}
+
+.web-design > i, .mobile-app > i, .eCommerce > i, .multimedia > i  {
+
+}
+
+.fa-wrapper {
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: $borderRadius;
+  border: 2px $backgroundColor solid;
+}
+
+.fa-wrapper > i{
+  font-size: 60px;
+  @include font-awesome-padding(50px, 20px);
+}
+
+.web-design > h3, .mobile-app > h3, .eCommerce > h3, .multimedia > h3 {
+  @include font($backgroundColor, 20px, bold, none);
+  margin-top: 20px;
+}
+
+.web-design > p, .mobile-app > p, .eCommerce > p, .multimedia > p {
+  @include font(lighten($backgroundColor, 10%), 18px, bold, none);
+  margin-top: 20px;
+}
+
+
 
 .portfolio {
   min-height: $minHeight;
