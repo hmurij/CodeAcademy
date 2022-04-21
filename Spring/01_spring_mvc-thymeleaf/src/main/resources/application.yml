@@ -1,0 +1,7 @@
+#server:
+#  servlet:
+#    context-path: /eshop
+
+spring:
+  main:
+    banner-mode: console
