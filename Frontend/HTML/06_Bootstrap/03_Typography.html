@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"-->
+    <!--          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Typography</title>
+</head>
+<body>
+<div class="container mt-3 border">
+    <p class="border">Bootstrap 5 styles HTML headings h1 to h6 with a bolder font-weight and a responsive font-size.</p>
+    <h1 class="border">h1 Bootstrap heading</h1>
+    <h2 class="border">h2 Bootstrap heading</h2>
+    <h3 class="border">h3 Bootstrap heading</h3>
+    <h4 class="border">h4 Bootstrap heading</h4>
+    <h5 class="border">h5 Bootstrap heading</h5>
+    <h6 class="border">h6 Bootstrap heading</h6>
+</div>
+
+<div class="container mt-3 border">
+    <p class="border">You can also use .h1 to .h6 classes on other elements to make them behave as headings if you want:</p>
+    <p class="h1 border">h1 Bootstrap heading</p>
+    <p class="h2 border">h2 Bootstrap heading</p>
+    <p class="h3 border">h3 Bootstrap heading</p>
+    <p class="h4 border">h4 Bootstrap heading</p>
+    <p class="h5 border">h5 Bootstrap heading</p>
+    <p class="h6 border">h6 Bootstrap heading</p>
+</div>
+
+<div class="container mt-3 border">
+    <h3>Display Headings</h3>
+    <p class="border">Display headings are used to stand out more than normal headings (larger font-size and lighter font-weight), and there
+        are six
+        classes to choose from: <code>.display-1</code> to <code>.display-6</code></p>
+    <div class="display-1 border">Display 1</div>
+    <div class="display-2 border">Display 2</div>
+    <div class="display-3 border">Display 3</div>
+    <div class="display-4 border">Display 4</div>
+    <div class="display-5 border">Display 5</div>
+    <div class="display-6 border">Display 6</div>
+</div>
+
+<div class="container mt-3 border">
+    <h3>small</h3>
+    <p class="border">In Bootstrap 5 the HTML small element (and the .small class) is used to create a smaller, secondary text in any
+        heading:</p>
+    <h1 class="border">h1 Bootstrap heading <small
+    >small text</small></h1>
+    <h2 class="border">h2 Bootstrap heading <small
+    >small text</small></h2>
+    <h3 class="border">h3 Bootstrap heading <small
+    >small text</small></h3>
+    <h4 class="border">h4 Bootstrap heading <small
+    >small text</small></h4>
+    <h5 class="border">h5 Bootstrap heading <small
+    >small text</small></h5>
+    <h6 class="border">h6 Bootstrap heading <small
+    >small text</small></h6>
+</div>
+
+<div class="container mt-3 border">
+    <h3>mark</h3>
+    <p class="border">Bootstrap 5 will style
+        mark and .mark with a yellow background color and some padding:
+    </p>
+    <p>Use the mark element to
+        <mark>highlight</mark>
+        text.
+    </p>
+    <p>Use the mark element to <span class="mark">highlight</span> text.</p>
+</div>
+
+<div class="container mt-3 border">
+    <h3>blockquote</h3>
+    <p class="border">Add the .blockquote class to a
+        blockquote when quoting blocks of content from another source. And when naming a source, like "from WWF's website", use the
+        .blockquote-footer class:
+    </p>
+    <blockquote class="blockquote">
+        <p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100
+            countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+        <footer class="blockquote-footer">From WWF's website</footer>
+    </blockquote>
+</div>
+
+<div class="container mt-3 border">
+    <h3>dl</h3>
+    <p class="border">Bootstrap 5 will style the HTML dl element in the following way:
+    </p>
+    <dl>
+        <dt>Coffee</dt>
+        <dd>- black hot drink</dd>
+        <dt>Milk</dt>
+        <dd>- white cold drink</dd>
+    </dl>
+</div>
+
+<div class="container mt-3 border">
+    <h1>Keyboard Inputs</h1>
+    <p>To indicate input that is typically entered via the keyboard, use the kbd element:</p>
+    <p>Use <kbd>ctrl + p</kbd> to open the Print dialog box.</p>
+</div>
+
+<div class="container mt-3 border">
+    <h1>Multiple Code Lines</h1>
+    <p>For multiple lines of code, use the pre element:</p>
+    <pre>
+Text in a pre element
+is displayed in a fixed-width
+font, and it preserves
+both      spaces and
+line breaks.
+</pre>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Typography</h2>
+    <p>Use the .lead class to make a paragraph "stand out":</p>
+    <p class="lead">This paragraph stands out.</p>
+    <p>This is a regular paragraph.</p>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Typography</h2>
+    <p class="text-start">Left-aligned text.</p>
+    <p class="text-end">Right-aligned text.</p>
+    <p class="text-center">Center-aligned text.</p>
+    <p class="text-nowrap">No wrap text. No wrap text. No wrap text. No wrap text. No wrap text. No wrap text. No wrap text. No wrap text. No wrap text. No wrap text. No wrap text. No wrap text.</p>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Text break / Word break</h2>
+    <p>The .text-break class prevents long text from breaking layout.</p>
+    <p>With .text-break:</p>
+    <p class="text-break border">
+        AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz</p>
+    <p>Without .text-break:</p>
+    <p class="border">
+        AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz</p>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Text Decoration</h2>
+    <p>Use the .text-decoration-none class to remove the underline from a link.</p>
+    <a href="#" class="text-decoration-none">A link without underline.</a>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Typography</h2>
+    <p class="text-lowercase">Lowercased text.</p>
+    <p class="text-uppercase">Uppercased text.</p>
+    <p class="text-capitalize">Capitalized text.</p>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Typography</h2>
+    <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948. (normal abbr)</p>
+    <p>The <abbr title="World Health Organization" class="initialism">WHO</abbr> was founded in 1948. (slightly smaller abbr)</p>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Typography</h2>
+    <p>The class .list-unstyled removes the default list-style and left margin on list items (immediate children only):</p>
+    <ul class="list-unstyled">
+        <li>Coffee</li>
+        <li>Tea
+            <ul>
+                <li>Black tea</li>
+                <li>Green tea</li>
+            </ul>
+        </li>
+        <li>Milk</li>
+    </ul>
+</div>
+
+<div class="container mt-3 border">
+    <h2>Typography</h2>
+    <p>The class .list-inline places all list items on a single line, when used together with the .list-inline-item:</p>
+    <ul class="list-inline">
+        <li class="list-inline-item">Coffee</li>
+        <li class="list-inline-item">Tea</li>
+        <li class="list-inline-item">Milk</li>
+    </ul>
+</div>
+
+
+</body>
+</html>
