@@ -1,17 +1,18 @@
 package com.codeademy.lt.product.service;
 
 import com.codeademy.lt.product.model.Product;
-import com.codeademy.lt.product.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
-@RequiredArgsConstructor
-public class ProductService {
+import java.util.List;
+import java.util.UUID;
 
-    private final ProductRepository productRepository;
+public interface ProductService {
+    public void save(Product product);
 
-    public void addProduct(Product product) {
-        productRepository.save(product);
-    }
+    public List<Product> getProducts();
+
+    public Product getProductByUuid(UUID id);
+
+    public void updateProduct(Product product);
+
+    public void deleteProduct(UUID id);
 }

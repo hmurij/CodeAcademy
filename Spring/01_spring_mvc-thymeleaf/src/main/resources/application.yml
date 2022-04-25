@@ -5,3 +5,12 @@
 spring:
   main:
     banner-mode: console
+
+logging:
+  level:
+    com:
+      codeacademy:
+        lt:
+          config: debug
+
+#debug: true
