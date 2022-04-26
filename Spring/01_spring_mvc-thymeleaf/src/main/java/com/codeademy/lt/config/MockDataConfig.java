@@ -1,6 +1,6 @@
 package com.codeademy.lt.config;
 
-import com.codeademy.lt.product.model.Product;
+import com.codeademy.lt.product.model.ProductDto;
 import com.codeademy.lt.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,7 +23,7 @@ public class MockDataConfig {
 
         while (MAX_COUNT >= count) {
             productRepository.save(
-                    Product.builder()
+                    ProductDto.builder()
                             .name("Name " + count)
                             .price(BigDecimal.valueOf(count * 10))
                             .quantity(count * 2)

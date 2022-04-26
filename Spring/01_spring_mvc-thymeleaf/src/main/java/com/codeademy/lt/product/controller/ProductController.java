@@ -1,6 +1,6 @@
 package com.codeademy.lt.product.controller;
 
-import com.codeademy.lt.product.model.Product;
+import com.codeademy.lt.product.model.ProductDto;
 import com.codeademy.lt.product.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +20,7 @@ public class ProductController {
 
     private final ProductService productService;
 
+
 //    public ProductController(ProductService productService) {
 //        this.productService = productService;
 //    }
@@ -30,12 +31,12 @@ public class ProductController {
 
     @GetMapping
     public String openCreateProductForm(Model model) {
-        model.addAttribute("product", Product.builder().build());
+        model.addAttribute("product", ProductDto.builder().build());
         return "product";
     }
 
     @PostMapping
-    public String createProduct(@ModelAttribute("product") Product product, Model model /*, HttpServletRequest request */) {
+    public String createProduct(@ModelAttribute("product") ProductDto product, Model model /*, HttpServletRequest request */) {
         productService.save(product);
         model.addAttribute("message", "Product added successfully");
         return "product";
@@ -48,13 +49,14 @@ public class ProductController {
     }
 
     @GetMapping("/update")
+//    @GetMapping("/{productId}/update")
     public String getUpdateProduct(@RequestParam("id") UUID uuid, Model model) {
         model.addAttribute("product", productService.getProductByUuid(uuid));
         return "product";
     }
 
     @PostMapping("/update")
-    public String getUpdateProduct(Model model, Product product) {
+    public String getUpdateProduct(Model model, ProductDto product) {
         productService.updateProduct(product);
         model.addAttribute("products", productService.getProducts());
         return "products";

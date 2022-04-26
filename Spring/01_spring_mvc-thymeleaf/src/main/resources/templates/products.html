@@ -28,6 +28,7 @@
             <tbody>
             <tr th:each="product: ${products}">
                 <td><a th:href="@{'/products/update?id=' + ${product.uuid}}" th:text="${product.name}"></a></td>
+                <!--                <td><a th:href="@{'/products/{uuid}/update?id=' + ${product.uuid}}" th:text="${product.name}"></a></td>-->
                 <!--                <td th:text="${product.uuid}"></td>-->
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.quantity}"></td>
@@ -38,6 +39,9 @@
                 </td>
             </tr>
             </tbody>
+            <!--            <div class="container">-->
+            <!--                <h1>Test</h1>-->
+            <!--            </div>-->
 
         </table>
     </div>

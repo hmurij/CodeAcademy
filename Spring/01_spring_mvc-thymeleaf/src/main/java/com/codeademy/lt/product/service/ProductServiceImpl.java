@@ -1,6 +1,6 @@
 package com.codeademy.lt.product.service;
 
-import com.codeademy.lt.product.model.Product;
+import com.codeademy.lt.product.model.ProductDto;
 import com.codeademy.lt.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    public void save(Product product) {
+    public void save(ProductDto product) {
         productRepository.save(product);
     }
 
-    public List<Product> getProducts() {
+    public List<ProductDto> getProducts() {
         return productRepository.getProducts();
     }
 
-    public void updateProduct(Product product) {
+    public void updateProduct(ProductDto product) {
         productRepository.update(product);
     }
 
@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductByUuid(UUID id) {
+    public ProductDto getProductByUuid(UUID id) {
         return productRepository.getProductByUuid(id);
     }
 }
