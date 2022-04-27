@@ -3,11 +3,13 @@ package com.codeademy.lt.product.service;
 import com.codeademy.lt.mapper.Mapper;
 import com.codeademy.lt.product.enitity.Product;
 import com.codeademy.lt.product.model.ProductDto;
-import com.codeademy.lt.product.repository.ProductRepository;
 import com.codeademy.lt.product.repository.ProductRepositoryJpa;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,8 +23,7 @@ public class ProductServiceImplJpa implements ProductService {
     private ProductRepositoryJpa productRepositoryJpa;
     private Mapper mapper;
 
-    private final ProductRepository productRepository;
-
+    @Transactional
     public void save(ProductDto product) {
         productRepositoryJpa.save(new Product(
                 UUID.randomUUID(),
@@ -31,26 +32,43 @@ public class ProductServiceImplJpa implements ProductService {
                 product.getPrice(),
                 product.getDescription()
         ));
-        productRepository.save(product);
     }
 
+    @Transactional
     public List<ProductDto> getProducts() {
         return productRepositoryJpa.findAll().stream()
                 .map(mapper::mapToDto)
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public Page<ProductDto> getProducts(Pageable pageable) {
+        return productRepositoryJpa.findAll(pageable)
+                .map(mapper::mapToDto);
+    }
+
+    @Transactional
     public void updateProduct(ProductDto product) {
-        productRepository.update(product);
+        productRepositoryJpa.save(new Product(
+                productRepositoryJpa.findByUuid(product.getUuid()).getId(),
+                UUID.randomUUID(),
+                product.getName(),
+                product.getQuantity(),
+                product.getPrice(),
+                product.getDescription()
+        ));
     }
 
-    @Override
+    @Transactional
     public void deleteProduct(UUID id) {
-        productRepository.deleteProduct(id);
+        productRepositoryJpa.deleteById(
+                productRepositoryJpa.findByUuid(id).getId()
+        );
     }
 
-    @Override
+    @Transactional
     public ProductDto getProductByUuid(UUID id) {
-        return productRepository.getProductByUuid(id);
+        return mapper.mapToDto(productRepositoryJpa.findByUuid(id));
     }
+
 }
