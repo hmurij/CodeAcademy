@@ -11,7 +11,16 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: root
-
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
 
   sql:
     init:
@@ -42,4 +51,3 @@ logging:
           config: debug
 
 #debug: true
-

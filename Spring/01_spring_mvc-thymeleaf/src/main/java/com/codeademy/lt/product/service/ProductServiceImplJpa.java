@@ -69,6 +69,8 @@ public class ProductServiceImplJpa implements ProductService {
     @Transactional
     public ProductDto getProductByUuid(UUID id) {
         return mapper.mapToDto(productRepositoryJpa.findByUuid(id));
+//        return productRepositoryJpa.findByUuid(id).map(mapper::mapToDto)
+//                .orElseGet(ProductDto::new);
     }
 
 }

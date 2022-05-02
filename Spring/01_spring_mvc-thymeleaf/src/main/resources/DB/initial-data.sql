@@ -16,4 +16,8 @@ values ('58a172d4-c583-11ec-9d64-0242ac120002', 'iPhone 8', 3, 300, 'New phone')
        ('58a172d4-c583-11ec-9d64-0242ac120017', 'iPhone 8+', 5, 200, 'Refurbished'),
        ('58a172d4-c583-11ec-9d64-0242ac120018', 'iPhone 7+', 5, 200, 'Refurbished'),
        ('58a172d4-c583-11ec-9d64-0242ac120019', 'iPhone 7', 5, 200, 'Refurbished'),
+       ('58a172d4-c583-11ec-9d64-0242ac120020', 'A', 5, 200, 'Refurbished'),
+       ('58a172d4-c583-11ec-9d64-0242ac120021', 'a', 5, 200, 'Refurbished'),
+       ('58a172d4-c583-11ec-9d64-0242ac120022', 'B', 5, 200, 'Refurbished'),
+       ('58a172d4-c583-11ec-9d64-0242ac120023', 'b', 5, 200, 'Refurbished'),
        ('58a172d4-c583-11ec-9d64-0242ac120004', 'iPhone 6', 10, 100, 'Battery replaced');

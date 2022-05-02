@@ -33,8 +33,9 @@ public class ProductController {
 //    }
 
     @GetMapping
-    public String openCreateProductForm(Model model) {
+    public String openCreateProductForm(Model model, String message) {
         model.addAttribute("product", ProductDto.builder().build());
+        model.addAttribute("message", message);
         return "product";
     }
 
@@ -42,7 +43,7 @@ public class ProductController {
     public String createProduct(@ModelAttribute("product") ProductDto product, Model model /*, HttpServletRequest request */) {
         productService.save(product);
         model.addAttribute("message", "Product added successfully");
-        return "product";
+        return "redirect:/products?message=Product added successfully!";
     }
 
     @GetMapping("/list")
@@ -62,7 +63,7 @@ public class ProductController {
     public String getUpdateProduct(Model model, ProductDto product) {
         productService.updateProduct(product);
         model.addAttribute("products", productService.getProducts());
-        return "products";
+        return "redirect:/products/list";
     }
 
     @GetMapping("/delete")
@@ -70,5 +71,4 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/products/list";
     }
-
 }

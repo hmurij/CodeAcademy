@@ -30,7 +30,7 @@
                 <th>
                     <a
                             th:with="direction=${products.sort.getOrderFor('name')?.direction}"
-                            th:href="@{/products/list(page=${products.getNumber()}, sort='name,' + ${direction?.isAscending() ? 'DESC' : 'ASC'})}">Name
+                            th:href="@{/products/list(page=${products.getNumber()}, sort='name,' + ${direction?.isAscending() ? 'DESC' : 'ASC'} + ',ignorecase')}">Name
                         <i class="fa-solid"
                            th:classappend="${direction?.isAscending() ? 'fa-arrow-down-a-z' : 'fa-arrow-up-z-a'}"></i>
                     </a>
@@ -67,35 +67,37 @@
             <!--            </div>-->
 
         </table>
+
+        <div class="d-flex justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item"
+                        th:classappend="${!products.hasPrevious()} ? 'disabled'">
+                        <a class="page-link" href="#"
+                           th:href="@{/products/list(page=${products.previousOrFirstPageable().getPageNumber()})}">Previous</a>
+                    </li>
+                    <li class="page-item"
+                        th:each="index: ${#numbers.sequence(0, products.totalPages - 1)}"
+                        th:classappend="${index == products.number ? 'active' : ''}">
+                        <a class="page-link" href="#" th:text="${index + 1}"
+                           th:href="@{/products/list(page=${index})}"></a>
+                    </li>
+                    <!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+                    <!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                    <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                    <li class="page-item"
+                        th:classappend="${!products.hasNext()} ? 'disabled'">
+                        <a class="page-link" href="#"
+                           th:href="@{/products/list(page=${products.nextOrLastPageable().getPageNumber()})}">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <p th:text="'Total elements: ' + ${products.totalElements}"></p>
+            <p th:text="'Total pages: ' + ${products.totalPages}"></p>
+        </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <nav>
-            <ul class="pagination">
-                <li class="page-item"
-                    th:classappend="${!products.hasPrevious()} ? 'disabled'">
-                    <a class="page-link" href="#"
-                       th:href="@{/products/list(page=${products.previousOrFirstPageable().getPageNumber()})}">Previous</a>
-                </li>
-                <li class="page-item"
-                    th:each="index: ${#numbers.sequence(0, products.totalPages - 1)}"
-                    th:classappend="${index == products.number ? 'active' : ''}">
-                    <a class="page-link" href="#" th:text="${index + 1}"
-                       th:href="@{/products/list(page=${index})}"></a>
-                </li>
-                <!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-                <!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-                <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-                <li class="page-item"
-                    th:classappend="${!products.hasNext()} ? 'disabled'">
-                    <a class="page-link" href="#"
-                       th:href="@{/products/list(page=${products.nextOrLastPageable().getPageNumber()})}">Next</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="row">
-        <p th:text="'Total elements: ' + ${products.totalElements}"></p>
-        <p th:text="'Total pages: ' + ${products.totalPages}"></p>
-    </div>
+
 </div>
 
 </body>
