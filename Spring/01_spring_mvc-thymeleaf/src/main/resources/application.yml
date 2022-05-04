@@ -51,3 +51,9 @@ logging:
           config: debug
 
 #debug: true
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+#      default true

@@ -1,5 +1,6 @@
 package com.codeademy.lt.product.controller;
 
+import com.codeademy.lt.helper.MessageService;
 import com.codeademy.lt.product.model.ProductDto;
 import com.codeademy.lt.product.service.ProductService;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.UUID;
 public class ProductController {
 
     private final ProductService productService;
+    private final MessageService messageService;
 
 
 //    public ProductController(ProductService productService) {
@@ -35,7 +37,7 @@ public class ProductController {
     @GetMapping
     public String openCreateProductForm(Model model, String message) {
         model.addAttribute("product", ProductDto.builder().build());
-        model.addAttribute("message", message);
+        model.addAttribute("message", messageService.getMessage(message));
         return "product";
     }
 
@@ -43,7 +45,7 @@ public class ProductController {
     public String createProduct(@ModelAttribute("product") ProductDto product, Model model /*, HttpServletRequest request */) {
         productService.save(product);
         model.addAttribute("message", "Product added successfully");
-        return "redirect:/products?message=Product added successfully!";
+        return "redirect:/products?message=create.product.message";
     }
 
     @GetMapping("/list")
