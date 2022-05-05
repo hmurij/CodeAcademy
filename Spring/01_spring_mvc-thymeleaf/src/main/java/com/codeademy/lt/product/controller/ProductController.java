@@ -73,4 +73,10 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/products/list";
     }
+
+//    @ExceptionHandler(NotFoundException.class)
+//    public String productNotFound(NotFoundException e, Model model) {
+//        model.addAttribute("productId", e.getProductId());
+//        return "productNotFound";
+//    }
 }
