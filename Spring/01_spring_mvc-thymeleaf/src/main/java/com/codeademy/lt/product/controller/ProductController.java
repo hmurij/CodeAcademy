@@ -9,12 +9,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
@@ -36,13 +38,16 @@ public class ProductController {
 
     @GetMapping
     public String openCreateProductForm(Model model, String message) {
-        model.addAttribute("product", ProductDto.builder().build());
+        model.addAttribute("productDto", new ProductDto());
         model.addAttribute("message", messageService.getMessage(message));
         return "product";
     }
 
     @PostMapping
-    public String createProduct(@ModelAttribute("product") ProductDto product, Model model /*, HttpServletRequest request */) {
+    public String createProduct(@Valid @ModelAttribute("productDto") ProductDto product, BindingResult bindingResult, Model model /*, HttpServletRequest request */) {
+        if (bindingResult.hasErrors()) {
+            return "product";
+        }
         productService.save(product);
         model.addAttribute("message", "Product added successfully");
         return "redirect:/products?message=create.product.message";
