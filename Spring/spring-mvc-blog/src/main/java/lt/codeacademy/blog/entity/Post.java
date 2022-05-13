@@ -12,7 +12,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -24,8 +24,8 @@ public class Post {
     private String title;
     @Lob
     private String content;
-    private Instant createdOn;
-    private Instant updatedOn;
+    private LocalDate createdOn;
+    private LocalDate updatedOn;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "blog_user_id")
     private BlogUser blogUser;
@@ -35,7 +35,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(String title, String content, Instant createdOn, Instant updatedOn, BlogUser blogUser, List<Comment> comments) {
+    public Post(String title, String content, LocalDate createdOn, LocalDate updatedOn, BlogUser blogUser, List<Comment> comments) {
         this.title = title;
         this.content = content;
         this.createdOn = createdOn;
@@ -60,19 +60,19 @@ public class Post {
         this.content = content;
     }
 
-    public Instant getCreatedOn() {
+    public LocalDate getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Instant createdOn) {
+    public void setCreatedOn(LocalDate createdOn) {
         this.createdOn = createdOn;
     }
 
-    public Instant getUpdatedOn() {
+    public LocalDate getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Instant updatedOn) {
+    public void setUpdatedOn(LocalDate updatedOn) {
         this.updatedOn = updatedOn;
     }
 

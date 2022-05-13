@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table
@@ -17,7 +17,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
-    private Instant createdOn;
+    private LocalDate createdOn;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "blog_user_id")
     private BlogUser blogUser;
@@ -28,7 +28,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String comment, Instant createdOn, BlogUser blogUser, Post post) {
+    public Comment(String comment, LocalDate createdOn, BlogUser blogUser, Post post) {
         this.comment = comment;
         this.createdOn = createdOn;
         this.blogUser = blogUser;
@@ -51,11 +51,11 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Instant getCreatedOn() {
+    public LocalDate getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Instant createdOn) {
+    public void setCreatedOn(LocalDate createdOn) {
         this.createdOn = createdOn;
     }
 

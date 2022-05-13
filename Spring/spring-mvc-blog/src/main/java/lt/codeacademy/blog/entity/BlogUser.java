@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,8 @@ public class BlogUser {
         this.userName = userName;
         this.password = password;
         this.email = email;
+        this.posts = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     public Long getId() {
@@ -68,6 +71,22 @@ public class BlogUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void addPost(Post post) {
+        posts.add(post);
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
     }
 
     @Override
