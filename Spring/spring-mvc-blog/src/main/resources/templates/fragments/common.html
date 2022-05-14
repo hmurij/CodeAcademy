@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<head th:fragment="head (title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/bootstrap/css/bootstrap.css}" th:rel="stylesheet">
+    <script th:src="@{/bootstrap/js/bootstrap.bundle.js}"></script>
+    <title th:replace="${title}"></title>
+</head>
+
+<div th:fragment="header" class="container-fluid p-3 bg-white border-bottom">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="ms-sm-5" th:text="#{main.page.header.heading}"></h1>
+        </div>
+    </div>
+</div>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-sm navbar-light bg-white">
+    <div class="container-fluid">
+        <!--        <a class="navbar-brand" href="#">BLOG</a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link active" aria-current="page" href="#">Home</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Link</a>-->
+                <!--                </li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false" th:text="#{navbar.language}">
+                        Languages
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="${#httpServletRequest.getContextPath()} + '?lang=en'"
+                               th:text="#{navbar.english}">English</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" th:href="${#httpServletRequest.getContextPath()} + '?lang=lt'"
+                               th:text="#{navbar.lithuanian}">Lithuanian</a></li>
+                        <!--                        <li>-->
+                        <!--                            <hr class="dropdown-divider">-->
+                        <!--                        </li>-->
+                        <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <button class="btn btn-outline-primary me-2" th:text="#{navbar.button.login}">Login</button>
+                <button class="btn btn-outline-primary" th:text="#{navbar.button.register}">Register</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div th:fragment="footer" class="container-fluid fixed-bottom p-3 bg-white border-top">
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="text-center text-muted">&copy; 2022 MyCompany, Inc</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

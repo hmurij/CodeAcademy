@@ -46,7 +46,8 @@ public class BlogFactory {
         return new BlogUser(
                 name.toString(),
                 "password",
-                String.format("%s.%s@mail.com", name.getFirstName(), name.getLastName())
+//                String.format("%s.%s@mail.com", name.getFirstName(), name.getLastName())
+                "%s.%s@mail.com".formatted(name.getFirstName(), name.getLastName())
         );
     }
 
