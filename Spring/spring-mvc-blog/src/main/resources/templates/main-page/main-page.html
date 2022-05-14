@@ -5,8 +5,18 @@
     <title>Main page</title>
 </head>
 <body class="bg-light">
-<div th:replace="~{fragments/common :: navbar}"></div>
 <div th:replace="~{fragments/common :: header}"></div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-lg-2 g-2">
+        <!--        <div th:each="product : ${posts}" class="col">-->
+        <!--                        <div th:replace="~{fragments/body :: product (${product})}"></div>-->
+        <!--        </div>-->
+        <div th:each="post : ${posts}" class="col">
+            <div th:replace="~{fragments/post :: post (${post})}"></div>
+        </div>
+    </div>
+</div>
 
 <div th:replace="~{fragments/common :: footer}"></div>
 </body>
