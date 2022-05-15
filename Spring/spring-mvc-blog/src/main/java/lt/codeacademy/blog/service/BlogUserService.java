@@ -13,7 +13,6 @@ public class BlogUserService {
 
 //    @PostConstruct
 //    public void init() {
-//        repository.deleteAll(repository.findAll());
 //        BlogFactory.blogUsers.forEach(repository::save);
 //    }
 

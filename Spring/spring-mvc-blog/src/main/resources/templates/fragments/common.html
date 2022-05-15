@@ -11,10 +11,10 @@
 <body>
 
 
-<div th:fragment="header" class="sticky-top mb-2">
+<div th:fragment="header" class="fixed-top">
     <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <div class="container-fluid">
-            <!--        <a class="navbar-brand" href="#">BLOG</a>-->
+            <a class="navbar-brand" th:href="@{/main}">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,17 +28,18 @@
                     <!--                    <a class="nav-link" href="#">Link</a>-->
                     <!--                </li>-->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        <a class="btn btn-outline-secondary dropdown-toggle mt-2" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown"
                            aria-expanded="false" th:text="#{navbar.language}">
                             Languages
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" th:href="${#httpServletRequest.getContextPath()} + '?lang=en'"
+                            <li><a class="dropdown-item" th:href="${#httpServletRequest.requestURI} + '?lang=en'"
                                    th:text="#{navbar.english}">English</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" th:href="${#httpServletRequest.getContextPath()} + '?lang=lt'"
+                            <li><a class="dropdown-item" th:href="${#httpServletRequest.requestURI} + '?lang=lt'"
                                    th:text="#{navbar.lithuanian}">Lithuanian</a></li>
                             <!--                        <li>-->
                             <!--                            <hr class="dropdown-divider">-->
@@ -60,16 +61,16 @@
     <div class="container-fluid p-3 bg-white border-bottom">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="text-center text-black-50" th:text="#{main.page.header.heading}"></h1>
+                <h1 class="text-center text-nowrap text-black-50" th:text="#{main.page.header.heading}"></h1>
             </div>
         </div>
     </div>
 </div>
 
-<div th:fragment="footer" class="container-fluid mt-2 p-3 bg-white border-top">
+<div th:fragment="footer" class="container-fluid fixed-bottom bg-white border-top">
     <div class="row">
         <div class="col-sm-12">
-            <p class="text-center text-muted">&copy; 2022 MyCompany, Inc</p>
+            <p class="text-center text-nowrap pt-3">&copy; 2022 MyCompany, Inc</p>
         </div>
     </div>
 </div>
