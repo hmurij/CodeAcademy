@@ -7,7 +7,7 @@
 <body class="bg-light">
 <div th:replace="~{fragments/common :: header}"></div>
 
-<div class="container" style="padding-top: 160px; padding-bottom: 66px;">
+<div id="content" class="container" style="padding-top: 160px; padding-bottom: 66px;">
     <div class="row row-cols-1 row-cols-lg-2 g-2">
         <div th:each="post : ${posts}" class="col">
             <div th:replace="~{fragments/post :: post-thumbnail (${post})}"></div>
@@ -16,5 +16,18 @@
 </div>
 
 <div th:replace="~{fragments/common :: footer}"></div>
+
 </body>
+<script type="text/javascript" th:src="@{/script/detect-element-resize.js}"></script>
+
+<script type="text/javascript">
+    var resizeElement = document.getElementById("header");
+    var content = document.getElementById("content");
+    var resizeCallback = function () {
+        console.log("height: " + resizeElement.clientHeight);
+        content.style.paddingTop = resizeElement.clientHeight + 8 + "px";
+    };
+    addResizeListener(resizeElement, resizeCallback);
+    // removeResizeListener(resizeElement, resizeCallback);
+</script>
 </html>
