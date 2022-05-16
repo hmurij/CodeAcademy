@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments/main :: head ('Cart')}">
+    <title></title>
+</head>
+<body>
+<div th:replace="~{fragments/main :: navbar}"></div>
+<div class="container mt-3">
+    <h1>Cart</h1>
+    <h3 th:text="${cartValue}"></h3>
+    <h3 th:text="${cart}"></h3>
+</div>
+<div th:replace="~{fragments/main :: footer}"></div>
+</body>
+</html>

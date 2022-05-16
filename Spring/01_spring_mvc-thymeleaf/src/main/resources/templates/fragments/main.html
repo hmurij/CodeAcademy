@@ -17,7 +17,7 @@
     <span class="text-muted">CodaAcademy. Spring MVC. All Rights reserved</span>
 </div>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav th:fragment="navbar" class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">eShop</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
@@ -31,6 +31,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/products}">Create Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/cart}">Cart</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " th:href="@{/user}">Register</a>
