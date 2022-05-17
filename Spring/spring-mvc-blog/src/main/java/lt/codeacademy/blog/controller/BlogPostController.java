@@ -1,5 +1,6 @@
 package lt.codeacademy.blog.controller;
 
+import lt.codeacademy.blog.NotFoundException;
 import lt.codeacademy.blog.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class BlogPostController {
-
     private final PostService postService;
 
     public BlogPostController(PostService postService) {
@@ -25,7 +25,12 @@ public class BlogPostController {
 
     @GetMapping(value = {"/post/{id}"})
     public String postPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("post", postService.getById(id));
+        model.addAttribute(
+                "post",
+                postService.getById(id)
+//                        .orElseThrow(() -> new NotFoundException("Post with id: " + id + " not found"))
+                        .orElseThrow(() -> new NotFoundException(id))
+        );
         return "main-templates/post-template";
     }
 

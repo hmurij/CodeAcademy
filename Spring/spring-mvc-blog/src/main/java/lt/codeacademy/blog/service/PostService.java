@@ -1,26 +1,12 @@
 package lt.codeacademy.blog.service;
 
 import lt.codeacademy.blog.entity.Post;
-import lt.codeacademy.blog.repository.PostRepository;
-import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class PostService {
-    private final PostRepository repository;
+public interface PostService {
+    public List<Post> findAll();
 
-    public PostService(PostRepository repository) {
-        this.repository = repository;
-    }
-
-    public List<Post> findAll() {
-        return repository.findAll();
-    }
-
-    @Transactional
-    public Post getById(Long id) {
-        return repository.getById(id);
-    }
+    public Optional<Post> getById(Long id);
 }

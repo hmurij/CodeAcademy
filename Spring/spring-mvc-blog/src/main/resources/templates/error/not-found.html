@@ -2,23 +2,19 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common :: head (~{::title})}">
-    <title>Main page</title>
+    <title>Post</title>
 </head>
-<body class="bg-light">
+<body class="bg-light" style="height: 100vh">
 <div th:replace="~{fragments/common :: header}"></div>
 
-<div id="content" class="container" style="padding-bottom: 66px;">
-    <div class="row row-cols-1 row-cols-lg-2 g-2">
-        <div th:each="post : ${posts}" class="col">
-            <div th:replace="~{fragments/post :: post-thumbnail (${post})}"></div>
-        </div>
+<div id="content" class="container">
+    <div class="row row-cols-1">
+        <h1 th:text="#{notfound.post} + ' ' + ${id} "></h1>
     </div>
 </div>
 
 <div th:replace="~{fragments/common :: footer}"></div>
-
 </body>
-
 <script type="text/javascript">
     var resizeElement = document.getElementById("header");
     var content = document.getElementById("content");
