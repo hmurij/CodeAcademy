@@ -2,10 +2,10 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common :: head (~{::title})}">
-    <title>Post</title>
+    <title>5xx Error</title>
 </head>
-<body class="bg-light" style="height: 100vh">
-<div th:replace="~{fragments/common :: header}"></div>
+<body class="bg-light">
+<div th:replace="~{fragments/common :: header (#{error.page.header.heading})}"></div>
 
 <div id="content" class="container" style="padding-top: 160px; padding-bottom: 66px;">
     <div class="row row-cols-1">

@@ -12,7 +12,7 @@
 <body>
 
 
-<div id="header" th:fragment="header" class="fixed-top">
+<div id="header" th:fragment="header (header)" class="fixed-top">
     <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <div class="container-fluid">
             <a class="navbar-brand" th:href="@{/main}">Home</a>
@@ -52,17 +52,17 @@
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-secondary me-2" th:text="#{navbar.button.login}">Login</button>
+                <div class="d-flex">
+                    <a class="btn btn-outline-secondary me-2" th:href="@{/login}" th:text="#{navbar.button.login}">Login</a>
                     <button class="btn btn-outline-secondary" th:text="#{navbar.button.register}">Register</button>
-                </form>
+                </div>
             </div>
         </div>
     </nav>
     <div class="container-fluid p-3 bg-white border-bottom">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="text-center text-nowrap text-black-50" th:text="#{main.page.header.heading}"></h1>
+                <h1 class="text-center text-nowrap text-black-50" th:text="${header}"></h1>
             </div>
         </div>
     </div>

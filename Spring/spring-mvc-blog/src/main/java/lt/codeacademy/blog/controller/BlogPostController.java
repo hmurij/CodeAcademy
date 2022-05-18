@@ -20,7 +20,7 @@ public class BlogPostController {
     @GetMapping(value = {"/", "/main"})
     public String mainPage(Model model) {
         model.addAttribute("posts", postService.findAll());
-        return "main-templates/main-template";
+        return "/main-templates/main";
     }
 
     @GetMapping(value = {"/post/{id}"})
@@ -28,10 +28,9 @@ public class BlogPostController {
         model.addAttribute(
                 "post",
                 postService.getById(id)
-//                        .orElseThrow(() -> new NotFoundException("Post with id: " + id + " not found"))
-                        .orElseThrow(() -> new NotFoundException(id))
+                        .orElseThrow(() -> new NotFoundException(id, "notfound.post"))
         );
-        return "main-templates/post-template";
+        return "/main-templates/post";
     }
 
 }

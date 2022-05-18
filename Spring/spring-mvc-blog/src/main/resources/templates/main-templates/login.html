@@ -2,23 +2,29 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common :: head (~{::title})}">
-    <title>Main page</title>
+    <title>Post</title>
 </head>
 <body class="bg-light">
-<div th:replace="~{fragments/common :: header}"></div>
+<div th:replace="~{fragments/common :: header (#{login.page.header.heading})}"></div>
 
 <div id="content" class="container" style="padding-bottom: 66px;">
-    <div class="row row-cols-1 row-cols-lg-2 g-2">
-        <div th:each="post : ${posts}" class="col">
-            <div th:replace="~{fragments/post :: post-thumbnail (${post})}"></div>
-        </div>
+    <div class="row row-cols-1">
+        <form method="post" th:action="@{/login}">
+            <div class="mb-3">
+                <label for="userName" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="userName" name="userName">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
 
 <div th:replace="~{fragments/common :: footer}"></div>
-
 </body>
-
 <script type="text/javascript">
     var resizeElement = document.getElementById("header");
     var content = document.getElementById("content");

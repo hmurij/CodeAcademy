@@ -10,6 +10,7 @@ public class CustomControllerAdvice {
     @ExceptionHandler(NotFoundException.class)
     public String productNotFound(NotFoundException e, Model model) {
         model.addAttribute("id", e.getId());
+        model.addAttribute("message", e.getMessage());
         return "error/not-found";
     }
 }
