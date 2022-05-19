@@ -15,6 +15,11 @@ public class BlogUserServiceImpl implements BlogUserService {
         this.repository = repository;
     }
 
+//    @PostConstruct
+//    public void init() {
+//        BlogFactory.blogUsers.forEach(repository::save);
+//    }
+
     @Override
     public List<BlogUser> findAll() {
         return repository.findAll();
