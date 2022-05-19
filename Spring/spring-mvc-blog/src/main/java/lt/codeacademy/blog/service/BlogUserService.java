@@ -1,19 +1,9 @@
 package lt.codeacademy.blog.service;
 
-import lt.codeacademy.blog.repository.BlogUserRepository;
-import org.springframework.stereotype.Service;
+import lt.codeacademy.blog.entity.BlogUser;
 
-@Service
-public class BlogUserService {
-    private final BlogUserRepository repository;
+import java.util.List;
 
-    public BlogUserService(BlogUserRepository repository) {
-        this.repository = repository;
-    }
-
-//    @PostConstruct
-//    public void init() {
-//        BlogFactory.blogUsers.forEach(repository::save);
-//    }
-
+public interface BlogUserService {
+    List<BlogUser> findAll();
 }

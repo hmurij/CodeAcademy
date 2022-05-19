@@ -7,6 +7,7 @@ import lt.codeacademy.blog.entity.Comment;
 import lt.codeacademy.blog.entity.Post;
 import org.ajbrown.namemachine.Name;
 import org.ajbrown.namemachine.NameGenerator;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -45,7 +46,7 @@ public class BlogFactory {
         Name name = generator.generateName();
         return new BlogUser(
                 name.toString(),
-                "password",
+                PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password"),
 //                String.format("%s.%s@mail.com", name.getFirstName(), name.getLastName())
                 "%s.%s@mail.com".formatted(name.getFirstName(), name.getLastName())
         );

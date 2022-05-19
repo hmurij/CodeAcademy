@@ -19,7 +19,7 @@ public class BlogUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "user_name")
+    @Column(name = "username")
     private String userName;
     @Column(name = "password")
     private String password;

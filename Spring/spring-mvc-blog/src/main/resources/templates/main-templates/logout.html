@@ -2,15 +2,15 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common :: head (~{::title})}">
-    <title>4xx Error</title>
+    <title>Post</title>
 </head>
 <body class="bg-light">
-<div th:replace="~{fragments/common :: header (#{error.page.header.heading})}"></div>
+<div th:replace="~{fragments/common :: header (#{login.page.header.heading})}"></div>
 
 <div id="content" class="container" style="padding-bottom: 66px;">
     <div class="row row-cols-1">
         <div class="p-2 bg-white border rounded-1">
-            <h1>4xx Error</h1>
+            <h1 th:text="#{logged.out}">Logged out</h1>
         </div>
     </div>
 </div>

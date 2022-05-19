@@ -5,11 +5,9 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class BlogUserController {
-    private final BlogUserService userService;
+    private BlogUserService userService;
 
     public BlogUserController(BlogUserService userService) {
         this.userService = userService;
     }
-
-
 }

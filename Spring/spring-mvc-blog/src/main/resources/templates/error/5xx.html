@@ -7,9 +7,11 @@
 <body class="bg-light">
 <div th:replace="~{fragments/common :: header (#{error.page.header.heading})}"></div>
 
-<div id="content" class="container" style="padding-top: 160px; padding-bottom: 66px;">
+<div id="content" class="container" style="padding-bottom: 66px;">
     <div class="row row-cols-1">
-        <h1>5xx Error</h1>
+        <div class="p-2 bg-white border rounded-1">
+            <h1>5xx Error</h1>
+        </div>
     </div>
 </div>
 
