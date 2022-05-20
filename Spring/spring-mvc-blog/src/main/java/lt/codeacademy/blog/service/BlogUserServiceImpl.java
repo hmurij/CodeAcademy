@@ -18,6 +18,7 @@ public class BlogUserServiceImpl implements BlogUserService {
 //    @PostConstruct
 //    public void init() {
 //        BlogFactory.blogUsers.forEach(repository::save);
+//        repository.save(BlogFactory.generateBlogAdmin());
 //    }
 
     @Override

@@ -16,11 +16,13 @@ import java.util.List;
 @Table(name = "blog_user")
 public class BlogUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
     @Column(name = "username")
     private String userName;
+    @Column(name = "authority")
+    private String authority;
     @Column(name = "password")
     private String password;
     @Column(name = "email")
@@ -33,8 +35,9 @@ public class BlogUser {
     public BlogUser() {
     }
 
-    public BlogUser(String userName, String password, String email) {
+    public BlogUser(String userName, String authority, String password, String email) {
         this.userName = userName;
+        this.authority = authority;
         this.password = password;
         this.email = email;
         this.posts = new ArrayList<>();

@@ -39,13 +39,24 @@ public class BlogFactory {
 
     private static List<BlogUser> generateBlogUsers() {
         return Stream.generate(BlogFactory::generateBlogUser)
-                .limit(random.nextInt(BLOG_USERS_MAX_SIZE - BLOG_USERS_MIN_SIZE) + BLOG_USERS_MIN_SIZE).toList();
+                .limit(random.nextInt(BLOG_USERS_MAX_SIZE - BLOG_USERS_MIN_SIZE) + BLOG_USERS_MIN_SIZE)
+                .toList();
+    }
+
+    public static BlogUser generateBlogAdmin() {
+        return new BlogUser(
+                "admin",
+                "ADMIN",
+                "{bcrypt}$2a$10$JM11cOpmVZMhEIjwp4gfTuztM2YUEs7FbWJYrpG6pLDEk6NYib/TO",
+                "admin@mail.com"
+        );
     }
 
     private static BlogUser generateBlogUser() {
         Name name = generator.generateName();
         return new BlogUser(
                 name.toString(),
+                "USER",
                 PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password"),
 //                String.format("%s.%s@mail.com", name.getFirstName(), name.getLastName())
                 "%s.%s@mail.com".formatted(name.getFirstName(), name.getLastName())
