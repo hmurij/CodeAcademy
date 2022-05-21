@@ -1,6 +1,6 @@
 package lt.codeacademy.blog.controller;
 
-import lt.codeacademy.blog.NotFoundException;
+import lt.codeacademy.blog.exception.NotFoundException;
 import lt.codeacademy.blog.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

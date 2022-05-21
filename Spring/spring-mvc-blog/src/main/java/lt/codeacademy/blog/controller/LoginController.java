@@ -2,18 +2,16 @@ package lt.codeacademy.blog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.Principal;
 
 @Controller
 public class LoginController {
     @GetMapping("/login")
-    public String login() {
-        return "/main-templates/login";
-    }
-
-    @PostMapping("/login")
-    public String processLogin() {
-//        return "redirect:/main";
+    public String login(Principal principal) {
+        if (principal != null) {
+            return "redirect:/main";
+        }
         return "/main-templates/login";
     }
 

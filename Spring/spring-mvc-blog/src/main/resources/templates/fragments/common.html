@@ -54,15 +54,18 @@
                     <a class="btn btn-outline-secondary me-2"
                        sec:authorize="!isAuthenticated()"
                        th:href="@{/login}"
-                       th:text="#{navbar.button.login}">Login</a>
+                       th:text="#{navbar.button.login}">Login
+                    </a>
                     <a class="btn btn-outline-secondary me-2"
                        sec:authorize="isAuthenticated()"
                        th:href="@{/logout}"
-                       th:text="#{navbar.button.logout}">Login</a>
-                    <button class="btn btn-outline-secondary"
-                            sec:authorize="!isAuthenticated()"
-                            th:text="#{navbar.button.register}">Register
-                    </button>
+                       th:text="#{navbar.button.logout}">Login
+                    </a>
+                    <a class="btn btn-outline-secondary"
+                       sec:authorize="!isAuthenticated()"
+                       th:href="@{/register}"
+                       th:text="#{navbar.button.register}">Register
+                    </a>
                 </div>
             </div>
         </div>

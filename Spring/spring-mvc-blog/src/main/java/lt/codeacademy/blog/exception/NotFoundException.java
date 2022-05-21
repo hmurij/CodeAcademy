@@ -1,4 +1,4 @@
-package lt.codeacademy.blog;
+package lt.codeacademy.blog.exception;
 
 public class NotFoundException extends RuntimeException {
     private final Long id;
