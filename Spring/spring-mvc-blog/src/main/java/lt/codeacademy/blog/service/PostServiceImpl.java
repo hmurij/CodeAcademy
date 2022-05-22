@@ -19,6 +19,11 @@ public class PostServiceImpl implements PostService {
         return repository.findAll();
     }
 
+    @Override
+    public Post save(Post post) {
+        return repository.save(post);
+    }
+
     public Optional<Post> getById(Long id) {
         return repository.findById(id);
     }

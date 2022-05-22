@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PostService {
-    public List<Post> findAll();
+    List<Post> findAll();
 
-    public Optional<Post> getById(Long id);
+    Post save(Post post);
+
+    Optional<Post> getById(Long id);
+
 }

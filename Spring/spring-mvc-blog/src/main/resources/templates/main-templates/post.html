@@ -13,6 +13,8 @@
         <div th:replace="~{fragments/post :: post-full (${post})}"></div>
     </div>
 
+    <h5 th:if="${post.comments.size() > 0} or ${#authentication.name} != 'anonymousUser'" class="mt-2">Comments</h5>
+
     <div th:replace="~{fragments/post :: new-post-comment (${post})}"></div>
 
     <div class="row row-cols-1 mt-1" th:each="comment : ${post.comments}">

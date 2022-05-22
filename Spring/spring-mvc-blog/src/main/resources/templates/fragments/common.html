@@ -43,6 +43,7 @@
                     </li>
                     <li class="nav-item mt-2" sec:authorize="isAuthenticated()">
                         <a class="btn btn-outline-secondary"
+                           th:href="@{/new-post}"
                            th:text="#{navbar.addnewpost}">Add new post</a>
                     </li>
                 </ul>

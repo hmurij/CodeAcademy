@@ -1,20 +1,33 @@
 package lt.codeacademy.blog.controller;
 
+import lt.codeacademy.blog.dto.PostDto;
+import lt.codeacademy.blog.exception.CommonException;
 import lt.codeacademy.blog.exception.NotFoundException;
+import lt.codeacademy.blog.service.BlogUserService;
 import lt.codeacademy.blog.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
+import java.security.Principal;
+
+import static lt.codeacademy.blog.utils.mapper.BlogMapper.mapToPost;
 
 @Controller
 @RequestMapping("/")
 public class BlogPostController {
     private final PostService postService;
+    private final BlogUserService blogUserService;
 
-    public BlogPostController(PostService postService) {
+    public BlogPostController(PostService postService, BlogUserService blogUserService) {
         this.postService = postService;
+        this.blogUserService = blogUserService;
     }
 
     @GetMapping(value = {"/", "/main"})
@@ -33,4 +46,29 @@ public class BlogPostController {
         return "/main-templates/post";
     }
 
+    @GetMapping("/new-post")
+    public String newPost(Model model, Principal principal) {
+        if (principal == null) {
+            return "redirect:/main";
+        }
+        model.addAttribute("newPost", new PostDto());
+        return "/main-templates/new-post";
+    }
+
+    @PostMapping("/new-post")
+    public String processNewPost(
+            @Valid @ModelAttribute("newPost") PostDto newPost,
+            BindingResult bindingResult,
+            Principal principal
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "/main-templates/new-post";
+        }
+        postService.save(mapToPost(
+                newPost,
+                blogUserService.findByUserName(principal.getName())
+                        .orElseThrow(() -> new CommonException("common.error.user.not.found"))
+        ));
+        return "redirect:/main";
+    }
 }

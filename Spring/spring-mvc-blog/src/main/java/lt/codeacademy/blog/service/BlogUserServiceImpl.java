@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import static lt.codeacademy.blog.utils.mapper.BlogUserMapper.mapToBlogUser;
+import static lt.codeacademy.blog.utils.mapper.BlogMapper.mapToBlogUser;
 
 @Service
 public class BlogUserServiceImpl implements BlogUserService {
@@ -36,7 +36,7 @@ public class BlogUserServiceImpl implements BlogUserService {
     }
 
     @Override
-    public boolean findByUserName(String userName) {
-        return Optional.ofNullable(repository.findByUserName(userName)).isPresent();
+    public Optional<BlogUser> findByUserName(String userName) {
+        return repository.findByUserName(userName);
     }
 }

@@ -38,9 +38,10 @@ public class BlogUserController {
         if (bindingResult.hasErrors()) {
             return "/main-templates/new-user";
         }
-        if (userService.findByUserName(blogUserDto.getUsername())) {
-            throw new CommonException("common.error.user.exists");
-        }
+        userService.findByUserName(blogUserDto.getUsername())
+                .ifPresent(blogUser -> {
+                    throw new CommonException("common.error.user.exists");
+                });
         userService.save(blogUserDto);
         return "redirect:/user-created";
     }
