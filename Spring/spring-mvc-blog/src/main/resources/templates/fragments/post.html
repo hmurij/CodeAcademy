@@ -39,7 +39,7 @@
                   th:text="${post.content}">Post Content</textarea>
         <div class="d-flex justify-content-end mt-2">
             <button type="submit" class="btn btn-outline-primary me-2">Update</button>
-            <button class="btn btn-outline-danger">Delete</button>
+            <a class="btn btn-outline-danger" th:href="'delete/' + *{id}">Delete</a>
         </div>
     </form>
 </div>

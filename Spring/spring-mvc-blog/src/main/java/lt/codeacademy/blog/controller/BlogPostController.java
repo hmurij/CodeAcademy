@@ -40,11 +40,7 @@ public class BlogPostController {
 
     @GetMapping(value = {"/post/{id}"})
     public String postPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute(
-                "post",
-                postService.getById(id)
-                        .orElseThrow(() -> new NotFoundException(id, "notfound.post"))
-        );
+        model.addAttribute("post", postService.getById(id).orElseThrow(() -> new NotFoundException(id, "notfound.post")));
         return "/main-templates/post";
     }
 
@@ -58,19 +54,11 @@ public class BlogPostController {
     }
 
     @PostMapping("/new-post")
-    public String processNewPost(
-            @Valid @ModelAttribute("newPost") PostDto newPost,
-            BindingResult bindingResult,
-            Principal principal
-    ) {
+    public String processNewPost(@Valid @ModelAttribute("newPost") PostDto newPost, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             return "/main-templates/new-post";
         }
-        postService.save(mapToPost(
-                newPost,
-                blogUserService.findByUserName(principal.getName())
-                        .orElseThrow(() -> new CommonException("common.error.user.not.found"))
-        ));
+        postService.save(mapToPost(newPost, blogUserService.findByUserName(principal.getName()).orElseThrow(() -> new CommonException("common.error.user.not.found"))));
         return "redirect:/main";
     }
 
@@ -79,11 +67,20 @@ public class BlogPostController {
         if (bindingResult.hasErrors()) {
             return "redirect:/post/" + post.getId();
         }
-        Post updatedPost = postService.getById(post.getId())
-                .orElseThrow(() -> new NotFoundException(post.getId(), "notfound.post"));
+        Post updatedPost = postService.getById(post.getId()).orElseThrow(() -> new NotFoundException(post.getId(), "notfound.post"));
         updatedPost.setContent(post.getContent());
         updatedPost.setUpdatedOn(LocalDate.now());
         postService.save(updatedPost);
         return "redirect:/post/" + post.getId();
+    }
+
+    @GetMapping(value = {"/post/delete/{id}"})
+    public String deletePost(@PathVariable("id") Long id, Principal principal) {
+        Post post = postService.getById(id).orElseThrow(() -> new NotFoundException(id, "notfound.post"));
+        if (principal == null || (!principal.getName().equals("admin") && !principal.getName().equals(post.getBlogUser().getUserName()))) {
+            return "redirect:/main";
+        }
+        postService.getById(id).map(Post::getId).ifPresent(postService::deleteById);
+        return "redirect:/main";
     }
 }
