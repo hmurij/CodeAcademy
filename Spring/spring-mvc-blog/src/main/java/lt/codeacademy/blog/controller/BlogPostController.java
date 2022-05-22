@@ -1,6 +1,7 @@
 package lt.codeacademy.blog.controller;
 
 import lt.codeacademy.blog.dto.PostDto;
+import lt.codeacademy.blog.entity.Post;
 import lt.codeacademy.blog.exception.CommonException;
 import lt.codeacademy.blog.exception.NotFoundException;
 import lt.codeacademy.blog.service.BlogUserService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 
 import static lt.codeacademy.blog.utils.mapper.BlogMapper.mapToPost;
 
@@ -70,5 +72,18 @@ public class BlogPostController {
                         .orElseThrow(() -> new CommonException("common.error.user.not.found"))
         ));
         return "redirect:/main";
+    }
+
+    @PostMapping("/update-post")
+    public String updatePost(@Valid @ModelAttribute("post") Post post, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/post/" + post.getId();
+        }
+        Post updatedPost = postService.getById(post.getId())
+                .orElseThrow(() -> new NotFoundException(post.getId(), "notfound.post"));
+        updatedPost.setContent(post.getContent());
+        updatedPost.setUpdatedOn(LocalDate.now());
+        postService.save(updatedPost);
+        return "redirect:/post/" + post.getId();
     }
 }

@@ -27,9 +27,9 @@ public class BlogUser {
     private String password;
     @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "blogUser", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "blogUser", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Post> posts;
-    @OneToMany(mappedBy = "blogUser", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "blogUser", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     public BlogUser() {

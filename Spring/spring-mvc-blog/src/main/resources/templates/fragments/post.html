@@ -29,11 +29,16 @@
     <textarea class="form-control bg-white" style="overflow:hidden" readonly
               th:unless="(${#authentication.getName()} == ${post.blogUser.userName}) or ${#authentication.getName().equals('admin')}"
               th:text="${post.content}">Post Content</textarea>
-    <form th:if="(${#authentication.getName()} == ${post.blogUser.userName}) or ${#authentication.getName().equals('admin')}">
+    <form th:if="(${#authentication.getName()} == ${post.blogUser.userName}) or ${#authentication.getName().equals('admin')}"
+          method="post"
+          th:object="${post}"
+          th:action="@{/update-post}">
+        <input type="hidden" th:field="*{id}">
         <textarea class="form-control bg-white" style="overflow:hidden"
+                  th:field="*{content}"
                   th:text="${post.content}">Post Content</textarea>
         <div class="d-flex justify-content-end mt-2">
-            <button class="btn btn-outline-primary me-2">Update</button>
+            <button type="submit" class="btn btn-outline-primary me-2">Update</button>
             <button class="btn btn-outline-danger">Delete</button>
         </div>
     </form>
