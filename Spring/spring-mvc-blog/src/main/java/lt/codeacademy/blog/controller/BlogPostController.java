@@ -1,5 +1,6 @@
 package lt.codeacademy.blog.controller;
 
+import lt.codeacademy.blog.dto.CommentDto;
 import lt.codeacademy.blog.dto.PostDto;
 import lt.codeacademy.blog.entity.Post;
 import lt.codeacademy.blog.exception.CommonException;
@@ -41,6 +42,7 @@ public class BlogPostController {
     @GetMapping(value = {"/post/{id}"})
     public String postPage(@PathVariable("id") Long id, Model model) {
         model.addAttribute("post", postService.getById(id).orElseThrow(() -> new NotFoundException(id, "notfound.post")));
+        model.addAttribute("newComment", new CommentDto());
         return "/main-templates/post";
     }
 

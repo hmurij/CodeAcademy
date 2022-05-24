@@ -69,11 +69,19 @@
 <div th:fragment="new-post-comment (post)">
     <div class="row row-cols-1" sec:authorize="isAuthenticated()">
         <div class="border rounded-1 bg-white p-2">
-            <form method="post">
+            <form method="post"
+                  th:object="${newComment}"
+                  th:action="@{/comment}">
                 <div class="form-floating">
+                    <input type="hidden"
+                           th:value="${post.id}"
+                           th:attr="name='postId'">
                     <textarea class="form-control"
                               style="overflow:hidden"
-                              id="floatingTextarea"></textarea>
+                              id="floatingTextarea"
+                              th:field="*{comment}"
+                              th:text="${newComment.comment}"
+                    ></textarea>
                     <label for="floatingTextarea">Add new comment</label>
                 </div>
                 <div class="d-flex justify-content-end">
