@@ -6,4 +6,8 @@ import java.util.Optional;
 
 public interface CommentService {
     Optional<Comment> findById(Long id);
+
+    Comment save(Comment comment);
+
+    void deleteById(Long id);
 }

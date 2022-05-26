@@ -1,10 +1,14 @@
 package lt.codeacademy.blog.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class CommentDto {
+    @NotBlank
+    @Size(min = 2)
     private String comment;
     private Long commentId;
     private Long postId;
-    private Long blogUserId;
 
     public CommentDto() {
     }
@@ -31,13 +35,5 @@ public class CommentDto {
 
     public void setPostId(Long postId) {
         this.postId = postId;
-    }
-
-    public Long getBlogUserId() {
-        return blogUserId;
-    }
-
-    public void setBlogUserId(Long blogUserId) {
-        this.blogUserId = blogUserId;
     }
 }
