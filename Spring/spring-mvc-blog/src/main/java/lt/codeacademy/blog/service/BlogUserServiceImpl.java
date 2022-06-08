@@ -3,8 +3,10 @@ package lt.codeacademy.blog.service;
 import lt.codeacademy.blog.dto.BlogUserDto;
 import lt.codeacademy.blog.entity.BlogUser;
 import lt.codeacademy.blog.repository.BlogUserRepository;
+import lt.codeacademy.blog.utils.factory.BlogFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +21,11 @@ public class BlogUserServiceImpl implements BlogUserService {
         this.repository = repository;
     }
 
-//    @PostConstruct
-//    public void init() {
-//        BlogFactory.blogUsers.forEach(repository::save);
-//        repository.save(BlogFactory.generateBlogAdmin());
-//    }
+    @PostConstruct
+    public void init() {
+        BlogFactory.blogUsers.forEach(repository::save);
+        repository.save(BlogFactory.generateBlogAdmin());
+    }
 
     @Override
     public List<BlogUser> findAll() {
