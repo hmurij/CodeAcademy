@@ -28,7 +28,7 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     compileOnly 'org.postgresql:postgresql'
-    testRuntimeOnly 'com.h2database:h2'
+    developmentOnly 'com.h2database:h2'
 
     implementation 'com.thedeanda:lorem:2.1'
     implementation 'org.ajbrown:name-machine:1.0.0'
