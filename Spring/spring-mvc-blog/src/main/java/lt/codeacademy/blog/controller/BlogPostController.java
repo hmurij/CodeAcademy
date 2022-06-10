@@ -41,7 +41,10 @@ public class BlogPostController {
 
     @GetMapping(value = {"/post/{id}"})
     public String postPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("post", postService.getById(id).orElseThrow(() -> new NotFoundException(id, "notfound.post")));
+        model.addAttribute(
+                "post",
+                postService.getById(id).orElseThrow(() -> new NotFoundException(id, "notfound.post"))
+        );
         model.addAttribute("newComment", new CommentDto());
         return "/main-templates/post";
     }
@@ -60,7 +63,11 @@ public class BlogPostController {
         if (bindingResult.hasErrors()) {
             return "/main-templates/new-post";
         }
-        postService.save(mapToPost(newPost, blogUserService.findByUserName(principal.getName()).orElseThrow(() -> new CommonException("common.error.user.not.found"))));
+        postService.save(mapToPost(
+                newPost,
+                blogUserService.findByUserName(principal.getName())
+                        .orElseThrow(() -> new CommonException("common.error.user.not.found")))
+        );
         return "redirect:/main";
     }
 
@@ -69,7 +76,8 @@ public class BlogPostController {
         if (bindingResult.hasErrors()) {
             return "redirect:/post/" + post.getId();
         }
-        Post updatedPost = postService.getById(post.getId()).orElseThrow(() -> new NotFoundException(post.getId(), "notfound.post"));
+        Post updatedPost = postService.getById(post.getId())
+                .orElseThrow(() -> new NotFoundException(post.getId(), "notfound.post"));
         updatedPost.setContent(post.getContent());
         updatedPost.setUpdatedOn(LocalDate.now());
         postService.save(updatedPost);
@@ -82,7 +90,9 @@ public class BlogPostController {
         if (principal == null || (!principal.getName().equals("admin") && !principal.getName().equals(post.getBlogUser().getUserName()))) {
             return "redirect:/main";
         }
-        postService.getById(id).map(Post::getId).ifPresent(postService::deleteById);
+        postService.getById(id)
+                .map(Post::getId)
+                .ifPresent(postService::deleteById);
         return "redirect:/main";
     }
 }

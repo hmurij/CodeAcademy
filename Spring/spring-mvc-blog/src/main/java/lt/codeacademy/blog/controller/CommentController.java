@@ -39,11 +39,13 @@ public class CommentController {
             @Valid @ModelAttribute("newComment") CommentDto comment,
             BindingResult bindingResult,
             Principal principal) {
-        Post post = postService.getById(comment.getPostId()).orElseThrow(() -> new NotFoundException(comment.getPostId(), "notfound.post"));
+        Post post = postService.getById(comment.getPostId())
+                .orElseThrow(() -> new NotFoundException(comment.getPostId(), "notfound.post"));
         if (bindingResult.hasErrors() || principal == null) {
             return "redirect:/post/" + comment.getPostId();
         }
-        BlogUser blogUser = blogUserService.findByUserName(principal.getName()).orElseThrow(() -> new CommonException("common.error.user.not.found"));
+        BlogUser blogUser = blogUserService.findByUserName(principal.getName())
+                .orElseThrow(() -> new CommonException("common.error.user.not.found"));
         post.getComments().add(new Comment(comment.getComment(), LocalDate.now(), blogUser, post));
         postService.save(post);
         return "redirect:/post/" + comment.getPostId();
