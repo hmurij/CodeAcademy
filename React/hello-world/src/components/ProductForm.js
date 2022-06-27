@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const ProductForm = (props) => {
   const [product, setProduct] = useState({
-    name: "",
+    name: '',
     price: 0,
     quantity: 0,
-    description: "",
+    description: '',
   });
 
   const onChange = (event) => {
