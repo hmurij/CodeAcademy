@@ -1,18 +1,21 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap";
 
-const Main = () => {
+const Main = (props) => {
   return (
-    <React.Fragment>
-      <div className="container-fluid bg-white">
-        <h1>Header</h1>
-      </div>
-      <div className="container-fluid bg-white">
-        <h1>Content</h1>
-      </div>
-      <div className="container-fluid bg-white">
-        <h1>Footer</h1>
-      </div>
-    </React.Fragment>
+    <Container
+      id="content"
+      fluid
+      className="bg-light pt-2"
+      style={{ height: "100vh" }}
+    >
+      <Row
+        className="bg-white ms-1 me-1"
+        style={{ marginTop: props.headerHeight }}
+      >
+        <h1>Main content</h1>
+      </Row>
+    </Container>
   );
 };
 

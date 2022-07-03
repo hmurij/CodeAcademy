@@ -1,14 +1,20 @@
+import React, { useState } from "react";
+import Header from "./Components/Header/Header";
 import Main from "./Components/Pages/Main";
-
-import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const heightChangeHandler = (height) => {
+    setHeaderHeight(height);
+  };
+
   return (
-    <div className="App">
-      <div className="container bg-light">
-        <Main />
-      </div>
-    </div>
+    <>
+      <Header onHeightChange={heightChangeHandler} />
+      <Main headerHeight={headerHeight} />
+      <Footer />
+    </>
   );
 }
 
