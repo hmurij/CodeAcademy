@@ -97,7 +97,9 @@ class Header extends React.Component {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <h1>Spring Rest API Blog</h1>
+        <div className="btn" style={{ cursor: "default" }}>
+          <h1>Spring Rest API Blog</h1>
+        </div>
       </Container>
     );
   }

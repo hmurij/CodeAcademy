@@ -6,15 +6,19 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
-  const heightChangeHandler = (height) => {
+  const [footerHeight, setFooterHeight] = useState(0);
+  const headerHeightChangeHandler = (height) => {
     setHeaderHeight(height);
+  };
+  const footerHeightChangeHandler = (height) => {
+    setFooterHeight(height);
   };
 
   return (
     <BrowserRouter>
-      <Header onHeightChange={heightChangeHandler} />
-      <Pages headerHeight={headerHeight} />
-      <Footer />
+      <Header onHeightChange={headerHeightChangeHandler} />
+      <Pages headerHeight={headerHeight} footerHeight={footerHeight} />
+      <Footer onHeightChange={footerHeightChangeHandler} />
     </BrowserRouter>
   );
 }

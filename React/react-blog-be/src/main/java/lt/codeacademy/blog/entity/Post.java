@@ -106,6 +106,7 @@ public class Post {
     public JsonNode asJson() {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.createObjectNode()
+                .put("id", id)
                 .put("title", title)
                 .put("content", content)
                 .put("createdOn", createdOn.toString())
