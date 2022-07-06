@@ -3,6 +3,8 @@ import { Container, Row } from "react-bootstrap";
 import Main from "./Main";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
+import Register from "./Register";
+import NewPost from "./NewPost";
 
 const Pages = (props) => {
   return (
@@ -18,6 +20,8 @@ const Pages = (props) => {
       >
         <Routes>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/new-post" element={<NewPost />}></Route>
           <Route path="/" element={<Main />}></Route>
         </Routes>
       </Row>

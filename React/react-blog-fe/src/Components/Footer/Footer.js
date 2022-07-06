@@ -6,7 +6,7 @@ const Footer = () => {
     <Container fluid className="fixed-bottom border-top bg-white">
       <Row>
         <Col>
-          <p className="text-center text-nowrap pt-2">
+          <p className="text-center text-nowrap pt-3">
             &copy; 2022 MyCompany, Inc
           </p>
         </Col>

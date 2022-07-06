@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
 
 class Header extends React.Component {
   constructor(props) {
@@ -44,36 +44,60 @@ class Header extends React.Component {
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <NavDropdown title="Languages" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">
-                    English
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">
-                    Lithuanian
-                  </NavDropdown.Item>
-                </NavDropdown>
+              <Dropdown>
+                <Dropdown.Toggle variant="outline-secondary">
+                  Languages
+                </Dropdown.Toggle>
 
-                <Nav className=" bg-danger">
-                  <Nav.Link
-                    className="justify-content-end"
-                    to="/login"
-                    as={NavLink}
-                  >
-                    Login
-                  </Nav.Link>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Lithuanian</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item href="#/action-2">English</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
 
-                  <Nav.Link to="/" as={NavLink}>
-                    Logout
-                  </Nav.Link>
-                  <Nav.Link href="#link">Register</Nav.Link>
-                </Nav>
+              <Link
+                className="me-auto btn btn-outline-secondary ms-1 mt-1 mb-1 text-decoration-none"
+                to="/new-post"
+                as={NavLink}
+              >
+                New Post
+              </Link>
+
+              <div
+                className="btn mt-2 mb-2 text-secondary"
+                style={{ cursor: "default" }}
+              >
+                <span>Signed in as: {"User Name"}</span>
+              </div>
+
+              <Nav>
+                <Link
+                  className="btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
+                  to="/login"
+                  as={NavLink}
+                >
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-outline-secondary me-1 mt-1  mb-1 text-decoration-none"
+                  to="/"
+                  as={NavLink}
+                >
+                  Logout
+                </Link>
+                <Link
+                  className="btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
+                  to="/register"
+                  as={NavLink}
+                >
+                  Register
+                </Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <h1>Spring Rest API Blog - Main Page</h1>
+        <h1>Spring Rest API Blog</h1>
       </Container>
     );
   }
