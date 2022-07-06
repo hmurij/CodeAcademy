@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import NewPost from "./NewPost";
+import Post from "./Post";
 
 const Pages = (props) => {
   return (
@@ -30,6 +31,15 @@ const Pages = (props) => {
         path="/new-post"
         element={
           <NewPost
+            headerHeight={props.headerHeight}
+            footerHeight={props.footerHeight}
+          />
+        }
+      ></Route>
+      <Route
+        path="/post/:id"
+        element={
+          <Post
             headerHeight={props.headerHeight}
             footerHeight={props.footerHeight}
           />

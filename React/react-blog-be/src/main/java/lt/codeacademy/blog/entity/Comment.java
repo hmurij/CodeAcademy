@@ -1,5 +1,8 @@
 package lt.codeacademy.blog.entity;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -75,6 +78,15 @@ public class Comment {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public JsonNode asJson() {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.createObjectNode()
+                .put("id", id)
+                .put("comment", comment)
+                .put("createdOn", createdOn.toString())
+                .put("blogUser", blogUser.getUserName());
     }
 
     @Override

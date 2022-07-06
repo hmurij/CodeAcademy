@@ -12,7 +12,7 @@ class PostTest {
     void asJson_generatedPost_validJson() {
         Post post = BlogFactory.posts.get(1);
 
-        JsonNode result = post.asJson();
+        JsonNode result = post.asJsonWithComments();
 
         assertTrue(true);
     }

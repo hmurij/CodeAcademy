@@ -3,6 +3,8 @@ package lt.codeacademy.blog.entity;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collector;
 
 @Entity
 @Table
@@ -113,6 +116,14 @@ public class Post {
                 .put("updatedOn", updatedOn.toString())
                 .put("blogUser", blogUser.getUserName())
                 .put("comments", comments.size());
+    }
+
+    public JsonNode asJsonWithComments() {
+        return ((ObjectNode) asJson())
+                .set("comments", getComments().stream()
+                        .map(Comment::asJson)
+                        .collect(Collector.of(() -> new ObjectMapper().createArrayNode(), ArrayNode::add, ArrayNode::addAll))
+                );
     }
 
     @Override

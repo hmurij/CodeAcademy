@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
 
 const Main = (props) => {
   const [posts, setPosts] = useState([]);
@@ -30,21 +31,30 @@ const Main = (props) => {
       >
         {posts.map((post) => {
           return (
-            <Col key={post.id}>
-              <Card>
-                <Card.Header className="fst-italic">
-                  {post.blogUser}
-                </Card.Header>
-                <Card.Body>
-                  <Card.Title className="fst-italic">{post.title}</Card.Title>
-                  <Card.Text>{post.content.slice(0, 200) + " . . ."}</Card.Text>
-                </Card.Body>
-                <Card.Footer className="d-flex text-muted">
-                  <div className="me-auto">{"Posted: " + post.createdOn}</div>
-                  <div>{"Edited: " + post.updatedOn}</div>
-                </Card.Footer>
-              </Card>
-            </Col>
+            <Link
+              key={post.id}
+              to={"/post/" + post.id}
+              as={NavLink}
+              className="text-decoration-none text-black"
+            >
+              <Col>
+                <Card>
+                  <Card.Header className="fst-italic">
+                    {post.blogUser}
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Title className="fst-italic">{post.title}</Card.Title>
+                    <Card.Text>
+                      {post.content.slice(0, 200) + " . . ."}
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer className="d-flex text-muted">
+                    <div className="me-auto">{"Posted: " + post.createdOn}</div>
+                    <div>{"Edited: " + post.updatedOn}</div>
+                  </Card.Footer>
+                </Card>
+              </Col>
+            </Link>
           );
         })}
       </Row>
