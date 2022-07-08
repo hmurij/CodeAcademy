@@ -9,9 +9,11 @@ import {
   Row,
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Comment from "../Components/Comment";
 
 const Post = (props) => {
   const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
   const textAreaRef = useRef(null);
 
@@ -24,6 +26,7 @@ const Post = (props) => {
       .then((data) => {
         console.log(data);
         setPost(data);
+        setComments(data.comments);
       });
   }, []);
 
@@ -36,12 +39,12 @@ const Post = (props) => {
       <Row
         className="g-2 pb-2"
         style={{
-          marginTop: props.headerHeight,
+          marginTop: props.headerHeight + 15 + "px",
           marginBottom: props.footerHeight,
         }}
       >
         <Col>
-          <Card>
+          <Card style={{ boxShadow: "5px 5px 10px grey" }}>
             <Card.Header className="fst-italic">{post.blogUser}</Card.Header>
             <Card.Body>
               <Card.Title className="fst-italic">{post.title}</Card.Title>
@@ -62,11 +65,15 @@ const Post = (props) => {
               <div>{"Edited: " + post.updatedOn}</div>
             </Card.Footer>
           </Card>
+
           <div className="ms-2 mt-2">
             <h5>Comments</h5>
           </div>
 
-          <Card className="py-2 px-3 bg-light">
+          <Card
+            className="py-2 px-3 bg-light"
+            style={{ boxShadow: "5px 5px 10px grey" }}
+          >
             <Form>
               <Form.Group
                 className="mb-3"
@@ -83,6 +90,10 @@ const Post = (props) => {
               </div>
             </Form>
           </Card>
+
+          {comments.map((comment) => {
+            return <Comment comment={comment} />;
+          })}
         </Col>
       </Row>
     </Container>

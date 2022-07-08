@@ -31,12 +31,13 @@ class Header extends React.Component {
     return (
       <Container
         fluid
-        className="fixed-top border-bottom bg-white text-center"
+        className="fixed-top border-bottom text-center bg-light"
+        style={{ boxShadow: "5px 5px 10px grey" }}
         ref={(header) => {
           this.header = header;
         }}
       >
-        <Navbar bg="white" expand="sm">
+        <Navbar bg="light" expand="sm">
           <Container fluid>
             <Navbar.Brand to="/" as={NavLink}>
               Home

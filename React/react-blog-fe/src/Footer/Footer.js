@@ -29,7 +29,7 @@ class Footer extends React.Component {
     return (
       <Container
         fluid
-        className="fixed-bottom border-top bg-white"
+        className="fixed-bottom border-top bg-light"
         ref={(footer) => {
           this.header = footer;
         }}
