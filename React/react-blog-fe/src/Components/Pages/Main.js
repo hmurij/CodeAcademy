@@ -7,7 +7,7 @@ const Main = (props) => {
 
   useEffect(() => {
     // console.log("fetch list of posts");
-    fetch("http://localhost:8080/api/posts")
+    fetch("http://localhost:3000/api/posts")
       .then((response) => {
         return response.json();
       })
@@ -44,7 +44,7 @@ const Main = (props) => {
                   </Card.Header>
                   <Card.Body>
                     <Card.Title className="fst-italic">{post.title}</Card.Title>
-                    <Card.Text>
+                    <Card.Text style={{ textAlign: "justify" }}>
                       {post.content.slice(0, 200) + " . . ."}
                     </Card.Text>
                   </Card.Body>

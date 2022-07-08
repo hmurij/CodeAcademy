@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  FloatingLabel,
+  Form,
+  Row,
+} from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 const Post = (props) => {
@@ -9,7 +17,7 @@ const Post = (props) => {
 
   useEffect(() => {
     // console.log("fetching post id:" + id);
-    fetch("http://localhost:8080/api/posts/" + id)
+    fetch("http://localhost:3000/api/posts/" + id)
       .then((response) => {
         return response.json();
       })
@@ -44,11 +52,36 @@ const Post = (props) => {
                 className="form-control bg-white"
                 style={{ overflow: "hidden" }}
               />
+              <div className="d-flex mt-2 justify-content-end">
+                <Button variant="outline-primary me-1">Update</Button>
+                <Button variant="outline-danger">Delete</Button>
+              </div>
             </Card.Body>
             <Card.Footer className="d-flex text-muted">
               <div className="me-auto">{"Posted: " + post.createdOn}</div>
               <div>{"Edited: " + post.updatedOn}</div>
             </Card.Footer>
+          </Card>
+          <div className="ms-2 mt-2">
+            <h5>Comments</h5>
+          </div>
+
+          <Card className="py-2 px-3 bg-light">
+            <Form>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <FloatingLabel label="Add new comment">
+                  <Form.Control as="textarea" rows={3} />
+                </FloatingLabel>
+              </Form.Group>
+              <div className="d-flex justify-content-end">
+                <Button variant="outline-primary" type="submit">
+                  Add New Comment
+                </Button>
+              </div>
+            </Form>
           </Card>
         </Col>
       </Row>
