@@ -24,7 +24,7 @@ const Post = (props) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setPost(data);
         setComments(data.comments);
       });
@@ -56,8 +56,12 @@ const Post = (props) => {
                 style={{ overflow: "hidden" }}
               />
               <div className="d-flex mt-2 justify-content-end">
-                <Button variant="outline-primary me-1">Update</Button>
-                <Button variant="outline-danger">Delete</Button>
+                <Button variant="outline-primary me-1" className="button">
+                  Update
+                </Button>
+                <Button variant="outline-danger" className="button">
+                  Delete
+                </Button>
               </div>
             </Card.Body>
             <Card.Footer className="d-flex text-muted">
@@ -84,7 +88,11 @@ const Post = (props) => {
                 </FloatingLabel>
               </Form.Group>
               <div className="d-flex justify-content-end">
-                <Button variant="outline-primary" type="submit">
+                <Button
+                  variant="outline-primary"
+                  className="button"
+                  type="submit"
+                >
                   Add New Comment
                 </Button>
               </div>

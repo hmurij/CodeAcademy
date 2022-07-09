@@ -31,13 +31,13 @@ class Header extends React.Component {
     return (
       <Container
         fluid
-        className="fixed-top border-bottom text-center bg-light"
+        className="fixed-top border-bottom text-center bg-white"
         style={{ boxShadow: "5px 5px 10px grey" }}
         ref={(header) => {
           this.header = header;
         }}
       >
-        <Navbar bg="light" expand="sm">
+        <Navbar bg="white" expand="sm">
           <Container fluid>
             <Navbar.Brand to="/" as={NavLink}>
               Home
@@ -46,7 +46,10 @@ class Header extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Dropdown>
-                <Dropdown.Toggle variant="outline-secondary">
+                <Dropdown.Toggle
+                  variant="outline-secondary"
+                  style={{ boxShadow: "2px 2px 5px grey" }}
+                >
                   Languages
                 </Dropdown.Toggle>
 
@@ -58,7 +61,7 @@ class Header extends React.Component {
               </Dropdown>
 
               <Link
-                className="me-auto btn btn-outline-secondary ms-1 mt-1 mb-1 text-decoration-none"
+                className="me-auto button btn btn-outline-secondary ms-1 mt-1 mb-1 text-decoration-none"
                 to="/new-post"
                 as={NavLink}
               >
@@ -74,21 +77,21 @@ class Header extends React.Component {
 
               <Nav>
                 <Link
-                  className="btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
+                  className="button btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
                   to="/login"
                   as={NavLink}
                 >
                   Login
                 </Link>
                 <Link
-                  className="btn btn-outline-secondary me-1 mt-1  mb-1 text-decoration-none"
+                  className="button btn btn-outline-secondary me-1 mt-1  mb-1 text-decoration-none"
                   to="/"
                   as={NavLink}
                 >
                   Logout
                 </Link>
                 <Link
-                  className="btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
+                  className="button btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
                   to="/register"
                   as={NavLink}
                 >
@@ -98,7 +101,10 @@ class Header extends React.Component {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <div className="btn" style={{ cursor: "default" }}>
+        <div
+          className="btn"
+          style={{ cursor: "default", textShadow: "2px 2px 3px grey" }}
+        >
           <h1>Spring Rest API Blog</h1>
         </div>
       </Container>

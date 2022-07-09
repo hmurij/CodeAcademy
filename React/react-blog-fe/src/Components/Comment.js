@@ -29,8 +29,12 @@ const Comment = (props) => {
           style={{ overflow: "hidden" }}
         ></textarea>
         <div className="d-flex mt-2 justify-content-end justify-content-end">
-          <Button variant="outline-primary me-1">Update</Button>
-          <Button variant="outline-danger">Delete</Button>
+          <Button variant="outline-primary me-1" className="button">
+            Update
+          </Button>
+          <Button variant="outline-danger" className="button">
+            Delete
+          </Button>
         </div>
       </Card.Body>
     </Card>
