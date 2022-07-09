@@ -5,7 +5,7 @@ const Login = (props) => {
   return (
     <Container>
       <Row
-        className="g-2 py-3 justify-content-center"
+        className="py-3 justify-content-center"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,

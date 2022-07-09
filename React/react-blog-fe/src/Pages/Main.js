@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Row } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Container, Row, Spinner } from "react-bootstrap";
+import PostThumbnailsList from "../Components/PostThumbnailsList";
 
 const Main = (props) => {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function fetchPosts() {
+    const response = await fetch("http://localhost:3000/api/posts");
+    const data = await response.json();
+    setPosts(data);
+    setIsLoading(false);
+  }
 
   useEffect(() => {
-    // console.log("fetch list of posts");
-    fetch("http://localhost:3000/api/posts")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // console.log(data);
-        setPosts(data);
-      });
+    setTimeout(() => {
+      fetchPosts();
+    }, Math.random() * 1000);
   }, []);
 
   return (
@@ -23,43 +25,16 @@ const Main = (props) => {
         xs={1}
         md={2}
         lg={3}
-        className="g-4"
+        className="g-4 pb-4 justify-content-center"
         style={{
           marginTop: props.headerHeight,
-          marginBottom: props.footerHeight + 15 + "px",
+          marginBottom: props.footerHeight,
         }}
       >
-        {posts.map((post) => {
-          return (
-            <Link
-              key={post.id}
-              to={"/post/" + post.id}
-              as={NavLink}
-              className="text-decoration-none text-black"
-            >
-              {/*<Col>*/}
-              <Card
-                className="h-100"
-                style={{ boxShadow: "5px 5px 10px grey" }}
-              >
-                <Card.Header className="fst-italic">
-                  {post.blogUser}
-                </Card.Header>
-                <Card.Body>
-                  <Card.Title className="fst-italic">{post.title}</Card.Title>
-                  <Card.Text style={{ textAlign: "justify" }}>
-                    {post.content.slice(0, 200) + " . . ."}
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer className="d-flex text-muted">
-                  <div className="me-auto">{"Posted: " + post.createdOn}</div>
-                  <div>{"Edited: " + post.updatedOn}</div>
-                </Card.Footer>
-              </Card>
-              {/*</Col>*/}
-            </Link>
-          );
-        })}
+        {isLoading && (
+          <Spinner as="Col" variant="secondary" animation="border" size="lg" />
+        )}
+        {!isLoading && <PostThumbnailsList posts={posts} />}
       </Row>
     </Container>
   );
