@@ -44,9 +44,7 @@ const Post = (props) => {
     //   });
   }, []);
 
-  let content = (
-    <Spinner as="Col" variant="secondary" animation="border" size="lg" />
-  );
+  let content = <Spinner variant="secondary" animation="border" size="lg" />;
 
   if (error) {
     content = (
@@ -57,7 +55,7 @@ const Post = (props) => {
   }
   if (!isLoading && !error) {
     content = (
-      <Col>
+      <>
         <PostUpdateForm post={post} />
 
         <div className="ms-2 mt-2">
@@ -66,7 +64,7 @@ const Post = (props) => {
 
         <NewCommentForm />
         <CommentsList comments={comments} />
-      </Col>
+      </>
     );
   }
 
@@ -79,7 +77,7 @@ const Post = (props) => {
           marginBottom: props.footerHeight,
         }}
       >
-        {content}
+        <Col>{content}</Col>
       </Row>
     </Container>
   );

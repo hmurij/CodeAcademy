@@ -9,7 +9,7 @@ const PostUpdateForm = (props) => {
   });
 
   return (
-    <Card style={{ boxShadow: "5px 5px 10px grey" }}>
+    <Card className="boxShadow">
       <Card.Header className="fst-italic">{props.post.blogUser}</Card.Header>
       <Card.Body>
         <Card.Title className="fst-italic">{props.post.title}</Card.Title>

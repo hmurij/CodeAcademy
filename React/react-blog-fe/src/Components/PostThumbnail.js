@@ -5,12 +5,11 @@ import { Card } from "react-bootstrap";
 const PostThumbnail = (props) => {
   return (
     <Link
-      key={props.post.id}
       to={"/post/" + props.post.id}
       as={NavLink}
       className="text-decoration-none text-black"
     >
-      <Card className="h-100" style={{ boxShadow: "5px 5px 10px grey" }}>
+      <Card className="h-100 boxShadow">
         <Card.Header className="fst-italic">{props.post.blogUser}</Card.Header>
         <Card.Body>
           <Card.Title className="fst-italic">{props.post.title}</Card.Title>

@@ -31,8 +31,7 @@ class Header extends React.Component {
     return (
       <Container
         fluid
-        className="fixed-top border-bottom text-center bg-white"
-        style={{ boxShadow: "5px 5px 10px grey" }}
+        className="fixed-top border-bottom text-center bg-white boxShadow"
         ref={(header) => {
           this.header = header;
         }}

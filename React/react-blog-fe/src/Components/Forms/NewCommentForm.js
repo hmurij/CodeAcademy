@@ -3,10 +3,7 @@ import { Button, Card, FloatingLabel, Form } from "react-bootstrap";
 
 const NewCommentForm = (props) => {
   return (
-    <Card
-      className="py-2 px-3 bg-light"
-      style={{ boxShadow: "5px 5px 10px grey" }}
-    >
+    <Card className="py-2 px-3 bg-light boxShadow">
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <FloatingLabel label="Add new comment">

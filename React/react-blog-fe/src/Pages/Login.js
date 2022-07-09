@@ -1,7 +1,35 @@
 import React from "react";
-import { Button, Card, Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form, Row } from "react-bootstrap";
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
 
 const Login = (props) => {
+  const formik = useFormik({
+    initialValues: {
+      userName: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      userName: Yup.string()
+        .min(3, "Must be at least 3 characters")
+        .max(15, "Must be 15 characters of less")
+        .required("Required"),
+      password: Yup.string()
+        .min(6, "Must be at least 3 characters")
+        .max(15, "Must be 15 characters of less")
+        .required("Required"),
+    }),
+    onSubmit: (values, formikHelpers) => {
+      console.log(values);
+      formikHelpers.resetForm({
+        values: {
+          userName: "",
+          password: "",
+        },
+      });
+    },
+  });
+
   return (
     <Container>
       <Row
@@ -11,26 +39,84 @@ const Login = (props) => {
           marginBottom: props.footerHeight,
         }}
       >
-        <Form
-          as={Card}
-          className="col-sm-10 col-md-8 col-lg-6 mt-2 p-4"
-          style={{ boxShadow: "5px 5px 10px grey" }}
+        <Formik
+          initialValues={{
+            userName: "",
+            password: "",
+          }}
+          validationSchema={Yup.object({
+            userName: Yup.string()
+              .min(3, "Must be at least 3 characters")
+              .max(15, "Must be 15 characters of less")
+              .required("Required"),
+            password: Yup.string()
+              .min(6, "Must be at least 3 characters")
+              .max(15, "Must be 15 characters of less")
+              .required("Required"),
+          })}
+          onSubmit={(values, formikHelpers) => {
+            console.log(values);
+            formikHelpers.resetForm();
+          }}
         >
-          <Form.Group className="mb-3" controlId="formUserName">
-            <Form.Label>User name</Form.Label>
-            <Form.Control type="email" placeholder="Enter user name" />
-          </Form.Group>
+          {(formik) => (
+            <Form
+              onSubmit={formik.handleSubmit}
+              className="col-sm-10 col-md-8 col-lg-6 mt-2 p-4 roundedBorder boxShadow"
+            >
+              <Form.Group className="mb-3" controlId="userName">
+                <Form.Label>User name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter user name"
+                  name="userName"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.userName}
+                  isValid={
+                    formik.touched &&
+                    !formik.errors.userName &&
+                    formik.values.userName
+                  }
+                  isInvalid={formik.errors.userName}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.userName}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <div className="d-flex justify-content-end">
-            <Button variant="outline-primary" className="button" type="submit">
-              Login
-            </Button>
-          </div>
-        </Form>
+              <Form.Group className="mb-3" controlId="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                  isValid={
+                    formik.touched &&
+                    !formik.errors.password &&
+                    formik.values.password
+                  }
+                  isInvalid={formik.errors.password}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <div className="d-flex justify-content-end">
+                <Button
+                  variant="outline-primary"
+                  className="button"
+                  type="submit"
+                >
+                  Login
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Row>
     </Container>
   );

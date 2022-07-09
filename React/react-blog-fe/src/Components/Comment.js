@@ -9,11 +9,7 @@ const Comment = (props) => {
   });
 
   return (
-    <Card
-      key={props.comment.id}
-      className="my-4"
-      style={{ boxShadow: "5px 5px 10px grey" }}
-    >
+    <Card className="my-4 boxShadow">
       <Card.Header className=" d-flex justify-content-between">
         <div className="fst-italic">{props.comment.blogUser}</div>
         <div className="text-muted">
@@ -28,7 +24,7 @@ const Comment = (props) => {
           className="form-control bg-white"
           style={{ overflow: "hidden" }}
         ></textarea>
-        <div className="d-flex mt-2 justify-content-end justify-content-end">
+        <div className="d-flex mt-2 justify-content-end">
           <Button variant="outline-primary me-1" className="button">
             Update
           </Button>

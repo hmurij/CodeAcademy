@@ -3,7 +3,7 @@ import PostThumbnail from "./PostThumbnail";
 
 const PostThumbnailsList = (props) => {
   return props.posts.map((post) => {
-    return <PostThumbnail post={post} />;
+    return <PostThumbnail key={post.id} post={post} />;
   });
 };
 

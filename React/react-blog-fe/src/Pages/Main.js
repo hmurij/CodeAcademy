@@ -32,7 +32,7 @@ const Main = (props) => {
         }}
       >
         {isLoading && (
-          <Spinner as="Col" variant="secondary" animation="border" size="lg" />
+          <Spinner variant="secondary" animation="border" size="lg" />
         )}
         {!isLoading && <PostThumbnailsList posts={posts} />}
       </Row>
