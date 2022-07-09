@@ -1,35 +1,23 @@
 import React from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
-import { Formik, useFormik } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  const formik = useFormik({
-    initialValues: {
-      userName: "",
-      password: "",
-    },
-    validationSchema: Yup.object({
-      userName: Yup.string()
-        .min(3, "Must be at least 3 characters")
-        .max(15, "Must be 15 characters of less")
-        .required("Required"),
-      password: Yup.string()
-        .min(6, "Must be at least 3 characters")
-        .max(15, "Must be 15 characters of less")
-        .required("Required"),
-    }),
-    onSubmit: (values, formikHelpers) => {
-      console.log(values);
-      formikHelpers.resetForm({
-        values: {
-          userName: "",
-          password: "",
-        },
-      });
-    },
-  });
-
+  const navigate = useNavigate();
+  async function login(user) {
+    const response = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    navigate("/");
+  }
   return (
     <Container>
       <Row
@@ -56,6 +44,7 @@ const Login = (props) => {
           })}
           onSubmit={(values, formikHelpers) => {
             console.log(values);
+            login(values);
             formikHelpers.resetForm();
           }}
         >

@@ -55,7 +55,7 @@ const Post = (props) => {
   }
   if (!isLoading && !error) {
     content = (
-      <>
+      <Col>
         <PostUpdateForm post={post} />
 
         <div className="ms-2 mt-2">
@@ -64,7 +64,7 @@ const Post = (props) => {
 
         <NewCommentForm />
         <CommentsList comments={comments} />
-      </>
+      </Col>
     );
   }
 
@@ -77,7 +77,7 @@ const Post = (props) => {
           marginBottom: props.footerHeight,
         }}
       >
-        <Col>{content}</Col>
+        {content}
       </Row>
     </Container>
   );
