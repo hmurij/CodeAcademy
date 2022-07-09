@@ -1,38 +1,37 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  FloatingLabel,
-  Form,
-  Row,
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Comment from "../Components/Comment";
+import NewCommentForm from "../Components/Forms/NewCommentForm";
+import CommentsList from "../Components/CommentsList";
+import PostUpdateForm from "../Components/Forms/PostUpdateForm";
 
 const Post = (props) => {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
-  const textAreaRef = useRef(null);
+
+  async function fetchPostById() {
+    setIsLoading(true);
+    const response = await fetch("http://localhost:3000/api/posts/" + id);
+    const data = await response.json();
+    setPost(data);
+    setComments(data.comments);
+    setIsLoading(false);
+  }
 
   useEffect(() => {
-    // console.log("fetching post id:" + id);
-    fetch("http://localhost:3000/api/posts/" + id)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // console.log(data);
-        setPost(data);
-        setComments(data.comments);
-      });
+    fetchPostById();
+
+    // fetch("http://localhost:3000/api/posts/" + id)
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     setPost(data);
+    //     setComments(data.comments);
+    //   });
   }, []);
-
-  useEffect(() => {
-    textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
-  });
 
   return (
     <Container>
@@ -44,64 +43,13 @@ const Post = (props) => {
         }}
       >
         <Col>
-          <Card style={{ boxShadow: "5px 5px 10px grey" }}>
-            <Card.Header className="fst-italic">{post.blogUser}</Card.Header>
-            <Card.Body>
-              <Card.Title className="fst-italic">{post.title}</Card.Title>
-              <textarea
-                ref={textAreaRef}
-                defaultValue={post.content}
-                readOnly={true}
-                className="form-control bg-white"
-                style={{ overflow: "hidden" }}
-              />
-              <div className="d-flex mt-2 justify-content-end">
-                <Button variant="outline-primary me-1" className="button">
-                  Update
-                </Button>
-                <Button variant="outline-danger" className="button">
-                  Delete
-                </Button>
-              </div>
-            </Card.Body>
-            <Card.Footer className="d-flex text-muted">
-              <div className="me-auto">{"Posted: " + post.createdOn}</div>
-              <div>{"Edited: " + post.updatedOn}</div>
-            </Card.Footer>
-          </Card>
-
+          <PostUpdateForm post={post} />
           <div className="ms-2 mt-2">
             <h5>Comments</h5>
           </div>
 
-          <Card
-            className="py-2 px-3 bg-light"
-            style={{ boxShadow: "5px 5px 10px grey" }}
-          >
-            <Form>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <FloatingLabel label="Add new comment">
-                  <Form.Control as="textarea" rows={3} />
-                </FloatingLabel>
-              </Form.Group>
-              <div className="d-flex justify-content-end">
-                <Button
-                  variant="outline-primary"
-                  className="button"
-                  type="submit"
-                >
-                  Add New Comment
-                </Button>
-              </div>
-            </Form>
-          </Card>
-
-          {comments.map((comment) => {
-            return <Comment comment={comment} />;
-          })}
+          <NewCommentForm />
+          <CommentsList comments={comments} />
         </Col>
       </Row>
     </Container>
