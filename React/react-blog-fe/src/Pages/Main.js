@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Spinner } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import PostThumbnailsList from "../Components/PostThumbnailsList";
+import Loading from "../Components/Loading";
 
 const Main = (props) => {
   const [posts, setPosts] = useState([]);
@@ -31,9 +32,7 @@ const Main = (props) => {
           marginBottom: props.footerHeight,
         }}
       >
-        {isLoading && (
-          <Spinner variant="secondary" animation="border" size="lg" />
-        )}
+        {isLoading && <Loading />}
         {!isLoading && <PostThumbnailsList posts={posts} />}
       </Row>
     </Container>

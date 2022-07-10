@@ -7,7 +7,7 @@ const PostThumbnail = (props) => {
     <Link
       to={"/post/" + props.post.id}
       as={NavLink}
-      className="text-decoration-none text-black"
+      className="thumbnail text-decoration-none text-black"
     >
       <Card className="h-100 boxShadow">
         <Card.Header className="fst-italic">{props.post.blogUser}</Card.Header>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import NewCommentForm from "../Components/Forms/NewCommentForm";
 import CommentsList from "../Components/CommentsList";
 import PostUpdateForm from "../Components/Forms/PostUpdateForm";
+import Loading from "../Components/Loading";
 
 const Post = (props) => {
   const [post, setPost] = useState({});
@@ -44,7 +45,7 @@ const Post = (props) => {
     //   });
   }, []);
 
-  let content = <Spinner variant="secondary" animation="border" size="lg" />;
+  let content = <Loading />;
 
   if (error) {
     content = (
