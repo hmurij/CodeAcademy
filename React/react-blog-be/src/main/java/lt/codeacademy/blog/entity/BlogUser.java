@@ -1,5 +1,7 @@
 package lt.codeacademy.blog.entity;
 
+import lt.codeacademy.blog.dto.RegisterRequest;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,6 +44,15 @@ public class BlogUser {
         this.email = email;
         this.posts = new ArrayList<>();
         this.comments = new ArrayList<>();
+    }
+
+    public BlogUser(RegisterRequest registerRequest) {
+        this(
+                registerRequest.getUserName(),
+                "USER",
+                registerRequest.getPassword(),
+                registerRequest.getEmail()
+        );
     }
 
     public Long getId() {
