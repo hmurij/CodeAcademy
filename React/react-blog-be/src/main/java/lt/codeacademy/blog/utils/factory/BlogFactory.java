@@ -7,7 +7,6 @@ import lt.codeacademy.blog.entity.Comment;
 import lt.codeacademy.blog.entity.Post;
 import org.ajbrown.namemachine.Name;
 import org.ajbrown.namemachine.NameGenerator;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -47,7 +46,7 @@ public class BlogFactory {
         return new BlogUser(
                 "admin",
                 "ADMIN",
-                "{bcrypt}$2a$10$JM11cOpmVZMhEIjwp4gfTuztM2YUEs7FbWJYrpG6pLDEk6NYib/TO",
+                "$2a$10$JM11cOpmVZMhEIjwp4gfTuztM2YUEs7FbWJYrpG6pLDEk6NYib/TO",
                 "admin@mail.com"
         );
     }
@@ -57,7 +56,7 @@ public class BlogFactory {
         return new BlogUser(
                 name.toString(),
                 "USER",
-                PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password"),
+                "$2a$12$8wt5PvXjFtd0dAg3p/.AL.5b2rSYN7CvZKAgb/yNvLkUHt0oWxGIS",
                 "%s.%s@mail.com".formatted(name.getFirstName(), name.getLastName())
         );
     }

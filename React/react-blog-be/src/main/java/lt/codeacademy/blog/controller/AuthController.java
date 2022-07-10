@@ -1,7 +1,6 @@
 package lt.codeacademy.blog.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lt.codeacademy.blog.dto.LoginRequest;
 import lt.codeacademy.blog.dto.RegisterRequest;
 import lt.codeacademy.blog.service.AuthService;
 import org.springframework.http.HttpStatus;
@@ -15,17 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-
     private final AuthService authService;
 
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
-
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonNode> login(@RequestBody JsonNode user) {
-        return ResponseEntity.ok(new ObjectMapper().createObjectNode().put("message", "You're logged in!"));
+    public String login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
