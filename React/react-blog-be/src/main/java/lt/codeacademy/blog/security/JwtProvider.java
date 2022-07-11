@@ -25,7 +25,22 @@ public class JwtProvider {
         return Jwts.builder()
                 .setSubject(principal.getUsername())
                 .claim("roles", principal.getAuthorities())
-                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS512))
+                .signWith(key)
                 .compact();
+    }
+
+    public boolean validateToken(String jwt) {
+        Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt);
+        return true;
+    }
+
+
+    public String getUsernameFromJWT(String token) {
+        return Jwts.parserBuilder().
+                setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 }
