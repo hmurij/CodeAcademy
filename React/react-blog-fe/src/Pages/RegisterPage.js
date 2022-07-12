@@ -4,6 +4,15 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 
 const RegisterPage = (props) => {
+  const onSubmit = (values, formikHelpers) => {
+    console.log(values);
+    console.log(formikHelpers.isSubmitting);
+
+    setTimeout(() => {
+      formikHelpers.resetForm();
+    }, 1000);
+  };
+  const register = () => {};
   return (
     <Container>
       <Row
@@ -30,10 +39,7 @@ const RegisterPage = (props) => {
               .max(15, "Must be 15 characters of less")
               .required("Required"),
           })}
-          onSubmit={(values, formikHelpers) => {
-            console.log(values);
-            formikHelpers.resetForm();
-          }}
+          onSubmit={onSubmit}
         >
           {(formik) => (
             <Form
@@ -105,10 +111,12 @@ const RegisterPage = (props) => {
               <div className="d-flex justify-content-end">
                 <Button
                   variant="outline-primary"
-                  className="button"
+                  className={`${
+                    formik.isSubmitting ? "disabled button bg-danger" : "button"
+                  }`}
                   type="submit"
                 >
-                  Login
+                  Register
                 </Button>
               </div>
             </Form>
