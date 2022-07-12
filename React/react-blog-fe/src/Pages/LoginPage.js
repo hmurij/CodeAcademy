@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 
-const Login = (props) => {
+const LoginPage = (props) => {
   const navigate = useNavigate();
   async function login(user) {
     const response = await fetch("http://localhost:3000/api/login", {
@@ -111,4 +111,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default LoginPage;

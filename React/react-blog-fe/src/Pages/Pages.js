@@ -1,10 +1,10 @@
 import React from "react";
-import Main from "./Main";
+import MainPage from "./MainPage";
+import LoginPage from "./LoginPage";
+import RegisterPage from "./RegisterPage";
+import NewPostPage from "./NewPostPage";
+import PostPage from "./PostPage";
 import { Route, Routes } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import NewPost from "./NewPost";
-import Post from "./Post";
 
 const Pages = (props) => {
   return (
@@ -12,7 +12,7 @@ const Pages = (props) => {
       <Route
         path="/login"
         element={
-          <Login
+          <LoginPage
             headerHeight={props.headerHeight}
             footerHeight={props.footerHeight}
           />
@@ -21,7 +21,7 @@ const Pages = (props) => {
       <Route
         path="/register"
         element={
-          <Register
+          <RegisterPage
             headerHeight={props.headerHeight}
             footerHeight={props.footerHeight}
           />
@@ -30,7 +30,7 @@ const Pages = (props) => {
       <Route
         path="/new-post"
         element={
-          <NewPost
+          <NewPostPage
             headerHeight={props.headerHeight}
             footerHeight={props.footerHeight}
           />
@@ -39,16 +39,16 @@ const Pages = (props) => {
       <Route
         path="/post/:id"
         element={
-          <Post
+          <PostPage
             headerHeight={props.headerHeight}
             footerHeight={props.footerHeight}
           />
         }
       ></Route>
       <Route
-        path="/"
+        path="/*"
         element={
-          <Main
+          <MainPage
             headerHeight={props.headerHeight}
             footerHeight={props.footerHeight}
           />

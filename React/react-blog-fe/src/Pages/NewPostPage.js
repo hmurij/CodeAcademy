@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 
-const Register = (props) => {
+const NewPostPage = (props) => {
   return (
     <Container>
       <Row
@@ -11,10 +11,10 @@ const Register = (props) => {
           marginBottom: props.footerHeight,
         }}
       >
-        <h1>Register page</h1>
+        <h1>New post page</h1>
       </Row>
     </Container>
   );
 };
 
-export default Register;
+export default NewPostPage;

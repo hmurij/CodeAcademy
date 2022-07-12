@@ -3,7 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import PostThumbnailsList from "../Components/PostThumbnailsList";
 import Loading from "../Components/Loading";
 
-const Main = (props) => {
+const MainPage = (props) => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,4 +39,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export default MainPage;

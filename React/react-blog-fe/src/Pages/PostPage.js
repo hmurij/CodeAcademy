@@ -6,7 +6,7 @@ import CommentsList from "../Components/CommentsList";
 import PostUpdateForm from "../Components/Forms/PostUpdateForm";
 import Loading from "../Components/Loading";
 
-const Post = (props) => {
+const PostPage = (props) => {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -84,4 +84,4 @@ const Post = (props) => {
   );
 };
 
-export default Post;
+export default PostPage;
