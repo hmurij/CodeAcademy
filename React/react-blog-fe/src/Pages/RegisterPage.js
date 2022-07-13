@@ -2,18 +2,26 @@ import React from "react";
 import { Button, Container, Form, Row, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { register } from "../lib/api";
 
 const RegisterPage = (props) => {
   const onSubmit = (values, formikHelpers) => {
-    console.log(values);
-    console.log(formikHelpers.isSubmitting);
-
     setTimeout(() => {
-      // formikHelpers.resetForm();
-      formikHelpers.setSubmitting(false);
-    }, 3000);
+      register(values)
+        .then((data) => {
+          console.log(data);
+          console.log("show user created message");
+          formikHelpers.resetForm();
+        })
+        .catch((error) => {
+          // console.log(error.message);
+          formikHelpers.setFieldError("register", error.message);
+        })
+        .finally(() => {
+          formikHelpers.setSubmitting(false);
+        });
+    }, 1000);
   };
-  const register = () => {};
   return (
     <Container>
       <Row
@@ -36,7 +44,7 @@ const RegisterPage = (props) => {
               .required("Required"),
             email: Yup.string().email().required("Required"),
             password: Yup.string()
-              .min(6, "Must be at least 3 characters")
+              .min(6, "Must be at least 6 characters")
               .max(15, "Must be 15 characters of less")
               .required("Required"),
           })}
@@ -57,14 +65,20 @@ const RegisterPage = (props) => {
                   onBlur={formik.handleBlur}
                   value={formik.values.userName}
                   isValid={
-                    formik.touched &&
+                    formik.touched.userName &&
                     !formik.errors.userName &&
                     formik.values.userName
                   }
-                  isInvalid={formik.errors.userName}
+                  isInvalid={
+                    (formik.touched.userName && formik.errors.userName) ||
+                    formik.errors.register
+                  }
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.userName}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.register}
                 </Form.Control.Feedback>
               </Form.Group>
 
@@ -78,11 +92,11 @@ const RegisterPage = (props) => {
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
                   isValid={
-                    formik.touched &&
+                    formik.touched.email &&
                     !formik.errors.email &&
                     formik.values.email
                   }
-                  isInvalid={formik.errors.email}
+                  isInvalid={formik.touched.email && formik.errors.email}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.email}
@@ -99,11 +113,11 @@ const RegisterPage = (props) => {
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
                   isValid={
-                    formik.touched &&
+                    formik.touched.password &&
                     !formik.errors.password &&
                     formik.values.password
                   }
-                  isInvalid={formik.errors.password}
+                  isInvalid={formik.touched.password && formik.errors.password}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.password}

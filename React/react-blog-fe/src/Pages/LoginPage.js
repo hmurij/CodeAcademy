@@ -43,9 +43,10 @@ const LoginPage = (props) => {
               .required("Required"),
           })}
           onSubmit={(values, formikHelpers) => {
+            console.log("submitting");
             console.log(values);
             login(values);
-            formikHelpers.resetForm();
+            // formikHelpers.resetForm();
           }}
         >
           {(formik) => (
@@ -63,11 +64,11 @@ const LoginPage = (props) => {
                   onBlur={formik.handleBlur}
                   value={formik.values.userName}
                   isValid={
-                    formik.touched &&
+                    formik.touched.userName &&
                     !formik.errors.userName &&
                     formik.values.userName
                   }
-                  isInvalid={formik.errors.userName}
+                  isInvalid={formik.touched.userName && formik.errors.userName}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.userName}
@@ -84,11 +85,11 @@ const LoginPage = (props) => {
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
                   isValid={
-                    formik.touched &&
+                    formik.touched.password &&
                     !formik.errors.password &&
                     formik.values.password
                   }
-                  isInvalid={formik.errors.password}
+                  isInvalid={formik.errors.password && formik.touched.password}
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors.password}

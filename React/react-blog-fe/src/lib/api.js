@@ -12,3 +12,18 @@ export const getPostById = async (id) => {
   }
   return await response.json();
 };
+
+export const register = async (registerRequest) => {
+  const response = await fetch(`${BLOG_DOMAIN}/auth/signup`, {
+    method: "POST",
+    body: JSON.stringify(registerRequest),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+  return data;
+};
