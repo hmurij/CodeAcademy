@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form, Row, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 
@@ -9,8 +9,9 @@ const RegisterPage = (props) => {
     console.log(formikHelpers.isSubmitting);
 
     setTimeout(() => {
-      formikHelpers.resetForm();
-    }, 1000);
+      // formikHelpers.resetForm();
+      formikHelpers.setSubmitting(false);
+    }, 3000);
   };
   const register = () => {};
   return (
@@ -112,11 +113,21 @@ const RegisterPage = (props) => {
                 <Button
                   variant="outline-primary"
                   className={`${
-                    formik.isSubmitting ? "disabled button bg-danger" : "button"
+                    formik.isSubmitting ? "disabled button" : "button"
                   }`}
                   type="submit"
                 >
-                  Register
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className={`${!formik.isSubmitting && "visually-hidden"}`}
+                  />
+                  <span className="ms-1">
+                    {!formik.isSubmitting ? "Register" : "Submitting"}
+                  </span>
                 </Button>
               </div>
             </Form>
