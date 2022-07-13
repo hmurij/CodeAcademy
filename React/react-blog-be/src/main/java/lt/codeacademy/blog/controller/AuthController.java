@@ -1,9 +1,11 @@
 package lt.codeacademy.blog.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lt.codeacademy.blog.dto.LoginRequest;
 import lt.codeacademy.blog.dto.RegisterRequest;
 import lt.codeacademy.blog.service.AuthService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,9 +28,14 @@ public class AuthController {
     }
 
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<HttpStatus> signup(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<JsonNode> signup(@RequestBody RegisterRequest registerRequest) {
         return authService.signup(registerRequest)
-                ? ResponseEntity.ok().build()
-                : ResponseEntity.unprocessableEntity().build();
+                ? ResponseEntity.ok(responseMessage("New user: " + registerRequest.getUserName() + " created"))
+                : ResponseEntity.unprocessableEntity().body(responseMessage("Username: " + registerRequest.getUserName() + " already exists"));
+    }
+
+    private ObjectNode responseMessage(String message) {
+        return new ObjectMapper().createObjectNode()
+                .put("message", message);
     }
 }
