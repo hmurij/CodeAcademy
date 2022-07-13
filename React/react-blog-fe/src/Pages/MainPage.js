@@ -10,7 +10,10 @@ const MainPage = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      getAllPosts(setPosts, setIsLoading);
+      getAllPosts().then((data) => {
+        setPosts(data);
+        setIsLoading(false);
+      });
     }, Math.random() * 1000);
   }, []);
 

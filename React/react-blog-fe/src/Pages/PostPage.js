@@ -5,6 +5,7 @@ import NewCommentForm from "../Components/Forms/NewCommentForm";
 import CommentsList from "../Components/CommentsList";
 import PostUpdateForm from "../Components/Forms/PostUpdateForm";
 import Loading from "../Components/Loading";
+import { getPostById } from "../lib/api";
 
 const PostPage = (props) => {
   const [post, setPost] = useState({});
@@ -13,36 +14,25 @@ const PostPage = (props) => {
   const [error, setError] = useState(null);
   const { id } = useParams();
 
-  async function fetchPostById() {
-    try {
-      const response = await fetch("http://localhost:3000/api/posts/" + id);
-      if (!response.ok) {
-        console.log(response.status);
-        throw new Error("Post with id: " + id + " not found");
-      }
-      const data = await response.json();
-      setPost(data);
-      setComments(data.comments);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const fetchPostById = () => {
+    getPostById(id)
+      .then((post) => {
+        setPost(post);
+        setComments(post.comments);
+      })
+      .catch((error) => {
+        // console.log(Error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   useEffect(() => {
     setTimeout(() => {
       fetchPostById();
     }, Math.random() * 1000);
-
-    // fetch("http://localhost:3000/api/posts/" + id)
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     setPost(data);
-    //     setComments(data.comments);
-    //   });
   }, []);
 
   let content = <Loading />;
