@@ -23,15 +23,15 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<JsonNode> login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
 
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JsonNode> signup(@RequestBody RegisterRequest registerRequest) {
         return authService.signup(registerRequest)
-                ? ResponseEntity.ok(responseMessage("New user: " + registerRequest.getUserName() + " created"))
-                : ResponseEntity.unprocessableEntity().body(responseMessage("Username: " + registerRequest.getUserName() + " already exists"));
+                ? ResponseEntity.ok(responseMessage("New user " + registerRequest.getUserName() + " successfully created!"))
+                : ResponseEntity.unprocessableEntity().body(responseMessage("Username " + registerRequest.getUserName() + " already exists"));
     }
 
     private ObjectNode responseMessage(String message) {

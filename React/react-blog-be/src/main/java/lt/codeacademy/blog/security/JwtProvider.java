@@ -35,7 +35,7 @@ public class JwtProvider {
     }
 
 
-    public String getUsernameFromJWT(String token) {
+    public String getUsernameFromJwt(String token) {
         return Jwts.parserBuilder().
                 setSigningKey(key)
                 .build()
