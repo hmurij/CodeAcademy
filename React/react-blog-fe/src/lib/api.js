@@ -27,3 +27,19 @@ export const register = async (registerRequest) => {
   }
   return data;
 };
+
+export const login = async (loginRequest) => {
+  const response = await fetch(`${BLOG_DOMAIN}/auth/login`, {
+    method: "POST",
+    body: JSON.stringify(loginRequest),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    console.log(data);
+    throw new Error(data.error);
+  }
+  return data;
+};

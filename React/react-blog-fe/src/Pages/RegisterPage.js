@@ -6,6 +6,7 @@ import RegistrationForm from "../Components/Forms/RegistrationForm";
 
 const RegisterPage = (props) => {
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
+  const [registrationMessage, setRegistrationMessage] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,6 +21,7 @@ const RegisterPage = (props) => {
       register(values)
         .then((data) => {
           formikHelpers.resetForm();
+          setRegistrationMessage(data.message);
           setIsRegistrationSuccess(true);
         })
         .catch((error) => {
@@ -34,14 +36,16 @@ const RegisterPage = (props) => {
   return (
     <Container>
       <Row
-        className="py-3 justify-content-center"
+        className="py-3 d-flex flex-column align-content-center"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,
         }}
       >
         <RegistrationForm onSubmit={onSubmit} />
-        {isRegistrationSuccess && <RegistrationSuccess />}
+        {isRegistrationSuccess && (
+          <RegistrationSuccess message={registrationMessage} />
+        )}
       </Row>
     </Container>
   );

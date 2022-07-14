@@ -3,21 +3,28 @@ import { Button, Container, Form, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { login } from "../lib/api";
 
 const LoginPage = (props) => {
   const navigate = useNavigate();
-  async function login(user) {
-    const response = await fetch("http://localhost:3000/api/login", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log(data);
-    navigate("/");
-  }
+
+  const onSubmit = (loginRequest, formikHelpers) => {
+    setTimeout(() => {
+      login(loginRequest)
+        .then((loginResponse) => {
+          console.log(loginResponse);
+          formikHelpers.resetForm();
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.message);
+        })
+        .finally(() => {
+          formikHelpers.setSubmitting(false);
+        });
+    }, 1000);
+  };
+
   return (
     <Container>
       <Row
@@ -38,16 +45,11 @@ const LoginPage = (props) => {
               .max(15, "Must be 15 characters of less")
               .required("Required"),
             password: Yup.string()
-              .min(6, "Must be at least 3 characters")
+              .min(5, "Must be at least 5 characters")
               .max(15, "Must be 15 characters of less")
               .required("Required"),
           })}
-          onSubmit={(values, formikHelpers) => {
-            console.log("submitting");
-            console.log(values);
-            login(values);
-            // formikHelpers.resetForm();
-          }}
+          onSubmit={onSubmit}
         >
           {(formik) => (
             <Form
