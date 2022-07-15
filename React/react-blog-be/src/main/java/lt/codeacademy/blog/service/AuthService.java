@@ -64,7 +64,6 @@ public class AuthService {
 
     public ResponseEntity<JsonNode> login(LoginRequest loginRequest) {
         Authentication authenticate;
-        ObjectNode loginResponse = new ObjectMapper().createObjectNode();
         try {
             authenticate = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -73,19 +72,29 @@ public class AuthService {
                     )
             );
             SecurityContextHolder.getContext().setAuthentication(authenticate);
-            loginResponse = loginResponse(authenticate);
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(loginResponse.put("error", e.getMessage()));
+                    .body(badCredentialsResponseNode(loginRequest));
         }
-        return ResponseEntity.ok(loginResponse);
+        return ResponseEntity.ok(loginSuccessResponseNode(authenticate));
     }
 
-    private ObjectNode loginResponse(Authentication authenticate) {
+    private ObjectNode badCredentialsResponseNode(LoginRequest loginRequest) {
         return new ObjectMapper().createObjectNode()
-                .put("userName", authenticate.getName())
-                .put("authorities", authorities(authenticate.getAuthorities()))
-                .put("jwt", jwtProvider.generateToken(authenticate));
+                .put("error", badCredentialsMessage(loginRequest.getUserName()));
+    }
+
+    private String badCredentialsMessage(String userName) {
+        return repository.findByUserName(userName)
+                .map(user -> "Invalid password")
+                .orElse("Invalid username");
+    }
+
+    private ObjectNode loginSuccessResponseNode(Authentication authentication) {
+        return new ObjectMapper().createObjectNode()
+                .put("userName", authentication.getName())
+                .put("authorities", authorities(authentication.getAuthorities()))
+                .put("jwt", jwtProvider.generateToken(authentication));
     }
 
     private String authorities(Collection<? extends GrantedAuthority> grantedAuthority) {
