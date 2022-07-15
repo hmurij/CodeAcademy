@@ -4,12 +4,11 @@ import { Form } from "react-bootstrap";
 import { Formik } from "formik";
 import SubmitButton from "../SubmitButton";
 
-const RegistrationForm = (props) => {
+const LoginForm = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={{
         userName: "",
-        email: "",
         password: "",
       }}
       validationSchema={Yup.object({
@@ -17,13 +16,12 @@ const RegistrationForm = (props) => {
           .min(3, "Must be at least 3 characters")
           .max(15, "Must be 15 characters of less")
           .required("Required"),
-        email: Yup.string().email().required("Required"),
         password: Yup.string()
           .min(5, "Must be at least 5 characters")
           .max(15, "Must be 15 characters of less")
           .required("Required"),
       })}
-      onSubmit={props.onSubmit}
+      onSubmit={onSubmit}
     >
       {(formik) => (
         <Form
@@ -46,35 +44,14 @@ const RegistrationForm = (props) => {
               }
               isInvalid={
                 (formik.touched.userName && formik.errors.userName) ||
-                formik.errors.register
+                formik.errors.invalidUsername
               }
             />
             <Form.Control.Feedback type="invalid">
               {formik.errors.userName}
             </Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              {formik.errors.register}
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-              isValid={
-                formik.touched.email &&
-                !formik.errors.email &&
-                formik.values.email
-              }
-              isInvalid={formik.touched.email && formik.errors.email}
-            />
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.email}
+              {formik.errors.invalidUsername}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -92,18 +69,22 @@ const RegistrationForm = (props) => {
                 !formik.errors.password &&
                 formik.values.password
               }
-              isInvalid={formik.touched.password && formik.errors.password}
+              isInvalid={
+                (formik.errors.password && formik.touched.password) ||
+                formik.errors.invalidPassword
+              }
             />
             <Form.Control.Feedback type="invalid">
               {formik.errors.password}
             </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.invalidPassword}
+            </Form.Control.Feedback>
           </Form.Group>
-
-          <SubmitButton isSubmitting={formik.isSubmitting} name="Register" />
+          <SubmitButton isSubmitting={formik.isSubmitting} name="Login" />
         </Form>
       )}
     </Formik>
   );
 };
-
-export default RegistrationForm;
+export default LoginForm;

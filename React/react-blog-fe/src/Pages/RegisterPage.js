@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { register } from "../lib/api";
-import RegistrationSuccess from "../Components/RegistrationSuccess";
+import BannerSuccess from "../Components/RegistrationSuccess";
 import RegistrationForm from "../Components/Forms/RegistrationForm";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = (props) => {
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
   const [registrationMessage, setRegistrationMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
       if (isRegistrationSuccess) {
         setIsRegistrationSuccess(false);
+        navigate("/login");
       }
-    }, 5000);
+    }, 3000);
   }, [isRegistrationSuccess]);
 
   const onSubmit = (values, formikHelpers) => {
@@ -44,7 +47,7 @@ const RegisterPage = (props) => {
       >
         <RegistrationForm onSubmit={onSubmit} />
         {isRegistrationSuccess && (
-          <RegistrationSuccess message={registrationMessage} />
+          <BannerSuccess message={registrationMessage} />
         )}
       </Row>
     </Container>

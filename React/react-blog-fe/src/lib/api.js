@@ -38,7 +38,6 @@ export const login = async (loginRequest) => {
   });
   const data = await response.json();
   if (!response.ok) {
-    console.log(data);
     throw new Error(data.error);
   }
   return data;
