@@ -3,8 +3,8 @@ import { Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { login } from "../lib/api";
 import LoginForm from "../Components/Forms/LoginForm";
-import BannerSuccess from "../Components/RegistrationSuccess";
 import AuthContext from "../store/auth-context";
+import Banner from "../Components/Banner";
 
 const LoginPage = (props) => {
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
@@ -41,7 +41,7 @@ const LoginPage = (props) => {
         setIsLoginSuccess(false);
         navigate("/");
       }
-    }, 3000);
+    }, 2000);
   }, [isLoginSuccess]);
 
   return (
@@ -54,7 +54,12 @@ const LoginPage = (props) => {
         }}
       >
         <LoginForm onSubmit={onSubmit} />
-        {isLoginSuccess && <BannerSuccess message={loginMessage} />}
+        {isLoginSuccess && (
+          <Banner
+            className="text-success border-success mt-4"
+            message={loginMessage}
+          />
+        )}
       </Row>
     </Container>
   );

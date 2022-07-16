@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { register } from "../lib/api";
-import BannerSuccess from "../Components/RegistrationSuccess";
 import RegistrationForm from "../Components/Forms/RegistrationForm";
 import { useNavigate } from "react-router-dom";
+import Banner from "../Components/Banner";
 
 const RegisterPage = (props) => {
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
@@ -16,7 +16,7 @@ const RegisterPage = (props) => {
         setIsRegistrationSuccess(false);
         navigate("/login");
       }
-    }, 3000);
+    }, 2000);
   }, [isRegistrationSuccess]);
 
   const onSubmit = (values, formikHelpers) => {
@@ -47,7 +47,10 @@ const RegisterPage = (props) => {
       >
         <RegistrationForm onSubmit={onSubmit} />
         {isRegistrationSuccess && (
-          <BannerSuccess message={registrationMessage} />
+          <Banner
+            className="text-success border-success mt-4"
+            message={registrationMessage}
+          />
         )}
       </Row>
     </Container>

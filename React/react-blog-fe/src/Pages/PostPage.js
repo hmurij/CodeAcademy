@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Alert, Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import NewCommentForm from "../Components/Forms/NewCommentForm";
 import CommentsList from "../Components/CommentsList";
 import PostUpdateForm from "../Components/Forms/PostUpdateForm";
 import Loading from "../Components/Loading";
 import { getPostById } from "../lib/api";
+import { useParams } from "react-router-dom";
+import Banner from "../Components/Banner";
+import AuthContext from "../store/auth-context";
 
 const PostPage = (props) => {
   const [post, setPost] = useState({});
@@ -13,6 +15,7 @@ const PostPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const authCtx = useContext(AuthContext);
 
   const fetchPostById = () => {
     getPostById(id)
@@ -38,22 +41,18 @@ const PostPage = (props) => {
   let content = <Loading />;
 
   if (error) {
-    content = (
-      <Alert variant={"secondary"} className="bg-white boxShadow">
-        {error}
-      </Alert>
-    );
+    content = <Banner className="text-danger border-danger" message={error} />;
   }
   if (!isLoading && !error) {
     content = (
       <Col>
         <PostUpdateForm post={post} />
 
-        <div className="ms-2 mt-2">
+        <div className="ms-2 my-3">
           <h5>Comments</h5>
         </div>
 
-        <NewCommentForm />
+        {authCtx.isLoggedIn && <NewCommentForm />}
         <CommentsList comments={comments} />
       </Col>
     );

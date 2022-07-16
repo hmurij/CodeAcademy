@@ -7,6 +7,7 @@ const AuthContext = React.createContext({
   isLoggedIn: false,
   login: (loginResponse) => {},
   logout: () => {},
+  ROLES: {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -23,6 +24,8 @@ export const AuthContextProvider = (props) => {
   };
 
   const logoutHandler = () => {
+    setUserName(null);
+    setAuthorities(null);
     setToken(null);
   };
 
@@ -33,6 +36,10 @@ export const AuthContextProvider = (props) => {
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    ROLES: {
+      admin: "ROLE_ADMIN",
+      user: "ROLE_USER",
+    },
   };
 
   return (
