@@ -1,17 +1,21 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
+import NewPostForm from "../Components/Forms/NewPostForm";
 
 const NewPostPage = (props) => {
+  const onSubmit = (newPosts, formikHelpers) => {
+    console.log(newPosts);
+    console.log(formikHelpers);
+  };
   return (
     <Container>
       <Row
-        className="g-2 pb-2"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,
         }}
       >
-        <h1>New post page</h1>
+        <NewPostForm onSubmit={onSubmit} />
       </Row>
     </Container>
   );

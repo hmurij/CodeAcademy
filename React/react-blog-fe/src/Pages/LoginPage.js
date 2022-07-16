@@ -47,7 +47,7 @@ const LoginPage = (props) => {
   return (
     <Container>
       <Row
-        className="py-3 d-flex flex-column align-content-center"
+        className="py-4 d-flex flex-column align-content-center"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,
