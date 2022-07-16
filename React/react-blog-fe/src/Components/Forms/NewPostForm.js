@@ -10,7 +10,7 @@ const NewPostForm = ({ onSubmit }) => {
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
-    textAreaRef.current.style.height = 400 + "px";
+    textAreaRef.current.style.height = "300px";
   });
   return (
     <Formik

@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row } from "react-bootstrap";
 import NewPostForm from "../Components/Forms/NewPostForm";
+import { submitNewPost } from "../lib/api";
+import AuthContext from "../store/auth-context";
 
 const NewPostPage = (props) => {
-  const onSubmit = (newPosts, formikHelpers) => {
-    console.log(newPosts);
-    console.log(formikHelpers);
+  const authContext = useContext(AuthContext);
+  const onSubmit = (newPost, formikHelpers) => {
+    console.log(newPost);
+    // console.log(formikHelpers);
+    submitNewPost(newPost, authContext.token).then(() => {
+      setTimeout(() => {
+        // formikHelpers.resetForm();
+        formikHelpers.setSubmitting(false);
+      }, 2000);
+    });
   };
   return (
     <Container>

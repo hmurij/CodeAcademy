@@ -13,6 +13,19 @@ export const getPostById = async (id) => {
   return await response.json();
 };
 
+export const submitNewPost = async (newPost, token) => {
+  const response = await fetch(`${BLOG_DOMAIN}/posts`, {
+    method: "POST",
+    body: JSON.stringify(newPost),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  console.log(response);
+};
+
 export const register = async (registerRequest) => {
   const response = await fetch(`${BLOG_DOMAIN}/auth/signup`, {
     method: "POST",
