@@ -1,20 +1,24 @@
 package lt.codeacademy.blog.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import lt.codeacademy.blog.dto.NewPostRequest;
 import lt.codeacademy.blog.entity.Post;
+import lt.codeacademy.blog.repository.BlogUserRepository;
 import lt.codeacademy.blog.repository.PostRepository;
 import lt.codeacademy.blog.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,6 +29,7 @@ public class PostController {
 
     public PostController(
             PostRepository postRepository,
+            BlogUserRepository blogUserRepository,
             AuthService authService
     ) {
         this.postRepository = postRepository;
@@ -50,8 +55,19 @@ public class PostController {
 
     @PostMapping(value = "/posts")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<HttpStatus> createPost() {
-        User user = authService.getCurrentUser().orElse(null);
+    public ResponseEntity<HttpStatus> createPost(@RequestBody NewPostRequest newPostRequest) {
+        postRepository.save(newPost(newPostRequest));
         return ResponseEntity.ok().build();
+    }
+
+    private Post newPost(NewPostRequest newPostRequest) {
+        return new Post(
+                newPostRequest.getTitle(),
+                newPostRequest.getContent(),
+                LocalDate.now(),
+                LocalDate.now(),
+                authService.getBlogUser().orElseThrow(),
+                new ArrayList<>()
+        );
     }
 }

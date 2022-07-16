@@ -16,7 +16,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,18 +25,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class AuthService {
-    private final BlogUserRepository repository;
+    private final BlogUserRepository blogUserRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
 
     public AuthService(
-            BlogUserRepository repository,
+            BlogUserRepository blogUserRepository,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,
             JwtProvider jwtProvider
     ) {
-        this.repository = repository;
+        this.blogUserRepository = blogUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtProvider = jwtProvider;
@@ -45,10 +44,10 @@ public class AuthService {
 
     public boolean signup(RegisterRequest registerRequest) {
         BlogUser blogUser = this.mapToBlogUser(registerRequest);
-        return repository.findByUserName(blogUser.getUserName())
+        return blogUserRepository.findByUserName(blogUser.getUserName())
                 .map(user -> false)
                 .orElseGet(() -> {
-                    repository.save(blogUser);
+                    blogUserRepository.save(blogUser);
                     return true;
                 });
     }
@@ -85,7 +84,7 @@ public class AuthService {
     }
 
     private String badCredentialsMessage(String userName) {
-        return repository.findByUserName(userName)
+        return blogUserRepository.findByUserName(userName)
                 .map(user -> "Invalid password")
                 .orElse("Invalid username");
     }
@@ -103,8 +102,8 @@ public class AuthService {
                 .collect(Collectors.joining(","));
     }
 
-    public Optional<User> getCurrentUser() {
-        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return Optional.of(principal);
+    public Optional<BlogUser> getBlogUser() {
+        String blogUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        return blogUserRepository.findByUserName(blogUserName);
     }
 }
