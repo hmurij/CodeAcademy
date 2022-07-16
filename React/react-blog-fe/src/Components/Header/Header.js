@@ -1,8 +1,10 @@
 import React from "react";
 import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 
 class Header extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
 
@@ -27,7 +29,13 @@ class Header extends React.Component {
     window.removeEventListener("resize", this.resizeHandler);
   }
 
+  logoutHandler = () => {
+    console.log("logging out from header");
+    this.context.logout();
+  };
+
   render() {
+    let { isLoggedIn, userName } = this.context;
     return (
       <Container
         fluid
@@ -59,44 +67,50 @@ class Header extends React.Component {
                 </Dropdown.Menu>
               </Dropdown>
 
-              <Link
-                className="me-auto button btn btn-outline-secondary ms-1 mt-1 mb-1 text-decoration-none"
-                to="/new-post"
-                as={NavLink}
-              >
-                New Post
-              </Link>
+              {isLoggedIn && (
+                <Nav className="d-flex w-100">
+                  <Link
+                    className="me-auto button btn btn-outline-secondary ms-1 my-2 text-decoration-none"
+                    to="/new-post"
+                    as={NavLink}
+                  >
+                    New Post
+                  </Link>
+                  <div
+                    className="btn my-2 text-secondary"
+                    style={{ cursor: "default" }}
+                  >
+                    <span>{`Signed in as:  ${userName}`}</span>
+                  </div>
+                  <Link
+                    className="button btn btn-outline-secondary me-1 my-2 text-decoration-none"
+                    to="/"
+                    as={NavLink}
+                    onClick={this.logoutHandler}
+                  >
+                    Logout
+                  </Link>
+                </Nav>
+              )}
 
-              <div
-                className="btn mt-2 mb-2 text-secondary"
-                style={{ cursor: "default" }}
-              >
-                <span>Signed in as: {"User Name"}</span>
-              </div>
-
-              <Nav>
-                <Link
-                  className="button btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
-                  to="/login"
-                  as={NavLink}
-                >
-                  Login
-                </Link>
-                <Link
-                  className="button btn btn-outline-secondary me-1 mt-1  mb-1 text-decoration-none"
-                  to="/"
-                  as={NavLink}
-                >
-                  Logout
-                </Link>
-                <Link
-                  className="button btn btn-outline-secondary me-1 mt-1 mb-1 text-decoration-none"
-                  to="/register"
-                  as={NavLink}
-                >
-                  Register
-                </Link>
-              </Nav>
+              {!isLoggedIn && (
+                <Nav className="d-flex w-100 justify-content-end">
+                  <Link
+                    className="button btn btn-outline-secondary me-1 my-1 text-decoration-none"
+                    to="/login"
+                    as={NavLink}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    className="button btn btn-outline-secondary me-1 my-1 text-decoration-none"
+                    to="/register"
+                    as={NavLink}
+                  >
+                    Register
+                  </Link>
+                </Nav>
+              )}
             </Navbar.Collapse>
           </Container>
         </Navbar>
