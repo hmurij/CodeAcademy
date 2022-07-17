@@ -11,9 +11,11 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
-  const [token, setToken] = useState(null);
-  const [userName, setUserName] = useState("");
-  const [authorities, setAuthorities] = useState("");
+  const [token, setToken] = useState(sessionStorage.getItem("token"));
+  const [userName, setUserName] = useState(sessionStorage.getItem("userName"));
+  const [authorities, setAuthorities] = useState(
+    sessionStorage.getItem("authorities")
+  );
 
   const userIsLoggedIn = !!token;
 
@@ -21,12 +23,18 @@ export const AuthContextProvider = (props) => {
     setUserName(userName);
     setAuthorities(authorities);
     setToken(jwt);
+    sessionStorage.setItem("userName", userName);
+    sessionStorage.setItem("authorities", authorities);
+    sessionStorage.setItem("token", jwt);
   };
 
   const logoutHandler = () => {
     setUserName(null);
     setAuthorities(null);
     setToken(null);
+    sessionStorage.removeItem("userName");
+    sessionStorage.removeItem("authorities");
+    sessionStorage.removeItem("token");
   };
 
   const contextValue = {

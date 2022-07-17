@@ -32,7 +32,7 @@ const NewPostForm = ({ onSubmit, isSubmitted }) => {
     >
       {(formik) => (
         <Col>
-          <Card className="mt-4 boxShadow">
+          <Card className="boxShadow">
             <Card.Header className="fst-italic">{`New Post by ${authCtx.userName}`}</Card.Header>
             <Card.Body className="m-2 pb-3 border rounded-3">
               <Form onSubmit={formik.handleSubmit}>

@@ -20,7 +20,6 @@ const NewPostPage = (props) => {
         setTimeout(() => {
           setNewPostId(post.id);
           setIsSubmitted(true);
-          formikHelpers.resetForm();
         }, 2000);
       })
       .catch((error) => {
@@ -45,7 +44,7 @@ const NewPostPage = (props) => {
   return (
     <Container>
       <Row
-        className="d-flex flex-column justify-content-center"
+        className="py-4 d-flex flex-column justify-content-center"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,
@@ -54,7 +53,7 @@ const NewPostPage = (props) => {
         <NewPostForm isSubmitted={isSubmitted} onSubmit={onSubmit} />
         {isSubmitted && (
           <Banner
-            className="text-success border-success"
+            className="text-success border-success mt-4"
             message={`New post added by ${authContext.userName}`}
           />
         )}

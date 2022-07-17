@@ -5,7 +5,7 @@ const Banner = ({ message, className }) => {
   return (
     <Col sm={10} md={8} lg={6} className="align-self-center">
       <div
-        className={`my-4 p-4 text-center border rounded-3 boxShadow ${className}`}
+        className={`p-4 text-center border rounded-3 boxShadow ${className}`}
       >
         {message}
       </div>

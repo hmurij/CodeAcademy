@@ -30,7 +30,7 @@ class Header extends React.Component {
   }
 
   logoutHandler = () => {
-    console.log("logging out from header");
+    // console.log("logging out from header");
     this.context.logout();
   };
 
@@ -77,7 +77,7 @@ class Header extends React.Component {
                     New Post
                   </Link>
                   <div
-                    className="btn my-2 text-secondary"
+                    className="btn align-self-center text-secondary"
                     style={{ cursor: "default" }}
                   >
                     <span>{`Signed in as:  ${userName}`}</span>
