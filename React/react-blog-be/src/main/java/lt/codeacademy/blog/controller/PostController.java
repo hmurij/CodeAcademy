@@ -6,7 +6,6 @@ import lt.codeacademy.blog.entity.Post;
 import lt.codeacademy.blog.repository.BlogUserRepository;
 import lt.codeacademy.blog.repository.PostRepository;
 import lt.codeacademy.blog.service.AuthService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -55,9 +54,8 @@ public class PostController {
 
     @PostMapping(value = "/posts")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<HttpStatus> createPost(@RequestBody NewPostRequest newPostRequest) {
-        postRepository.save(newPost(newPostRequest));
-        return ResponseEntity.ok().build();
+    public ResponseEntity<JsonNode> createPost(@RequestBody NewPostRequest newPostRequest) {
+        return ResponseEntity.ok(postRepository.save(newPost(newPostRequest)).asJson());
     }
 
     private Post newPost(NewPostRequest newPostRequest) {
