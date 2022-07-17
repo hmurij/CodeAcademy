@@ -4,7 +4,7 @@ import { Card, Col, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import SubmitButton from "../SubmitButton";
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, isSubmitted }) => {
   return (
     <Formik
       initialValues={{
@@ -40,6 +40,7 @@ const LoginForm = ({ onSubmit }) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.userName}
+                  disabled={isSubmitted}
                   isValid={
                     formik.touched.userName &&
                     !formik.errors.userName &&
@@ -67,6 +68,7 @@ const LoginForm = ({ onSubmit }) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
+                  disabled={isSubmitted}
                   isValid={
                     formik.touched.password &&
                     !formik.errors.password &&
@@ -84,7 +86,11 @@ const LoginForm = ({ onSubmit }) => {
                   {formik.errors.invalidPassword}
                 </Form.Control.Feedback>
               </Form.Group>
-              <SubmitButton isSubmitting={formik.isSubmitting} name="Login" />
+              <SubmitButton
+                isSubmitted={isSubmitted}
+                isSubmitting={formik.isSubmitting}
+                name="Login"
+              />
             </Form>
           </Card>
         </Col>

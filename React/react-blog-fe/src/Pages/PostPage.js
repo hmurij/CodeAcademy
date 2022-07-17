@@ -48,9 +48,11 @@ const PostPage = (props) => {
       <Col>
         <PostUpdateForm post={post} />
 
-        <div className="ms-2 my-3">
-          <h5>Comments</h5>
-        </div>
+        {(authCtx.isLoggedIn || comments.length > 0) && (
+          <div className="ms-2 my-3">
+            <h5>Comments</h5>
+          </div>
+        )}
 
         {authCtx.isLoggedIn && <NewCommentForm />}
         <CommentsList comments={comments} />

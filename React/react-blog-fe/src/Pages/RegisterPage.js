@@ -45,7 +45,10 @@ const RegisterPage = (props) => {
           marginBottom: props.footerHeight,
         }}
       >
-        <RegistrationForm onSubmit={onSubmit} />
+        <RegistrationForm
+          isSubmitted={isRegistrationSuccess}
+          onSubmit={onSubmit}
+        />
         {isRegistrationSuccess && (
           <Banner
             className="text-success border-success mt-4"

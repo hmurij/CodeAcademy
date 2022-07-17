@@ -22,8 +22,10 @@ export const submitNewPost = async (newPost, token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-
-  console.log(response);
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+  return response.json();
 };
 
 export const register = async (registerRequest) => {

@@ -1,30 +1,63 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import NewPostForm from "../Components/Forms/NewPostForm";
 import { submitNewPost } from "../lib/api";
 import AuthContext from "../store/auth-context";
+import Banner from "../Components/Banner";
+import { useNavigate } from "react-router-dom";
 
 const NewPostPage = (props) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [newPostId, setNewPostId] = useState(null);
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const onSubmit = (newPost, formikHelpers) => {
     console.log(newPost);
-    // console.log(formikHelpers);
-    submitNewPost(newPost, authContext.token).then(() => {
-      setTimeout(() => {
-        // formikHelpers.resetForm();
-        formikHelpers.setSubmitting(false);
-      }, 2000);
-    });
+    submitNewPost(newPost, authContext.token)
+      .then((post) => {
+        console.log(post);
+        setTimeout(() => {
+          setNewPostId(post.id);
+          setIsSubmitted(true);
+          formikHelpers.resetForm();
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          formikHelpers.setSubmitting(false);
+        }, 2000);
+      });
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (isSubmitted) {
+        setIsSubmitted(false);
+        navigate(`/post/${newPostId}`);
+      }
+    }, 3000);
+  }, [isSubmitted]);
+
   return (
     <Container>
       <Row
+        className="d-flex flex-column justify-content-center"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,
         }}
       >
-        <NewPostForm onSubmit={onSubmit} />
+        <NewPostForm isSubmitted={isSubmitted} onSubmit={onSubmit} />
+        {isSubmitted && (
+          <Banner
+            className="text-success border-success"
+            message={`New post added by ${authContext.userName}`}
+          />
+        )}
       </Row>
     </Container>
   );

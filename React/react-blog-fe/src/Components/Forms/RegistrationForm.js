@@ -42,6 +42,7 @@ const RegistrationForm = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.userName}
+                  disabled={props.isSubmitted}
                   isValid={
                     formik.touched.userName &&
                     !formik.errors.userName &&
@@ -69,6 +70,7 @@ const RegistrationForm = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
+                  disabled={props.isSubmitted}
                   isValid={
                     formik.touched.email &&
                     !formik.errors.email &&
@@ -90,6 +92,7 @@ const RegistrationForm = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
+                  disabled={props.isSubmitted}
                   isValid={
                     formik.touched.password &&
                     !formik.errors.password &&
@@ -103,6 +106,7 @@ const RegistrationForm = (props) => {
               </Form.Group>
 
               <SubmitButton
+                isSubmitted={props.isSubmitted}
                 isSubmitting={formik.isSubmitting}
                 name="Register"
               />

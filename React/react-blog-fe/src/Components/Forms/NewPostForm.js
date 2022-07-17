@@ -5,7 +5,7 @@ import AuthContext from "../../store/auth-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const NewPostForm = ({ onSubmit }) => {
+const NewPostForm = ({ onSubmit, isSubmitted }) => {
   const textAreaRef = useRef(null);
   const authCtx = useContext(AuthContext);
 
@@ -45,6 +45,7 @@ const NewPostForm = ({ onSubmit }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.title}
+                    disabled={isSubmitted}
                     isValid={
                       formik.touched.title &&
                       !formik.errors.title &&
@@ -65,6 +66,7 @@ const NewPostForm = ({ onSubmit }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.content}
+                    disabled={isSubmitted}
                     isValid={
                       formik.touched.content &&
                       !formik.errors.content &&
@@ -81,6 +83,7 @@ const NewPostForm = ({ onSubmit }) => {
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                   <SubmitButton
+                    isSubmitted={isSubmitted}
                     isSubmitting={formik.isSubmitting}
                     name="Add New Post"
                   />

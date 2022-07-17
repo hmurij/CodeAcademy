@@ -9,6 +9,7 @@ import Banner from "../Components/Banner";
 const LoginPage = (props) => {
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
 
@@ -19,6 +20,7 @@ const LoginPage = (props) => {
           console.log(loginResponse);
           setIsLoginSuccess(true);
           setLoginMessage(`Logged in as ${loginResponse.userName}`);
+          setIsSubmitted(true);
           formikHelpers.resetForm();
           authCtx.login(loginResponse);
         })
@@ -53,7 +55,7 @@ const LoginPage = (props) => {
           marginBottom: props.footerHeight,
         }}
       >
-        <LoginForm onSubmit={onSubmit} />
+        <LoginForm isSubmitted={isSubmitted} onSubmit={onSubmit} />
         {isLoginSuccess && (
           <Banner
             className="text-success border-success mt-4"
