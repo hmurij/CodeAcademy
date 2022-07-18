@@ -13,7 +13,7 @@ const NewPostPage = (props) => {
   const navigate = useNavigate();
 
   const onSubmit = (newPost, formikHelpers) => {
-    console.log(newPost);
+    // console.log(newPost);
     submitNewPost(newPost, authContext.token)
       .then((post) => {
         console.log(post);

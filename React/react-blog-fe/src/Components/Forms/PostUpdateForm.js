@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import AuthContext from "../../store/auth-context";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import SubmitButton from "../SubmitButton";
 
-const PostUpdateForm = ({ post }) => {
+const PostUpdateForm = ({ post, onSubmit, isPostUpdated }) => {
   const textAreaRef = useRef(null);
   const authCtx = useContext(AuthContext);
 
@@ -11,35 +14,85 @@ const PostUpdateForm = ({ post }) => {
   });
 
   return (
-    <Card className="boxShadow">
-      <Card.Header className="fst-italic">{post.blogUser}</Card.Header>
-      <Card.Body>
-        <Card.Title className="fst-italic">{post.title}</Card.Title>
-        <textarea
-          ref={textAreaRef}
-          defaultValue={post.content}
-          readOnly={true}
-          className="form-control bg-white"
-          style={{ overflow: "hidden" }}
-        />
-        {authCtx.isLoggedIn &&
-          (authCtx.userName === post.blogUser ||
-            authCtx.authorities === authCtx.ROLES.admin) && (
-            <div className="d-flex mt-2 justify-content-end">
-              <Button variant="outline-primary me-1" className="button">
-                Update
-              </Button>
-              <Button variant="outline-danger" className="button">
-                Delete
-              </Button>
-            </div>
-          )}
-      </Card.Body>
-      <Card.Footer className="d-flex text-muted">
-        <div className="me-auto">{`Posted: ${post.createdOn}`}</div>
-        <div>{`Edited: ${post.updatedOn}`}</div>
-      </Card.Footer>
-    </Card>
+    <Formik
+      initialValues={{
+        content: post.content,
+      }}
+      validationSchema={Yup.object({
+        content: Yup.string()
+          .min(250, "Must be at least 250 characters")
+          .max(5000, "Must be 15 characters of less")
+          .required("Required"),
+      })}
+      onSubmit={onSubmit}
+    >
+      {(formik) => (
+        <Card className="boxShadow">
+          <Card.Header className="fst-italic">{post.blogUser}</Card.Header>
+          <Card.Body>
+            <Card.Title className="fst-italic">{post.title}</Card.Title>
+            <Form onSubmit={formik.handleSubmit}>
+              <Form.Group className="my-2" controlId="content">
+                <Form.Control
+                  type="text"
+                  name="content"
+                  className="bg-white"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.content}
+                  disabled={formik.isSubmitting || isPostUpdated}
+                  readOnly={
+                    !(
+                      authCtx.isLoggedIn &&
+                      (authCtx.userName === post.blogUser ||
+                        authCtx.authorities === authCtx.ROLES.admin)
+                    )
+                  }
+                  isValid={
+                    formik.touched.content &&
+                    !formik.errors.content &&
+                    formik.values.content &&
+                    authCtx.isLoggedIn &&
+                    (authCtx.userName === post.blogUser ||
+                      authCtx.authorities === authCtx.ROLES.admin)
+                  }
+                  isInvalid={formik.touched.content && formik.errors.content}
+                  ref={textAreaRef}
+                  as="textarea"
+                  style={{ overflow: "hidden" }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {formik.errors.content}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              {authCtx.isLoggedIn &&
+                (authCtx.userName === post.blogUser ||
+                  authCtx.authorities === authCtx.ROLES.admin) && (
+                  <div className="d-flex mt-2 justify-content-end">
+                    <SubmitButton
+                      isSubmitted={isPostUpdated}
+                      isSubmitting={formik.isSubmitting}
+                      name="Update"
+                    />
+                    <Button
+                      disabled={formik.isSubmitting || isPostUpdated}
+                      variant="outline-danger"
+                      className="ms-1 button"
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                )}
+            </Form>
+          </Card.Body>
+          <Card.Footer className="d-flex text-muted">
+            <div className="me-auto">{`Posted: ${post.createdOn}`}</div>
+            <div>{`Edited: ${post.updatedOn}`}</div>
+          </Card.Footer>
+        </Card>
+      )}
+    </Formik>
   );
 };
 

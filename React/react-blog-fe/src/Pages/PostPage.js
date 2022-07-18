@@ -4,8 +4,8 @@ import NewCommentForm from "../Components/Forms/NewCommentForm";
 import CommentsList from "../Components/CommentsList";
 import PostUpdateForm from "../Components/Forms/PostUpdateForm";
 import Loading from "../Components/Loading";
-import { getPostById } from "../lib/api";
-import { useParams } from "react-router-dom";
+import { getPostById, updatePost } from "../lib/api";
+import { useNavigate, useParams } from "react-router-dom";
 import Banner from "../Components/Banner";
 import AuthContext from "../store/auth-context";
 
@@ -13,9 +13,30 @@ const PostPage = (props) => {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPostUpdated, setIsPostUpdated] = useState(false);
   const [error, setError] = useState(null);
   const { id } = useParams();
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onPostUpdate = (updatedContent, formikHelpers) => {
+    setTimeout(() => {
+      updatePost(
+        { id: post.id, content: updatedContent.content },
+        authCtx.token
+      )
+        .then(() => {
+          console.log("Post updated");
+          setIsPostUpdated(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          formikHelpers.setSubmitting(false);
+        });
+    }, 2000);
+  };
 
   const fetchPostById = () => {
     getPostById(id)
@@ -34,6 +55,14 @@ const PostPage = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
+      if (isPostUpdated) {
+        setIsPostUpdated(false);
+      }
+    }, 2000);
+  }, [isPostUpdated]);
+
+  useEffect(() => {
+    setTimeout(() => {
       fetchPostById();
     }, Math.random() * 1000);
   }, []);
@@ -45,8 +74,18 @@ const PostPage = (props) => {
   }
   if (!isLoading && !error) {
     content = (
-      <Col>
-        <PostUpdateForm post={post} />
+      <Col className="d-flex flex-column justify-content-center">
+        <PostUpdateForm
+          isPostUpdated={isPostUpdated}
+          onSubmit={onPostUpdate}
+          post={post}
+        />
+        {isPostUpdated && (
+          <Banner
+            className="text-success border-success mt-4"
+            message={`Post updated by ${authCtx.userName}`}
+          />
+        )}
 
         {(authCtx.isLoggedIn || comments.length > 0) && (
           <div className="ms-2 my-3">
@@ -63,7 +102,7 @@ const PostPage = (props) => {
   return (
     <Container>
       <Row
-        className="pt-4 justify-content-center"
+        className="pt-4"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,

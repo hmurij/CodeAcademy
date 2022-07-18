@@ -19,7 +19,13 @@ const Comment = ({ comment }) => {
       <Card.Body>
         <textarea
           ref={textAreaRef}
-          readOnly={true}
+          readOnly={
+            !(
+              authCtx.isLoggedIn &&
+              (authCtx.userName === comment.blogUser ||
+                authCtx.authorities === authCtx.ROLES.admin)
+            )
+          }
           defaultValue={comment.comment}
           className="form-control bg-white"
           style={{ overflow: "hidden" }}

@@ -28,6 +28,21 @@ export const submitNewPost = async (newPost, token) => {
   return response.json();
 };
 
+export const updatePost = async (updatedPost, token) => {
+  const response = await fetch(`${BLOG_DOMAIN}/posts`, {
+    method: "PUT",
+    body: JSON.stringify(updatedPost),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+  return response.json();
+};
+
 export const register = async (registerRequest) => {
   const response = await fetch(`${BLOG_DOMAIN}/auth/signup`, {
     method: "POST",
