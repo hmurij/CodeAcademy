@@ -1,7 +1,7 @@
 package lt.codeacademy.blog.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lt.codeacademy.blog.dto.NewPostRequest;
+import lt.codeacademy.blog.dto.PostRequest;
 import lt.codeacademy.blog.entity.Post;
 import lt.codeacademy.blog.repository.BlogUserRepository;
 import lt.codeacademy.blog.repository.PostRepository;
@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,18 +55,27 @@ public class PostController {
 
     @PostMapping(value = "/posts")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<JsonNode> createPost(@RequestBody NewPostRequest newPostRequest) {
-        return ResponseEntity.ok(postRepository.save(newPost(newPostRequest)).asJson());
+    public ResponseEntity<JsonNode> createPost(@RequestBody PostRequest postRequest) {
+        return ResponseEntity.ok(postRepository.save(newPost(postRequest)).asJson());
     }
 
-    private Post newPost(NewPostRequest newPostRequest) {
+    private Post newPost(PostRequest postRequest) {
         return new Post(
-                newPostRequest.getTitle(),
-                newPostRequest.getContent(),
+                postRequest.getTitle(),
+                postRequest.getContent(),
                 LocalDate.now(),
                 LocalDate.now(),
                 authService.getBlogUser().orElseThrow(),
                 new ArrayList<>()
         );
+    }
+
+    @PutMapping(value = "/posts")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<JsonNode> updatePost(@RequestBody PostRequest postRequest) {
+        return postRepository.findById(postRequest.getId())
+                .map(post -> post.updateContent(postRequest))
+                .map(post -> ResponseEntity.ok(postRepository.save(newPost(postRequest)).asJson()))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
