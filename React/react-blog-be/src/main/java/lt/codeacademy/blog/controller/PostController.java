@@ -75,7 +75,7 @@ public class PostController {
     public ResponseEntity<JsonNode> updatePost(@RequestBody PostRequest postRequest) {
         return postRepository.findById(postRequest.getId())
                 .map(post -> post.updateContent(postRequest))
-                .map(post -> ResponseEntity.ok(postRepository.save(newPost(postRequest)).asJson()))
+                .map(post -> ResponseEntity.ok(postRepository.save(post).asJson()))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
