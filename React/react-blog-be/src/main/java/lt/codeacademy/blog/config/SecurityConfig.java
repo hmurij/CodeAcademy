@@ -50,9 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // disable frame options for H2 console
                 .headers().frameOptions().disable().and()
                 // disable sessions
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                // add jwt filter
+                .and().addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

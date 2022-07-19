@@ -1,6 +1,6 @@
 package lt.codeacademy.blog.dto;
 
-public class PostRequest {
+public class ContentRequest {
     private Long id;
     private String title;
     private String content;

@@ -1,7 +1,7 @@
 package lt.codeacademy.blog.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lt.codeacademy.blog.dto.PostRequest;
+import lt.codeacademy.blog.dto.ContentRequest;
 import lt.codeacademy.blog.entity.Post;
 import lt.codeacademy.blog.repository.BlogUserRepository;
 import lt.codeacademy.blog.repository.PostRepository;
@@ -57,14 +57,14 @@ public class PostController {
 
     @PostMapping(value = "/posts")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<JsonNode> createPost(@RequestBody PostRequest postRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(newPost(postRequest)).asJson());
+    public ResponseEntity<JsonNode> createPost(@RequestBody ContentRequest contentRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(newPost(contentRequest)).asJson());
     }
 
-    private Post newPost(PostRequest postRequest) {
+    private Post newPost(ContentRequest contentRequest) {
         return new Post(
-                postRequest.getTitle(),
-                postRequest.getContent(),
+                contentRequest.getTitle(),
+                contentRequest.getContent(),
                 LocalDate.now(),
                 LocalDate.now(),
                 authService.getBlogUser().orElseThrow(),
@@ -74,9 +74,9 @@ public class PostController {
 
     @PutMapping(value = "/posts")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<JsonNode> updatePost(@RequestBody PostRequest postRequest) {
-        return postRepository.findById(postRequest.getId())
-                .map(post -> post.updateContent(postRequest.getContent()))
+    public ResponseEntity<JsonNode> updatePost(@RequestBody ContentRequest contentRequest) {
+        return postRepository.findById(contentRequest.getId())
+                .map(post -> post.updateContent(contentRequest.getContent()))
                 .map(post -> ResponseEntity.ok(postRepository.save(post).asJson()))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
