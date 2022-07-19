@@ -73,20 +73,15 @@ const PostPage = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
+      if (isPostUpdated) {
+        setIsPostUpdated(false);
+      }
       if (isPostDeleted) {
         setIsPostDeleted(false);
         navigate("/");
       }
     }, Math.random() * 1000);
-  }, [isPostDeleted]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (isPostUpdated) {
-        setIsPostUpdated(false);
-      }
-    }, Math.random() * 1000);
-  }, [isPostUpdated]);
+  }, [isPostUpdated, isPostDeleted]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -124,12 +119,12 @@ const PostPage = (props) => {
         )}
 
         {(authCtx.isLoggedIn || comments.length > 0) && (
-          <div className="ms-2 my-3">
+          <div className="ms-2 mt-3 mb-2">
             <h5>Comments</h5>
           </div>
         )}
 
-        {authCtx.isLoggedIn && <NewCommentForm />}
+        {authCtx.isLoggedIn && <NewCommentForm postId={post.id} />}
         <CommentsList comments={comments} />
       </Col>
     );

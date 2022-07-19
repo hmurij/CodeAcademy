@@ -57,6 +57,22 @@ export const deletePost = async (postId, token) => {
   return response.ok;
 };
 
+export const submitNewComment = async (newComment, token) => {
+  const response = await fetch(`${BLOG_DOMAIN}/comments`, {
+    method: "POST",
+    body: JSON.stringify(newComment),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(response);
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+  return response.json();
+};
+
 export const register = async (registerRequest) => {
   const response = await fetch(`${BLOG_DOMAIN}/auth/signup`, {
     method: "POST",
