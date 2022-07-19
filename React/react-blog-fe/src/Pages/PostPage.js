@@ -4,7 +4,7 @@ import NewCommentForm from "../Components/Forms/NewCommentForm";
 import CommentsList from "../Components/CommentsList";
 import PostUpdateForm from "../Components/Forms/PostUpdateForm";
 import Loading from "../Components/Loading";
-import { getPostById, updatePost } from "../lib/api";
+import { deletePost, getPostById, updatePost } from "../lib/api";
 import { useNavigate, useParams } from "react-router-dom";
 import Banner from "../Components/Banner";
 import AuthContext from "../store/auth-context";
@@ -14,6 +14,8 @@ const PostPage = (props) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isPostUpdated, setIsPostUpdated] = useState(false);
+  const [isPostDeleted, setIsPostDeleted] = useState(false);
+  const [isDeletingPost, setIsDeletingPost] = useState(false);
   const [error, setError] = useState(null);
   const { id } = useParams();
   const authCtx = useContext(AuthContext);
@@ -26,7 +28,7 @@ const PostPage = (props) => {
         authCtx.token
       )
         .then(() => {
-          console.log("Post updated");
+          // console.log("Post updated");
           setIsPostUpdated(true);
         })
         .catch((error) => {
@@ -35,7 +37,23 @@ const PostPage = (props) => {
         .finally(() => {
           formikHelpers.setSubmitting(false);
         });
-    }, 2000);
+    }, Math.random() * 1000);
+  };
+
+  const onPostDelete = () => {
+    setIsDeletingPost(true);
+    setTimeout(() => {
+      deletePost(post.id, authCtx.token)
+        .then(() => {
+          setIsPostDeleted(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsDeletingPost(false);
+        });
+    }, Math.random() * 1000);
   };
 
   const fetchPostById = () => {
@@ -55,10 +73,19 @@ const PostPage = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
+      if (isPostDeleted) {
+        setIsPostDeleted(false);
+        navigate("/");
+      }
+    }, Math.random() * 1000);
+  }, [isPostDeleted]);
+
+  useEffect(() => {
+    setTimeout(() => {
       if (isPostUpdated) {
         setIsPostUpdated(false);
       }
-    }, 2000);
+    }, Math.random() * 1000);
   }, [isPostUpdated]);
 
   useEffect(() => {
@@ -78,12 +105,21 @@ const PostPage = (props) => {
         <PostUpdateForm
           isPostUpdated={isPostUpdated}
           onSubmit={onPostUpdate}
+          onPostDelete={onPostDelete}
+          isDeletingPost={isDeletingPost}
+          isPostDeleted={isPostDeleted}
           post={post}
         />
         {isPostUpdated && (
           <Banner
             className="text-success border-success mt-4"
             message={`Post updated by ${authCtx.userName}`}
+          />
+        )}
+        {isPostDeleted && (
+          <Banner
+            className="text-danger border-danger mt-4"
+            message={`Post deleted by ${authCtx.userName}`}
           />
         )}
 
@@ -102,7 +138,7 @@ const PostPage = (props) => {
   return (
     <Container>
       <Row
-        className="pt-4"
+        className="pt-4 d-flex justify-content-center"
         style={{
           marginTop: props.headerHeight,
           marginBottom: props.footerHeight,

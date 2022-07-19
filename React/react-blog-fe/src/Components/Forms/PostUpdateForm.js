@@ -1,11 +1,18 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import AuthContext from "../../store/auth-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import SubmitButton from "../SubmitButton";
 
-const PostUpdateForm = ({ post, onSubmit, isPostUpdated }) => {
+const PostUpdateForm = ({
+  post,
+  onSubmit,
+  isPostUpdated,
+  onPostDelete,
+  isDeletingPost,
+  isPostDeleted,
+}) => {
   const textAreaRef = useRef(null);
   const authCtx = useContext(AuthContext);
 
@@ -40,7 +47,9 @@ const PostUpdateForm = ({ post, onSubmit, isPostUpdated }) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.content}
-                  disabled={formik.isSubmitting || isPostUpdated}
+                  disabled={
+                    formik.isSubmitting || isDeletingPost || isPostDeleted
+                  }
                   readOnly={
                     !(
                       authCtx.isLoggedIn &&
@@ -71,17 +80,18 @@ const PostUpdateForm = ({ post, onSubmit, isPostUpdated }) => {
                   authCtx.authorities === authCtx.ROLES.admin) && (
                   <div className="d-flex mt-2 justify-content-end">
                     <SubmitButton
-                      isSubmitted={isPostUpdated}
                       isSubmitting={formik.isSubmitting}
+                      isDisabled={isDeletingPost || isPostDeleted}
                       name="Update"
                     />
-                    <Button
-                      disabled={formik.isSubmitting || isPostUpdated}
+                    <SubmitButton
                       variant="outline-danger"
-                      className="ms-1 button"
-                    >
-                      Delete
-                    </Button>
+                      type="button"
+                      onClick={onPostDelete}
+                      isSubmitting={isDeletingPost}
+                      isDisabled={formik.isSubmitting || isPostDeleted}
+                      name="Delete"
+                    />
                   </div>
                 )}
             </Form>

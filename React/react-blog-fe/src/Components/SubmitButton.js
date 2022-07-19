@@ -1,14 +1,23 @@
 import React from "react";
 import { Button, Spinner } from "react-bootstrap";
 
-const SubmitButton = ({ isSubmitting, isSubmitted, name }) => {
+const SubmitButton = ({
+  isSubmitting,
+  isSubmitted,
+  isDisabled,
+  name,
+  variant,
+  type,
+  onClick,
+}) => {
   return (
     <div className="d-flex justify-content-end">
       <Button
-        variant="outline-primary"
-        className={`${isSubmitting ? "disabled button" : "button"}`}
-        type="submit"
-        disabled={isSubmitted}
+        variant={variant || "outline-primary"}
+        className={`${isSubmitting ? "disabled button" : "button"} ms-1`}
+        type={type || "submit"}
+        disabled={isSubmitting || isSubmitted || isDisabled}
+        onClick={onClick}
       >
         <Spinner
           as="span"

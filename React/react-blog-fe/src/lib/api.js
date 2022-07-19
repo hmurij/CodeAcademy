@@ -43,6 +43,20 @@ export const updatePost = async (updatedPost, token) => {
   return response.json();
 };
 
+export const deletePost = async (postId, token) => {
+  const response = await fetch(`${BLOG_DOMAIN}/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(response);
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+  return response.ok;
+};
+
 export const register = async (registerRequest) => {
   const response = await fetch(`${BLOG_DOMAIN}/auth/signup`, {
     method: "POST",

@@ -118,7 +118,7 @@ class Header extends React.Component {
           className="btn"
           style={{ cursor: "default", textShadow: "2px 2px 3px grey" }}
         >
-          <h1>Spring Rest API Blog</h1>
+          <h1>Spring Rest API Blog - React</h1>
         </div>
       </Container>
     );
