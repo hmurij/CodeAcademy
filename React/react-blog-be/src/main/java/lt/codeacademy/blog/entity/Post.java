@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lt.codeacademy.blog.dto.PostRequest;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -51,8 +50,8 @@ public class Post {
         this.comments = comments;
     }
 
-    public Post updateContent(PostRequest postRequest) {
-        setContent(postRequest.getContent());
+    public Post updateContent(String updatedContent) {
+        setContent(updatedContent);
         setUpdatedOn(LocalDate.now());
         return this;
     }

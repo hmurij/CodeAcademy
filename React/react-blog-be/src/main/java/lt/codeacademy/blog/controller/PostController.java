@@ -6,9 +6,11 @@ import lt.codeacademy.blog.entity.Post;
 import lt.codeacademy.blog.repository.BlogUserRepository;
 import lt.codeacademy.blog.repository.PostRepository;
 import lt.codeacademy.blog.service.AuthService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,7 +58,7 @@ public class PostController {
     @PostMapping(value = "/posts")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<JsonNode> createPost(@RequestBody PostRequest postRequest) {
-        return ResponseEntity.ok(postRepository.save(newPost(postRequest)).asJson());
+        return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(newPost(postRequest)).asJson());
     }
 
     private Post newPost(PostRequest postRequest) {
@@ -74,8 +76,15 @@ public class PostController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<JsonNode> updatePost(@RequestBody PostRequest postRequest) {
         return postRepository.findById(postRequest.getId())
-                .map(post -> post.updateContent(postRequest))
+                .map(post -> post.updateContent(postRequest.getContent()))
                 .map(post -> ResponseEntity.ok(postRepository.save(post).asJson()))
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping(value = "/posts/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<HttpStatus> deletePost(@PathVariable Long id) {
+        postRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
