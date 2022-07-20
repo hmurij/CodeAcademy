@@ -7,7 +7,7 @@ import Banner from "../Banner";
 import AuthContext from "../../store/auth-context";
 import { submitNewComment } from "../../lib/api";
 
-const NewCommentForm = ({ postId }) => {
+const NewCommentForm = ({ postId, onContentChange }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const authCtx = useContext(AuthContext);
   const textAreaRef = useRef(null);
@@ -32,6 +32,7 @@ const NewCommentForm = ({ postId }) => {
     setTimeout(() => {
       if (isSubmitted) {
         setIsSubmitted(false);
+        onContentChange();
       }
     }, 2000);
   }, [isSubmitted]);
@@ -48,7 +49,7 @@ const NewCommentForm = ({ postId }) => {
       validationSchema={Yup.object({
         content: Yup.string()
           .min(5, "Must be at least 5 characters")
-          .max(250, "Must be 250 characters of less")
+          .max(1000, "Must be 1000 characters of less")
           .required("Required"),
       })}
       onSubmit={onSubmit}

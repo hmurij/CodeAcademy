@@ -66,9 +66,23 @@ export const submitNewComment = async (newComment, token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response);
   if (!response.ok) {
     throw new Error(response.status);
+  }
+  return response.json();
+};
+
+export const updateComment = async (updatedComment, token) => {
+  const response = await fetch(`${BLOG_DOMAIN}/comments`, {
+    method: "PUT",
+    body: JSON.stringify(updatedComment),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`Error - ${response.status} ${response.statusText}`);
   }
   return response.json();
 };

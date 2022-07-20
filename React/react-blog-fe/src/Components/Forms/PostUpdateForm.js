@@ -8,7 +8,6 @@ import SubmitButton from "../SubmitButton";
 const PostUpdateForm = ({
   post,
   onSubmit,
-  isPostUpdated,
   onPostDelete,
   isDeletingPost,
   isPostDeleted,

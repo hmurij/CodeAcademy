@@ -1,9 +1,15 @@
 import React from "react";
 import Comment from "./Comment";
 
-const CommentsList = (props) => {
-  return props.comments.map((comment) => {
-    return <Comment key={comment.id} comment={comment} />;
+const CommentsList = ({ comments, onContentChange }) => {
+  return comments.map((comment) => {
+    return (
+      <Comment
+        onContentChange={onContentChange}
+        key={comment.id}
+        comment={comment}
+      />
+    );
   });
 };
 

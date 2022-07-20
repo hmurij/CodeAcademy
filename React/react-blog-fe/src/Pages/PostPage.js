@@ -57,6 +57,7 @@ const PostPage = (props) => {
   };
 
   const fetchPostById = () => {
+    setIsLoading(true);
     getPostById(id)
       .then((post) => {
         setPost(post);
@@ -75,6 +76,7 @@ const PostPage = (props) => {
     setTimeout(() => {
       if (isPostUpdated) {
         setIsPostUpdated(false);
+        fetchPostById();
       }
       if (isPostDeleted) {
         setIsPostDeleted(false);
@@ -98,7 +100,6 @@ const PostPage = (props) => {
     content = (
       <Col className="d-flex flex-column justify-content-center">
         <PostUpdateForm
-          isPostUpdated={isPostUpdated}
           onSubmit={onPostUpdate}
           onPostDelete={onPostDelete}
           isDeletingPost={isDeletingPost}
@@ -124,8 +125,10 @@ const PostPage = (props) => {
           </div>
         )}
 
-        {authCtx.isLoggedIn && <NewCommentForm postId={post.id} />}
-        <CommentsList comments={comments} />
+        {authCtx.isLoggedIn && (
+          <NewCommentForm onContentChange={fetchPostById} postId={post.id} />
+        )}
+        <CommentsList onContentChange={fetchPostById} comments={comments} />
       </Col>
     );
   }
