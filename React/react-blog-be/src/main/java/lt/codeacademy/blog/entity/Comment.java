@@ -40,6 +40,12 @@ public class Comment {
         this.post = post;
     }
 
+    public Comment updateContent(String content) {
+        setComment(content);
+        setCreatedOn(LocalDate.now());
+        return this;
+    }
+
     public Long getId() {
         return id;
     }
