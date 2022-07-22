@@ -14,8 +14,8 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class BlogFactory {
-    public final static List<BlogUser> blogUsers;
-    public final static List<Post> posts;
+    public final static List<BlogUser> BLOG_USERS;
+    public final static List<Post> POSTS;
 
     private static final int BLOG_USERS_MAX_SIZE = 10;
     private static final int BLOG_USERS_MIN_SIZE = 5;
@@ -24,13 +24,13 @@ public class BlogFactory {
     private static final int COMMENTS_MAX_SIZE = 10;
     private static final int COMMENTS_MIN_SIZE = 5;
 
-    private static final NameGenerator generator = new NameGenerator();
-    private static final Lorem lorem = LoremIpsum.getInstance();
-    private static final Random random = new Random();
+    private static final NameGenerator GENERATOR = new NameGenerator();
+    private static final Lorem LOREM = LoremIpsum.getInstance();
+    private static final Random RANDOM = new Random();
 
     static {
-        blogUsers = generateBlogUsers();
-        posts = generatePosts();
+        BLOG_USERS = generateBlogUsers();
+        POSTS = generatePosts();
     }
 
     private BlogFactory() {
@@ -38,7 +38,7 @@ public class BlogFactory {
 
     private static List<BlogUser> generateBlogUsers() {
         return Stream.generate(BlogFactory::generateBlogUser)
-                .limit(random.nextInt(BLOG_USERS_MAX_SIZE - BLOG_USERS_MIN_SIZE) + BLOG_USERS_MIN_SIZE)
+                .limit(RANDOM.nextInt(BLOG_USERS_MAX_SIZE - BLOG_USERS_MIN_SIZE) + BLOG_USERS_MIN_SIZE)
                 .toList();
     }
 
@@ -52,7 +52,7 @@ public class BlogFactory {
     }
 
     private static BlogUser generateBlogUser() {
-        Name name = generator.generateName();
+        Name name = GENERATOR.generateName();
         return new BlogUser(
                 name.toString(),
                 "USER",
@@ -63,7 +63,7 @@ public class BlogFactory {
 
     private static List<Post> generatePosts() {
         return Stream.generate(BlogFactory::generatePost)
-                .limit(random.nextInt(POSTS_MAX_SIZE - POSTS_MIN_SIZE) + POSTS_MIN_SIZE)
+                .limit(RANDOM.nextInt(POSTS_MAX_SIZE - POSTS_MIN_SIZE) + POSTS_MIN_SIZE)
                 .peek(post -> post.getBlogUser().addPost(post))
                 .peek(post -> post.setComments(BlogFactory.generateComments(post)))
                 .toList();
@@ -71,18 +71,18 @@ public class BlogFactory {
 
     private static Post generatePost() {
         return new Post(
-                lorem.getTitle(2, 4),
-                lorem.getParagraphs(2, 6),
-                LocalDate.now().minusDays(random.nextInt(365) + 100),
-                LocalDate.now().minusDays(random.nextInt(50)),
-                blogUsers.get(random.nextInt(blogUsers.size())),
+                LOREM.getTitle(2, 4),
+                LOREM.getParagraphs(2, 6),
+                LocalDate.now().minusDays(RANDOM.nextInt(365) + 100),
+                LocalDate.now().minusDays(RANDOM.nextInt(50)),
+                BLOG_USERS.get(RANDOM.nextInt(BLOG_USERS.size())),
                 null
         );
     }
 
     private static List<Comment> generateComments(Post post) {
         return Stream.generate(BlogFactory::generateComment)
-                .limit(random.nextInt(COMMENTS_MAX_SIZE - COMMENTS_MIN_SIZE) + COMMENTS_MIN_SIZE)
+                .limit(RANDOM.nextInt(COMMENTS_MAX_SIZE - COMMENTS_MIN_SIZE) + COMMENTS_MIN_SIZE)
                 .peek(comment -> comment.getBlogUser().addComment(comment))
                 .peek(comment -> comment.setPost(post))
                 .toList();
@@ -90,9 +90,9 @@ public class BlogFactory {
 
     private static Comment generateComment() {
         return new Comment(
-                lorem.getWords(10, 100),
-                LocalDate.now().minusDays(random.nextInt(100)),
-                blogUsers.get(random.nextInt(blogUsers.size())),
+                LOREM.getWords(10, 100),
+                LocalDate.now().minusDays(RANDOM.nextInt(100)),
+                BLOG_USERS.get(RANDOM.nextInt(BLOG_USERS.size())),
                 null
         );
     }

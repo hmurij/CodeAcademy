@@ -15,7 +15,7 @@ public class DbInit {
 
     @PostConstruct
     public void init() {
-        BlogFactory.blogUsers.forEach(userRepository::save);
+        BlogFactory.BLOG_USERS.forEach(userRepository::save);
         userRepository.save(BlogFactory.generateBlogAdmin());
     }
 }

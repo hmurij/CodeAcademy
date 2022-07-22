@@ -10,7 +10,7 @@ class PostTest {
 
     @Test
     void asJson_generatedPost_validJson() {
-        Post post = BlogFactory.posts.get(1);
+        Post post = BlogFactory.POSTS.get(1);
 
         JsonNode result = post.asJsonWithComments();
 
