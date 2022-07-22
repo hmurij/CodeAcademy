@@ -8,6 +8,8 @@ import lt.codeacademy.blog.repository.PostRepository;
 import lt.codeacademy.blog.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,5 +54,11 @@ public class CommentController {
                 .map(Comment::asJson)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/comments/{id}")
+    public ResponseEntity<HttpStatus> deleteComment(@PathVariable Long id) {
+        commentRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

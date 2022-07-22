@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import SubmitButton from "./SubmitButton";
 import Banner from "./Banner";
-import { updateComment } from "../lib/api";
+import { deleteComment, updateComment } from "../lib/api";
 
 const Comment = ({ comment, onContentChange }) => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -36,21 +36,27 @@ const Comment = ({ comment, onContentChange }) => {
   };
 
   const deleteHandler = () => {
-    console.log(`delete comment id: ${comment.id}`);
     setIsDeleting(true);
     setTimeout(() => {
-      setIsDeleting(false);
-      setIsDeleted(true);
+      deleteComment(comment.id, authCtx.token)
+        .then(() => {
+          setIsDeleted(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          setError(error);
+        })
+        .finally(() => {
+          setIsDeleting(false);
+        });
     }, 2000);
   };
 
   useEffect(() => {
     setTimeout(() => {
       if (isDeleted) {
-        console.log("refresh post");
-        // show deleted by banner
         setIsDeleted(false);
-        // onContentChange();
+        onContentChange();
       }
       if (isUpdated) {
         setIsUpdated(false);

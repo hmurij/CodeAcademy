@@ -50,7 +50,6 @@ export const deletePost = async (postId, token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response);
   if (!response.ok) {
     throw new Error(response.status);
   }
@@ -85,6 +84,19 @@ export const updateComment = async (updatedComment, token) => {
     throw new Error(`Error - ${response.status} ${response.statusText}`);
   }
   return response.json();
+};
+
+export const deleteComment = async (commentId, token) => {
+  const response = await fetch(`${BLOG_DOMAIN}/comments/${commentId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`Error - ${response.status} ${response.statusText}`);
+  }
+  return response.ok;
 };
 
 export const register = async (registerRequest) => {
