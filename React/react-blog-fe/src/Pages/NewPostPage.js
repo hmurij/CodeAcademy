@@ -16,7 +16,7 @@ const NewPostPage = (props) => {
     // console.log(newPost);
     submitNewPost(newPost, authContext.token)
       .then((post) => {
-        console.log(post);
+        // console.log(post);
         setTimeout(() => {
           setNewPostId(post.id);
           setIsSubmitted(true);
@@ -38,7 +38,7 @@ const NewPostPage = (props) => {
         setIsSubmitted(false);
         navigate(`/post/${newPostId}`);
       }
-    }, 3000);
+    }, 2000);
   }, [isSubmitted]);
 
   return (

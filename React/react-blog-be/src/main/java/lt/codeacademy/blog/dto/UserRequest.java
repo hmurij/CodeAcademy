@@ -1,6 +1,6 @@
 package lt.codeacademy.blog.dto;
 
-public class RegisterRequest {
+public class UserRequest {
     private String userName;
     private String password;
     private String email;

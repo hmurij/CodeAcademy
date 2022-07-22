@@ -3,8 +3,7 @@ package lt.codeacademy.blog.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lt.codeacademy.blog.dto.LoginRequest;
-import lt.codeacademy.blog.dto.RegisterRequest;
+import lt.codeacademy.blog.dto.UserRequest;
 import lt.codeacademy.blog.entity.BlogUser;
 import lt.codeacademy.blog.repository.BlogUserRepository;
 import lt.codeacademy.blog.security.JwtProvider;
@@ -42,8 +41,8 @@ public class AuthService {
         this.jwtProvider = jwtProvider;
     }
 
-    public boolean signup(RegisterRequest registerRequest) {
-        BlogUser blogUser = this.mapToBlogUser(registerRequest);
+    public boolean signup(UserRequest userRequest) {
+        BlogUser blogUser = this.mapToBlogUser(userRequest);
         return blogUserRepository.findByUserName(blogUser.getUserName())
                 .map(user -> false)
                 .orElseGet(() -> {
@@ -52,16 +51,16 @@ public class AuthService {
                 });
     }
 
-    private BlogUser mapToBlogUser(RegisterRequest registerRequest) {
+    private BlogUser mapToBlogUser(UserRequest userRequest) {
         return new BlogUser(
-                registerRequest.getUserName(),
+                userRequest.getUserName(),
                 "USER",
-                passwordEncoder.encode(registerRequest.getPassword()),
-                registerRequest.getEmail()
+                passwordEncoder.encode(userRequest.getPassword()),
+                userRequest.getEmail()
         );
     }
 
-    public ResponseEntity<JsonNode> login(LoginRequest loginRequest) {
+    public ResponseEntity<JsonNode> login(UserRequest loginRequest) {
         Authentication authenticate;
         try {
             authenticate = authenticationManager.authenticate(
@@ -78,7 +77,7 @@ public class AuthService {
         return ResponseEntity.ok(loginSuccessResponseNode(authenticate));
     }
 
-    private ObjectNode badCredentialsResponseNode(LoginRequest loginRequest) {
+    private ObjectNode badCredentialsResponseNode(UserRequest loginRequest) {
         return new ObjectMapper().createObjectNode()
                 .put("error", badCredentialsMessage(loginRequest.getUserName()));
     }
