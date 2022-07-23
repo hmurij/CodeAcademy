@@ -1,6 +1,6 @@
 package lt.codeacademy.blog.dto;
 
-public class UserRequest {
+public class AuthRequest {
     private String userName;
     private String password;
     private String email;

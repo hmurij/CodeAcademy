@@ -3,7 +3,7 @@ package lt.codeacademy.blog.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lt.codeacademy.blog.dto.UserRequest;
+import lt.codeacademy.blog.dto.AuthRequest;
 import lt.codeacademy.blog.entity.BlogUser;
 import lt.codeacademy.blog.repository.BlogUserRepository;
 import lt.codeacademy.blog.security.JwtProvider;
@@ -41,8 +41,8 @@ public class AuthService {
         this.jwtProvider = jwtProvider;
     }
 
-    public boolean signup(UserRequest userRequest) {
-        BlogUser blogUser = this.mapToBlogUser(userRequest);
+    public boolean signup(AuthRequest authRequest) {
+        BlogUser blogUser = this.mapToBlogUser(authRequest);
         return blogUserRepository.findByUserName(blogUser.getUserName())
                 .map(user -> false)
                 .orElseGet(() -> {
@@ -51,16 +51,16 @@ public class AuthService {
                 });
     }
 
-    private BlogUser mapToBlogUser(UserRequest userRequest) {
+    private BlogUser mapToBlogUser(AuthRequest authRequest) {
         return new BlogUser(
-                userRequest.getUserName(),
+                authRequest.getUserName(),
                 "USER",
-                passwordEncoder.encode(userRequest.getPassword()),
-                userRequest.getEmail()
+                passwordEncoder.encode(authRequest.getPassword()),
+                authRequest.getEmail()
         );
     }
 
-    public ResponseEntity<JsonNode> login(UserRequest loginRequest) {
+    public ResponseEntity<JsonNode> login(AuthRequest loginRequest) {
         Authentication authenticate;
         try {
             authenticate = authenticationManager.authenticate(
@@ -77,7 +77,7 @@ public class AuthService {
         return ResponseEntity.ok(loginSuccessResponseNode(authenticate));
     }
 
-    private ObjectNode badCredentialsResponseNode(UserRequest loginRequest) {
+    private ObjectNode badCredentialsResponseNode(AuthRequest loginRequest) {
         return new ObjectMapper().createObjectNode()
                 .put("error", badCredentialsMessage(loginRequest.getUserName()));
     }

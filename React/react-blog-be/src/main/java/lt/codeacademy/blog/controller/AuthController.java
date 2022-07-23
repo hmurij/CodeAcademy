@@ -3,7 +3,7 @@ package lt.codeacademy.blog.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lt.codeacademy.blog.dto.UserRequest;
+import lt.codeacademy.blog.dto.AuthRequest;
 import lt.codeacademy.blog.service.AuthService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,19 +22,19 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonNode> login(@RequestBody UserRequest loginRequest) {
+    public ResponseEntity<JsonNode> login(@RequestBody AuthRequest loginRequest) {
         return authService.login(loginRequest);
     }
 
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonNode> signup(@RequestBody UserRequest userRequest) {
-        return authService.signup(userRequest)
-                ? ResponseEntity.ok(responseMessage("New user " + userRequest.getUserName() + " successfully created!"))
-                : ResponseEntity.unprocessableEntity().body(responseMessage("Username " + userRequest.getUserName() + " already exists"));
+    public ResponseEntity<JsonNode> signup(@RequestBody AuthRequest authRequest) {
+        return authService.signup(authRequest)
+                ? ResponseEntity.ok(responseMessage(authRequest.getUserName()))
+                : ResponseEntity.unprocessableEntity().body(responseMessage(authRequest.getUserName()));
     }
 
-    private ObjectNode responseMessage(String message) {
+    private ObjectNode responseMessage(String userName) {
         return new ObjectMapper().createObjectNode()
-                .put("message", message);
+                .put("userName", userName);
     }
 }
