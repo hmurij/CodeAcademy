@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
+import { withTranslation } from "react-i18next";
 
 class Header extends React.Component {
   static contextType = AuthContext;
@@ -36,6 +37,8 @@ class Header extends React.Component {
 
   render() {
     let { isLoggedIn, userName } = this.context;
+    const { t, i18n } = this.props;
+
     return (
       <Container
         fluid
@@ -47,7 +50,7 @@ class Header extends React.Component {
         <Navbar bg="white" expand="sm">
           <Container fluid>
             <Navbar.Brand to="/" as={NavLink}>
-              Home
+              {t("home")}
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -57,13 +60,17 @@ class Header extends React.Component {
                   variant="outline-secondary"
                   style={{ boxShadow: "2px 2px 5px grey" }}
                 >
-                  Languages
+                  {t("languages")}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Lithuanian</Dropdown.Item>
+                  <Dropdown.Item onClick={() => i18n.changeLanguage("lt")}>
+                    {t("lt")}
+                  </Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item href="#/action-2">English</Dropdown.Item>
+                  <Dropdown.Item onClick={() => i18n.changeLanguage("en")}>
+                    {t("en")}{" "}
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
 
@@ -74,13 +81,13 @@ class Header extends React.Component {
                     to="/new-post"
                     as={NavLink}
                   >
-                    New Post
+                    {t("newPost")}
                   </Link>
                   <div
                     className="btn align-self-center text-secondary"
                     style={{ cursor: "default" }}
                   >
-                    <span>{`Signed in as:  ${userName}`}</span>
+                    <span>{`${t("signedInAs")}:  ${userName}`}</span>
                   </div>
                   <Link
                     className="button btn btn-outline-secondary me-1 my-2 text-decoration-none"
@@ -88,7 +95,7 @@ class Header extends React.Component {
                     as={NavLink}
                     onClick={this.logoutHandler}
                   >
-                    Logout
+                    {t("logout")}
                   </Link>
                 </Nav>
               )}
@@ -100,14 +107,14 @@ class Header extends React.Component {
                     to="/login"
                     as={NavLink}
                   >
-                    Login
+                    {t("login")}
                   </Link>
                   <Link
                     className="button btn btn-outline-secondary me-1 my-1 text-decoration-none"
                     to="/register"
                     as={NavLink}
                   >
-                    Register
+                    {t("register")}
                   </Link>
                 </Nav>
               )}
@@ -125,4 +132,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withTranslation()(Header);

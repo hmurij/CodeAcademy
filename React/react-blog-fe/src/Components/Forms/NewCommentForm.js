@@ -6,11 +6,13 @@ import SubmitButton from "../SubmitButton";
 import Banner from "../Banner";
 import AuthContext from "../../store/auth-context";
 import { submitNewComment } from "../../lib/api";
+import { useTranslation } from "react-i18next";
 
 const NewCommentForm = ({ postId, onContentChange }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const authCtx = useContext(AuthContext);
   const textAreaRef = useRef(null);
+  const { t } = useTranslation();
 
   const onSubmit = (comment, formikHelpers) => {
     setTimeout(() => {
@@ -48,9 +50,9 @@ const NewCommentForm = ({ postId, onContentChange }) => {
       }}
       validationSchema={Yup.object({
         content: Yup.string()
-          .min(5, "Must be at least 5 characters")
-          .max(1000, "Must be 1000 characters of less")
-          .required("Required"),
+          .min(5, t("validation:atLeast", { number: 5 }))
+          .max(1000, t("validation:lessThan", { number: 1000 }))
+          .required(t("validation:required")),
       })}
       onSubmit={onSubmit}
     >
@@ -59,7 +61,7 @@ const NewCommentForm = ({ postId, onContentChange }) => {
           <Card className="mb-4 py-2 px-3 bg-light boxShadow">
             <Form onSubmit={formik.handleSubmit}>
               <Form.Group className="mb-2" controlId="content">
-                <FloatingLabel label="Add new comment">
+                <FloatingLabel label={t("addNewComment")}>
                   <Form.Control
                     type="text"
                     as="textarea"
@@ -84,7 +86,7 @@ const NewCommentForm = ({ postId, onContentChange }) => {
                 <SubmitButton
                   // isSubmitted={isSubmitted}
                   isSubmitting={formik.isSubmitting}
-                  name="Add New Comment"
+                  name={t("addNewComment")}
                 />
               </div>
             </Form>
@@ -92,7 +94,9 @@ const NewCommentForm = ({ postId, onContentChange }) => {
           {isSubmitted && (
             <Banner
               className="text-success border-success mb-4"
-              message={`New comment added by ${authCtx.userName}`}
+              message={`${t("addedBy", { type: "comment" })} ${
+                authCtx.userName
+              }`}
             />
           )}
         </>

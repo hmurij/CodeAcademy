@@ -4,10 +4,12 @@ import SubmitButton from "../SubmitButton";
 import AuthContext from "../../store/auth-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
 
 const NewPostForm = ({ onSubmit, isSubmitted }) => {
   const textAreaRef = useRef(null);
   const authCtx = useContext(AuthContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     textAreaRef.current.style.height = "300px";
@@ -20,27 +22,29 @@ const NewPostForm = ({ onSubmit, isSubmitted }) => {
       }}
       validationSchema={Yup.object({
         title: Yup.string()
-          .min(3, "Must be at least 3 characters")
-          .max(30, "Must be 15 characters of less")
-          .required("Required"),
+          .min(3, t("validation:atLeast", { number: 3 }))
+          .max(30, t("validation:lessThan", { number: 30 }))
+          .required(t("validation:required")),
         content: Yup.string()
-          .min(250, "Must be at least 250 characters")
-          .max(5000, "Must be 15 characters of less")
-          .required("Required"),
+          .min(250, t("validation:atLeast", { number: 250 }))
+          .max(5000, t("validation:lessThan", { number: 5000 }))
+          .required(t("validation:required")),
       })}
       onSubmit={onSubmit}
     >
       {(formik) => (
         <Col>
           <Card className="boxShadow">
-            <Card.Header className="fst-italic">{`New Post by ${authCtx.userName}`}</Card.Header>
+            <Card.Header className="fst-italic">{`${t("newPostBy")} ${
+              authCtx.userName
+            }`}</Card.Header>
             <Card.Body className="m-2 pb-3 border rounded-3">
               <Form onSubmit={formik.handleSubmit}>
                 <Form.Group controlId="title">
-                  <Form.Label>Title</Form.Label>
+                  <Form.Label>{t("title")}</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter post title"
+                    placeholder={t("enterNewPostHere")}
                     name="title"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -59,7 +63,7 @@ const NewPostForm = ({ onSubmit, isSubmitted }) => {
                 </Form.Group>
 
                 <Form.Group className="my-2" controlId="content">
-                  <Form.Label>Content</Form.Label>
+                  <Form.Label>{t("content")}</Form.Label>
                   <Form.Control
                     type="text"
                     name="content"
@@ -85,7 +89,7 @@ const NewPostForm = ({ onSubmit, isSubmitted }) => {
                   <SubmitButton
                     isSubmitted={isSubmitted}
                     isSubmitting={formik.isSubmitting}
-                    name="Add New Post"
+                    name={t("addNewPost")}
                   />
                 </div>
               </Form>

@@ -5,12 +5,14 @@ import { submitNewPost } from "../lib/api";
 import AuthContext from "../store/auth-context";
 import Banner from "../Components/Banner";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NewPostPage = (props) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [newPostId, setNewPostId] = useState(null);
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const onSubmit = (newPost, formikHelpers) => {
     // console.log(newPost);
@@ -54,7 +56,9 @@ const NewPostPage = (props) => {
         {isSubmitted && (
           <Banner
             className="text-success border-success mt-4"
-            message={`New post added by ${authContext.userName}`}
+            message={`${t("addedBy", { type: "post" })} ${
+              authContext.userName
+            }`}
           />
         )}
       </Row>

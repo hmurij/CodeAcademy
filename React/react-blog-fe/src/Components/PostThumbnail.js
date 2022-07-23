@@ -1,8 +1,11 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const PostThumbnail = (props) => {
+  const { t } = useTranslation();
+
   return (
     <Link
       to={"/post/" + props.post.id}
@@ -18,8 +21,10 @@ const PostThumbnail = (props) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer className="d-flex text-muted">
-          <div className="me-auto">{"Posted: " + props.post.createdOn}</div>
-          <div>{"Edited: " + props.post.updatedOn}</div>
+          <div className="me-auto">{`${t("posted")}: ${
+            props.post.createdOn
+          }`}</div>
+          <div>{`${t("edited")}: ${props.post.updatedOn}`}</div>
         </Card.Footer>
       </Card>
     </Link>

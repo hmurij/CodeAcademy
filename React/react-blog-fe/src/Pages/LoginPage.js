@@ -4,27 +4,35 @@ import { login } from "../lib/api";
 import LoginForm from "../Components/Forms/LoginForm";
 import AuthContext from "../store/auth-context";
 import Banner from "../Components/Banner";
+import { useTranslation } from "react-i18next";
 
 const LoginPage = (props) => {
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
   const authCtx = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const onSubmit = (loginRequest, formikHelpers) => {
     setTimeout(() => {
       login(loginRequest)
         .then((loginResponse) => {
           setIsLoginSuccess(true);
-          setLoginMessage(`Logged in as ${loginResponse.userName}`);
+          setLoginMessage(`${t("signedInAs")} ${loginResponse.userName}`);
           setTimeout(() => {
             authCtx.login(loginResponse);
           }, 2000);
         })
         .catch((error) => {
           if (error.message.includes("password")) {
-            formikHelpers.setFieldError("invalidPassword", error.message);
+            formikHelpers.setFieldError(
+              "invalidPassword",
+              t("validation:invalidPassword")
+            );
           } else {
-            formikHelpers.setFieldError("invalidUsername", error.message);
+            formikHelpers.setFieldError(
+              "invalidUsername",
+              t("validation:invalidUsername")
+            );
           }
         })
         .finally(() => {

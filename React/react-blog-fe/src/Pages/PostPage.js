@@ -8,6 +8,7 @@ import { deletePost, getPostById, updatePost } from "../lib/api";
 import { useNavigate, useParams } from "react-router-dom";
 import Banner from "../Components/Banner";
 import AuthContext from "../store/auth-context";
+import { useTranslation } from "react-i18next";
 
 const PostPage = (props) => {
   const [post, setPost] = useState({});
@@ -20,6 +21,7 @@ const PostPage = (props) => {
   const { id } = useParams();
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const onPostUpdate = (updatedContent, formikHelpers) => {
     setTimeout(() => {
@@ -37,7 +39,7 @@ const PostPage = (props) => {
         .finally(() => {
           formikHelpers.setSubmitting(false);
         });
-    }, Math.random() * 1000);
+    }, 1000);
   };
 
   const onPostDelete = () => {
@@ -53,7 +55,7 @@ const PostPage = (props) => {
         .finally(() => {
           setIsDeletingPost(false);
         });
-    }, Math.random() * 1000);
+    }, 1000);
   };
 
   const fetchPostById = () => {
@@ -82,13 +84,13 @@ const PostPage = (props) => {
         setIsPostDeleted(false);
         navigate("/");
       }
-    }, Math.random() * 1000);
+    }, 1000);
   }, [isPostUpdated, isPostDeleted]);
 
   useEffect(() => {
     setTimeout(() => {
       fetchPostById();
-    }, Math.random() * 1000);
+    }, 1000);
   }, []);
 
   let content = <Loading />;
@@ -109,19 +111,19 @@ const PostPage = (props) => {
         {isPostUpdated && (
           <Banner
             className="text-success border-success mt-4"
-            message={`Post updated by ${authCtx.userName}`}
+            message={`${t("updatedBy", { type: "post" })} ${authCtx.userName}`}
           />
         )}
         {isPostDeleted && (
           <Banner
             className="text-danger border-danger mt-4"
-            message={`Post deleted by ${authCtx.userName}`}
+            message={`${t("deleteBy", { type: "post" })} ${authCtx.userName}`}
           />
         )}
 
         {(authCtx.isLoggedIn || comments.length > 0) && (
           <div className="ms-2 mt-3 mb-2">
-            <h5>Comments</h5>
+            <h5>{t("comments")}</h5>
           </div>
         )}
 

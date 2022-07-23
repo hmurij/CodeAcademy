@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import SubmitButton from "./SubmitButton";
 import Banner from "./Banner";
 import { deleteComment, updateComment } from "../lib/api";
+import { useTranslation } from "react-i18next";
 
 const Comment = ({ comment, onContentChange }) => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -14,6 +15,7 @@ const Comment = ({ comment, onContentChange }) => {
   const [error, setError] = useState(null);
   const textAreaRef = useRef(null);
   const authCtx = useContext(AuthContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
@@ -75,9 +77,9 @@ const Comment = ({ comment, onContentChange }) => {
       }}
       validationSchema={Yup.object({
         content: Yup.string()
-          .min(5, "Must be at least 5 characters")
-          .max(1000, "Must be 1000 characters of less")
-          .required("Required"),
+          .min(5, t("validation:atLeast", { number: 5 }))
+          .max(1000, t("validation:lessThan", { number: 1000 }))
+          .required(t("validation:required")),
       })}
       onSubmit={updateHandler}
     >
@@ -86,7 +88,9 @@ const Comment = ({ comment, onContentChange }) => {
           <Card className="mb-4 boxShadow">
             <Card.Header className=" d-flex justify-content-between">
               <div className="fst-italic">{comment.blogUser}</div>
-              <div className="text-muted">{`Commented: ${comment.createdOn}`}</div>
+              <div className="text-muted">{`${t("commented")}: ${
+                comment.createdOn
+              }`}</div>
             </Card.Header>
             <Card.Body>
               <Form onSubmit={formik.handleSubmit}>
@@ -135,7 +139,7 @@ const Comment = ({ comment, onContentChange }) => {
                       <SubmitButton
                         isSubmitting={formik.isSubmitting}
                         isDisabled={isDeleting || isDeleted || isUpdated}
-                        name="Update"
+                        name={t("update")}
                       />
                       <SubmitButton
                         variant="outline-danger"
@@ -145,7 +149,7 @@ const Comment = ({ comment, onContentChange }) => {
                         isDisabled={
                           formik.isSubmitting || isUpdated || isDeleted
                         }
-                        name="Delete"
+                        name={t("delete")}
                       />
                     </div>
                   )}
@@ -155,13 +159,17 @@ const Comment = ({ comment, onContentChange }) => {
           {isUpdated && (
             <Banner
               className="text-success border-success mb-4"
-              message={`Comment updated by ${authCtx.userName}`}
+              message={`${t("updatedBy", { type: "comment" })} ${
+                authCtx.userName
+              }`}
             />
           )}
           {isDeleted && (
             <Banner
               className="text-danger border-danger mb-4"
-              message={`Comment deleted by ${authCtx.userName}`}
+              message={`${t("deleteBy", { type: "comment" })} ${
+                authCtx.userName
+              }`}
             />
           )}
           {error && (

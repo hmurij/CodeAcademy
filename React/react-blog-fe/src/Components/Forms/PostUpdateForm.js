@@ -4,6 +4,7 @@ import AuthContext from "../../store/auth-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import SubmitButton from "../SubmitButton";
+import { useTranslation } from "react-i18next";
 
 const PostUpdateForm = ({
   post,
@@ -14,6 +15,7 @@ const PostUpdateForm = ({
 }) => {
   const textAreaRef = useRef(null);
   const authCtx = useContext(AuthContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
@@ -26,9 +28,9 @@ const PostUpdateForm = ({
       }}
       validationSchema={Yup.object({
         content: Yup.string()
-          .min(250, "Must be at least 250 characters")
-          .max(5000, "Must be 15 characters of less")
-          .required("Required"),
+          .min(250, t("validation:atLeast", { number: 250 }))
+          .max(5000, t("validation:lessThan", { number: 5000 }))
+          .required(t("validation:required")),
       })}
       onSubmit={onSubmit}
     >
@@ -81,7 +83,7 @@ const PostUpdateForm = ({
                     <SubmitButton
                       isSubmitting={formik.isSubmitting}
                       isDisabled={isDeletingPost || isPostDeleted}
-                      name="Update"
+                      name={t("update")}
                     />
                     <SubmitButton
                       variant="outline-danger"
@@ -89,15 +91,15 @@ const PostUpdateForm = ({
                       onClick={onPostDelete}
                       isSubmitting={isDeletingPost}
                       isDisabled={formik.isSubmitting || isPostDeleted}
-                      name="Delete"
+                      name={t("delete")}
                     />
                   </div>
                 )}
             </Form>
           </Card.Body>
           <Card.Footer className="d-flex text-muted">
-            <div className="me-auto">{`Posted: ${post.createdOn}`}</div>
-            <div>{`Edited: ${post.updatedOn}`}</div>
+            <div className="me-auto">{`${t("posted")}: ${post.createdOn}`}</div>
+            <div>{`${t("edited")}: ${post.updatedOn}`}</div>
           </Card.Footer>
         </Card>
       )}

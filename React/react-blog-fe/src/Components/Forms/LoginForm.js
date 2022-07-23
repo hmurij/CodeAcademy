@@ -3,8 +3,11 @@ import * as Yup from "yup";
 import { Card, Col, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import SubmitButton from "../SubmitButton";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = ({ onSubmit, isSubmitted }) => {
+  const { t } = useTranslation();
+
   return (
     <Formik
       initialValues={{
@@ -13,29 +16,29 @@ const LoginForm = ({ onSubmit, isSubmitted }) => {
       }}
       validationSchema={Yup.object({
         userName: Yup.string()
-          .min(3, "Must be at least 3 characters")
-          .max(25, "Must be 25 characters of less")
-          .required("Required"),
+          .min(3, t("validation:atLeast", { number: 3 }))
+          .max(25, t("validation:lessThan", { number: 25 }))
+          .required(t("validation:required")),
         password: Yup.string()
-          .min(5, "Must be at least 5 characters")
-          .max(15, "Must be 15 characters of less")
-          .required("Required"),
+          .min(5, t("validation:atLeast", { number: 5 }))
+          .max(15, t("validation:lessThan", { number: 15 }))
+          .required(t("validation:required")),
       })}
       onSubmit={onSubmit}
     >
       {(formik) => (
         <Col sm={10} md={8} lg={6}>
           <Card className="boxShadow">
-            <Card.Header className="fst-italic">Login form</Card.Header>
+            <Card.Header className="fst-italic">{t("loginForm")}</Card.Header>
             <Form
               className="m-2 p-4 border rounded-3"
               onSubmit={formik.handleSubmit}
             >
               <Form.Group className="mb-3" controlId="userName">
-                <Form.Label>User name</Form.Label>
+                <Form.Label>{t("userName")}</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter user name"
+                  placeholder={t("enterUserName")}
                   name="userName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -60,10 +63,10 @@ const LoginForm = ({ onSubmit, isSubmitted }) => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>{t("password")}</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder={t("password")}
                   name="password"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -89,7 +92,7 @@ const LoginForm = ({ onSubmit, isSubmitted }) => {
               <SubmitButton
                 isSubmitted={isSubmitted}
                 isSubmitting={formik.isSubmitting}
-                name="Login"
+                name={t("login")}
               />
             </Form>
           </Card>

@@ -4,11 +4,13 @@ import { register } from "../lib/api";
 import RegistrationForm from "../Components/Forms/RegistrationForm";
 import { useNavigate } from "react-router-dom";
 import Banner from "../Components/Banner";
+import { useTranslation } from "react-i18next";
 
 const RegisterPage = (props) => {
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
   const [registrationMessage, setRegistrationMessage] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,12 +26,17 @@ const RegisterPage = (props) => {
       register(values)
         .then((data) => {
           formikHelpers.resetForm();
-          setRegistrationMessage(data.message);
+          setRegistrationMessage(
+            t("newUserCreated", { newUser: data.userName })
+          );
           setIsRegistrationSuccess(true);
         })
         .catch((error) => {
           // console.log(error.message);
-          formikHelpers.setFieldError("register", error.message);
+          formikHelpers.setFieldError(
+            "register",
+            t("userAlreadyExists", { userName: error.message })
+          );
         })
         .finally(() => {
           formikHelpers.setSubmitting(false);
