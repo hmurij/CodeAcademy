@@ -3,6 +3,7 @@ import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import { withTranslation } from "react-i18next";
+import Title from "../Title";
 
 class Header extends React.Component {
   static contextType = AuthContext;
@@ -121,12 +122,7 @@ class Header extends React.Component {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <div
-          className="btn"
-          style={{ cursor: "default", textShadow: "2px 2px 3px grey" }}
-        >
-          <h1>Spring Rest API Blog - React</h1>
-        </div>
+        <Title />
       </Container>
     );
   }
