@@ -7,6 +7,15 @@ const Title = () => {
   return (
     <div className="btn" style={{ cursor: "default" }}>
       <h1>
+        <span
+          className="ms-1"
+          style={{
+            fontWeight: "bold",
+            textShadow: "2px 2px 3px rgb(150, 150, 150)",
+          }}
+        >
+          demo.
+        </span>
         <ReactLogo />
         <span
           className="me-2"

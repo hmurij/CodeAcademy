@@ -17,7 +17,6 @@ public class JwtProvider {
     @PostConstruct
     public void init() {
         key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-
     }
 
     public String generateToken(Authentication authentication) {
@@ -33,7 +32,6 @@ public class JwtProvider {
         Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt);
         return true;
     }
-
 
     public String getUsernameFromJwt(String token) {
         return Jwts.parserBuilder().
