@@ -2,6 +2,8 @@
 Simple demo blog with basic functionality such as basic authentication, create/update/delete
 posts and comments.
 
+![react-blog-480](https://user-images.githubusercontent.com/92530084/180834501-d0e70e96-9659-42f0-971b-421b3627886a.gif)
+
 ## Installation
 Download source code as `zip`, unzip archive, navigate to project folder and
 run `npm install` command to install all required dependencies.
