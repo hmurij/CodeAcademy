@@ -1,7 +1,8 @@
 # Simple demo blog - Spring Boot - Thymeleaf - Gradle project
 
-![screanshot](img.png)
-***
+|![screanshot](img.png)|
+|-----|
+
 ![JDK](https://img.shields.io/badge/JDK-17-orange)
 ![springBoot](https://img.shields.io/badge/Spring%20Boot-2.6.7-brightgreen)
 ![Thymleaf](https://img.shields.io/badge/Thymeleaf-3.0.15-darkgreen)
